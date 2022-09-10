@@ -1,18 +1,17 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
 const cookiesLogin = (req, res, next) => {
-  
-  if(req.cookies.logado != undefined && req.session.usuario == null){
-    let email = req.cookies.logado;
+  if (req.cookies.logado !== undefined && req.session.usuario == null) {
+    const email = req.cookies.logado
 
-    let usuario = JSON.parse(fs.readFileSync(path.join('usuarios.json'),
-    {encoding: 'utf-8'}))
+    const usuario = JSON.parse(fs.readFileSync(path.join('usuarios.json'),
+      { encoding: 'utf-8' }))
 
-    if(usuario.email == email){
+    if (usuario.email === email) {
       req.session.usuario = usuario
     }
   }
-  next();
+  next()
 }
 
-module.exports = cookiesLogin;
+module.exports = cookiesLogin

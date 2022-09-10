@@ -1,10 +1,9 @@
-const bcrypt = require("bcryptjs");
+'use strict'
 
-'use strict';
+const bcrypt = require('bcryptjs')
 module.exports = {
   async up (queryInterface, Sequelize) {
-
-     await queryInterface.bulkInsert('User', [
+    await queryInterface.bulkInsert('User', [
       {
         kind: 'admin',
         name: 'Administrator',
@@ -15,7 +14,7 @@ module.exports = {
         birthdate: '1980-01-01',
         createdAt: new Date(),
         updatedAt: new Date()
-      }, 
+      },
       {
         kind: 'user',
         name: 'Normal User',
@@ -27,10 +26,10 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       }
-    ], {});
+    ], {})
   },
 
   async down (queryInterface, Sequelize) {
-     await queryInterface.bulkDelete('User', null, {});
+    await queryInterface.bulkDelete('User', null, {})
   }
-};
+}

@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('Product', {
       id: {
         allowNull: false,
@@ -39,7 +39,7 @@ module.exports = {
         type: Sequelize.STRING(2000)
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       SKU: {
         type: Sequelize.STRING
@@ -58,9 +58,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Product');
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable('Product')
   }
-};
+}

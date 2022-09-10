@@ -1,15 +1,15 @@
-'use strict';
+/* eslint-disable camelcase */
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Payment_Details extends Model {
-
-    static associate(models) {
+    static associate (models) {
       Payment_Details.belongsTo(models.Order_Details, {
-        foreignKey: "order_id",
+        foreignKey: 'order_id',
         onDelete: 'CASCADE'
-      });
+      })
     }
   }
   Payment_Details.init({
@@ -20,6 +20,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Payment_Details',
     freezeTableName: true
-  });
-  return Payment_Details;
-};
+  })
+  return Payment_Details
+}

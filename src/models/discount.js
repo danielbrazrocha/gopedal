@@ -1,15 +1,14 @@
-'use strict';
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Discount extends Model {
-
-    static associate(models) {
+    static associate (models) {
       Discount.hasMany(models.Product, {
         foreignKey: 'discount_id',
         onDelete: 'CASCADE'
-      });
+      })
     }
   }
   Discount.init({
@@ -22,6 +21,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Discount',
     freezeTableName: true
-  });
-  return Discount;
-};
+  })
+  return Discount
+}

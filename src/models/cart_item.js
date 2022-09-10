@@ -1,24 +1,22 @@
-'use strict';
+/* eslint-disable camelcase */
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Cart_Item extends Model {
-
-    static associate(models) {
-      
-      //One Cart_Item belongs to one Shopping_Session
+    static associate (models) {
+      // One Cart_Item belongs to one Shopping_Session
       Cart_Item.belongsTo(models.Shopping_Session, {
-        foreignKey: "session_id",
+        foreignKey: 'session_id',
         onDelete: 'CASCADE'
-      });
+      })
 
-      //One Cart_Item belongs to one Product
+      // One Cart_Item belongs to one Product
       Cart_Item.belongsTo(models.Product, {
-        foreignKey: "ProductId",
+        foreignKey: 'ProductId',
         onDelete: 'CASCADE'
-      });
-      
+      })
     }
   }
   Cart_Item.init({
@@ -29,6 +27,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Cart_Item',
     freezeTableName: true
-  });
-  return Cart_Item;
-};
+  })
+  return Cart_Item
+}

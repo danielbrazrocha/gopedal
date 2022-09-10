@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
-const SobreController = require('../controllers/SobreController');
-const isAuth = require('../middlewares/isAuth');
+const express = require('express')
+const router = express.Router()
+const SobreController = require('../controllers/SobreController')
+const isAuth = require('../middlewares/isAuth')
 
 // GET Sobre Page
-router.get('/', isAuth, SobreController.index);
+router.get('/', isAuth, SobreController.index)
 
-module.exports = router;
+module.exports = router

@@ -1,15 +1,15 @@
-'use strict';
+/* eslint-disable camelcase */
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class User_Payment extends Model {
-
-    static associate(models) {
+    static associate (models) {
       User_Payment.belongsTo(models.User, {
-        foreignKey: "UserId",
+        foreignKey: 'UserId',
         onDelete: 'CASCADE'
-      });
+      })
     }
   }
   User_Payment.init({
@@ -22,6 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User_Payment',
     freezeTableName: true
-  });
-  return User_Payment;
-};
+  })
+  return User_Payment
+}
