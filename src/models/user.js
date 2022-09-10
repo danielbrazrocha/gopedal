@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,34 +9,32 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate (models) {
       // define association here
       User.hasMany(models.User_Address, {
         // o atributo sera criado automaticamente no modelo User_Address não precisando ser referenciado no model
         // apenas no migration
         foreignKey: 'UserId',
         onDelete: 'CASCADE'
-      });
+      })
       User.hasMany(models.User_Payment, {
         // o atributo sera criado automaticamente no modelo User_Payment não precisando ser referenciado no model
         // apenas no migration
         foreignKey: 'UserId',
         onDelete: 'CASCADE'
-      });
+      })
       User.hasOne(models.Shopping_Session, {
         // o atributo sera criado automaticamente no modelo Shopping_session não precisando ser referenciado no model)
         // apenas no migration
         foreignKey: 'UserId1',
         onDelete: 'CASCADE'
-      });
+      })
       User.hasOne(models.Order_Details, {
         // o atributo sera criado automaticamente no modelo Order_Details não precisando ser referenciado no model)
         // apenas no migration
         foreignKey: 'UserId2',
         onDelete: 'CASCADE'
-      });
-
-
+      })
     }
   }
   User.init({
@@ -52,6 +50,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
     freezeTableName: true
-  });
-  return User;
-};
+  })
+  return User
+}

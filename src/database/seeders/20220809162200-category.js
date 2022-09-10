@@ -1,22 +1,22 @@
-'use strict';
+'use strict'
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-     await queryInterface.bulkInsert('Category', [
+    await queryInterface.bulkInsert('Category', [
       {
         id: 1,
         name: 'Pedais',
         description: 'Pedais e pedivelas',
         createdAt: new Date(),
         updatedAt: new Date()
-      }, 
+      },
       {
         id: 2,
         name: 'Quadro',
         description: 'Quadros, selins e guidões',
         createdAt: new Date(),
         updatedAt: new Date()
-      }, 
+      },
       {
         id: 3,
         name: 'Manutenção',
@@ -30,14 +30,14 @@ module.exports = {
         description: 'Pinhão, cassetes, coroas, cubos, correntes e câmbios',
         createdAt: new Date(),
         updatedAt: new Date()
-      }, 
+      },
       {
         id: 5,
         name: 'Freios',
         description: 'Freios, mangueiras, pastilhas e óleos de lubrificação',
         createdAt: new Date(),
         updatedAt: new Date()
-      }, 
+      },
       {
         id: 6,
         name: 'Suspensão',
@@ -72,13 +72,12 @@ module.exports = {
         description: 'Iluminação, buzinas, espelhos, faróis e sinalizadores',
         createdAt: new Date(),
         updatedAt: new Date()
-      },
+      }
 
-
-    ], {});
+    ], {})
   },
 
   async down (queryInterface, Sequelize) {
-     await queryInterface.bulkDelete('Category', null, {});
+    await queryInterface.bulkDelete('Category', null, {})
   }
-};
+}

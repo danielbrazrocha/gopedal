@@ -1,22 +1,18 @@
-'use strict';
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
-
-    static associate(models) {
+    static associate (models) {
       Product.hasMany(models.Cart_Item, {
         foreignKey: 'ProductId',
         onDelete: 'CASCADE'
-      });
+      })
       Product.hasMany(models.Order_Itens, {
         foreignKey: 'ProductId',
         onDelete: 'CASCADE'
-      });
-
-
-
+      })
     }
   }
   Product.init({
@@ -33,6 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Product',
     freezeTableName: true
-  });
-  return Product;
-};
+  })
+  return Product
+}

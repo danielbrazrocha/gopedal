@@ -1,23 +1,22 @@
-'use strict';
+/* eslint-disable camelcase */
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Order_Itens extends Model {
-
-    static associate(models) {
-
-      //One Order_Itens belongs to one Order_Details
+    static associate (models) {
+      // One Order_Itens belongs to one Order_Details
       Order_Itens.belongsTo(models.Order_Details, {
-        foreignKey: "order_id",
+        foreignKey: 'order_id',
         onDelete: 'CASCADE'
-      });
+      })
 
-      //One Order_Itens belongs to one Product
+      // One Order_Itens belongs to one Product
       Order_Itens.belongsTo(models.Product, {
-        foreignKey: "ProductId",
+        foreignKey: 'ProductId',
         onDelete: 'CASCADE'
-      });
+      })
     }
   }
   Order_Itens.init({
@@ -25,6 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Order_Itens',
     freezeTableName: true
-  });
-  return Order_Itens;
-};
+  })
+  return Order_Itens
+}

@@ -1,17 +1,16 @@
-'use strict';
+/* eslint-disable camelcase */
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class User_Address extends Model {
-
-    static associate(models) {
-      
-      //One User_Address belongs to one User
+    static associate (models) {
+      // One User_Address belongs to one User
       User_Address.belongsTo(models.User, {
-        foreignKey: "UserId",
+        foreignKey: 'UserId',
         onDelete: 'CASCADE'
-      });
+      })
     }
   }
   User_Address.init({
@@ -26,6 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User_Address',
     freezeTableName: true
-  });
-  return User_Address;
-};
+  })
+  return User_Address
+}

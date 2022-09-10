@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-const UsuarioController = require('../controllers/UsuarioController');
-const isAuth = require('../middlewares/isAuth');
+const express = require('express')
+const router = express.Router()
+const UsuarioController = require('../controllers/UsuarioController')
+const isAuth = require('../middlewares/isAuth')
 
-router.get('/', isAuth, UsuarioController.index);
+router.get('/', isAuth, UsuarioController.index)
 
-module.exports = router;
+module.exports = router
