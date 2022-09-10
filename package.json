@@ -5,7 +5,12 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./app.js",
-    "test": "jest"
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:integration": "npm test -- --watch -c jest-integration-config.js",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:ci": "npm test -- --coverage"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
