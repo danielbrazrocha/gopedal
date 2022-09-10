@@ -1,0 +1,75 @@
+<%- include('./partials/header') %>
+
+  <main class="">
+    
+    <section>
+      <div class='sobre-conteudo-section'>
+        <div class="info-wrapper">        
+          <div class="container-infos">
+            <h2 class="section-about-title">Fale Conosco</h2>
+            <h4 class="text-info-externas">
+              Nessa página de contato estão disponíveis formulários para envio
+              de sugestões, críticas, elogios e as perguntas frequentes. Caso
+              não consiga encontrar o que procurar, por favor preencha o
+              formulário no final da página que entraremos em contato para
+              lhe auxiliar no for possível.
+            </h4>
+
+          </div> 
+      </div>
+      </div>      
+      <div class='sobre-conteudo-section'>
+        <div class="info-wrapper">        
+          <div class="sobre-equipe-grid">
+            
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.2158085587475!2
+                            d-46.67527214997296!3d-23.560691467376298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!
+                            1s0x94ce5781c850157f%3A0x936e30e6557ac603!2sR.%20Capote%20Valente%2C%2036%20-%20Pinheiros
+                            %2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2005401-000!5e0!3m2!1spt-BR!2sbr!4v1643914261343!5m2!1
+                            spt-BR!2sbr" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" >
+                                </iframe>
+            
+          </div> 
+      </div>
+      </div>
+
+      <div class='sobre-conteudo-section'>
+        <div class="info-wrapper">
+          <h2 class="section-about-title">
+           Go Pedal
+          </h2>
+          <div class="text-info-externas">              
+            <p> Av. Gal. Milton Tavares de Souza, s/nº </p>
+            <p> São Domingos, Niterói - RJ </p>
+            <p>CEP 24210-346 </p>
+        </div>
+        </div>
+      </div>
+      <div class="sobre-conteudo-form">
+        <div class="info-wrapper">
+          <h2>Entre em contato com a Go Pedal</h2>
+          <form class="form-contato" action="https://formsubmit.co/gopedal@gmail.com"
+              method="POST">
+              <input type="hidden" name="_next" value="http://localhost:3000/envioform.ejs">
+              <input type="hidden" name="_cc" value="atendimento@gopedal.com" />
+              <input type="hidden" name="autoresponse" value="Recebemos sua mensagem, obrigado.
+              Assim que for possível responderemos." />
+              <input type="hidden" name="_captcha" value="false">
+              <input type="text" class="input-contato" name="name" placeholder="Nome" />
+              <input type="text" class="input-contato" name="subject" placeholder="Assunto" />
+              <input type="email" class="input-contato" name="email" placeholder="E-mail" />
+              <textarea name="message" class="areatext-contato" placeholder="Mensagem"></textarea>
+              <div class="mt-3 login-buttons">
+                <button class="button home__button" type="submit">Enviar</button>
+              </div>
+          </form>
+              </div>
+            </div>
+        </section>
+
+    </main>
+
+    </section>
+  </main>
+
+  <%- include('./partials/footer') %>

@@ -1,0 +1,46 @@
+<%- include('./partials/header') %>
+
+<main class="container">
+    <section class="products section container" id="products">
+        <h2 class="section__title">
+            GoPedal.com
+        </h2>
+
+        <h4 class="section__subtitle">Os melhores equipamentos para sua bike você encontra aqui</h4>
+
+
+        <!-- Visualização da mensagem de busca sem resultado -->
+        <% if (typeof alert != 'undefined') { %> 
+            <h4 class="h3 search-error-alert"><%= alert %> </h4>
+          <% } %> 
+
+
+        <div class="products__container grid">
+
+            <% produtos.forEach(produto => { %>  
+
+                <article class="products__card">
+                    <a href="/produto/<%= produto.id %>">
+                        <div>
+
+                            <img src="<%= produto.image %>" alt="" class="products__img">
+                            
+                            <h3 class="products__title"><%= produto.name %></h3>
+                            <span class="products__price"><%= produto.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></span>
+                            
+                            <button class="products__button">                                
+                                <i class='bx bx-shopping-bag'></i>
+                            </button>
+                        </div>
+                    </a>
+                </article>
+
+            <% }) %>
+
+            
+        </div>
+    </section>        
+  
+</main>
+
+<%- include('./partials/footer') %>

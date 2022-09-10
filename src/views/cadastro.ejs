@@ -1,0 +1,73 @@
+<%- include('./partials/header') %>
+  <main class="container">
+    <section class="banner">
+      <% if (typeof errors == 'undefined') { %> 
+      <div class="avisos">
+        <h1 class="mt-4">Cadastre-se</h1>
+        <ul>
+          <li>Posicione o mouse sobre o campo para dúvidas</li>
+        </ul>
+      </div>
+      <% } %>
+
+      <!-- Visualação condicional dos erros de validação do express-validator -->
+      <% if (typeof errors != 'undefined') { %> 
+        <p class="text-danger">Foram encontrados erros na sua solicitação.<br>Corrija as informações e envie novamente.</p>
+        <ul>
+          <% errors.forEach(error => { %>  
+            <li class="register-error-alert" ><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+
+      <!-- Visualização dos erros no backend -->
+      <% if (typeof error != 'undefined') { %> 
+        <h4 class="h5 register-error-alert"><%= error %> </h4>
+      <% } %> 
+
+
+      <div class="form-signin">
+        <form action="/cadastro" method="POST" class='form-floating'>
+          <div data-toggle="tooltip" title="Ex.: José da Silva" class="form-floating">
+            <input type="text" placeholder="Ex.: José da Silva" name="nome" class="nome form-control validar" id="nome" value="<%= locals.old && old.nome %>">
+            <label for="nome">Nome</label>
+          </div>
+          <div data-toggle="tooltip" title="Formato xxx.xxx.xxx-xx, apenas dígitos" class="form-floating">
+            <input type="text" placeholder="xxx.xxx.xxx-xx" name="cpf" class="sobrenome form-control validar" id="cpf" value="<%= locals.old && old.cpf %>">
+            <label for="cpf">CPF</label>
+          </div>
+          <div data-toggle="tooltip" title="Formato (xx)xxxx-xxxx, apenas dígitos" class="form-floating">
+            <input type="text" placeholder="(xx)xxxx-xxxx" name="tel" class="cpf form-control validar" id="tel" value="<%= locals.old && old.tel %>">
+            <label for="tel">Celular</label>
+          </div>
+          <div data-toggle="tooltip" title="Ex: jose@mail.com.br" class="form-floating">
+            <input type="email" placeholder="jose@mail.com.br" name="email" class="email form-control validar" id="email" value="<%= locals.old && old.email %>"> 
+            <label for="email">E-mail</label>
+          </div>
+          <div data-toggle="tooltip" title="mínimo de 8 caracteres" class="form-floating">
+            <input type="password" name="senha" id="password" class="senha form-control validar">
+            <label for="password">Senha</label>
+          </div>
+          <div data-toggle="tooltip" title="mínimo de 8 caracteres" class="form-floating">
+            <input type="password" name="repeteSenha" id="repeatpassword" class="repetir-senha form-control validar">
+            <label for="repeatpassword">Repetir Senha</label>
+
+          </div>
+
+          <div class="login-buttons">
+            <button type="submit" class="button home__button">Enviar</button>
+          </div>
+
+          <!-- Visualização da mensagem de sucesso -->
+          <% if (typeof sucess != 'undefined') { %> 
+            <a href="/login">
+              <h4 class="h5 register-sucess-alert"><%= sucess %> </h4>
+            </a>
+          <% } %> 
+
+        </form>
+      </div>
+
+    </section>
+  </main>
+  <%- include('./partials/footer') %>

@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  gopedal_bd:
+    image: mysql:5.7
+    container_name: gopedal_bd
+    restart: always
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+    ports:
+      - "3306:3306"
+    volumes:    
+      - db:/var/lib/mysql
+
+volumes: 
+  db:
+

@@ -1,0 +1,54 @@
+<%- include('./partials/header') %>
+
+<main class="container">
+          <!--==================== HOME ====================-->
+          <section class="home" id="home">
+            <div class="home__container container grid">
+                <div class="home__img-bg">
+                    <img src="<%= produto.image %>" alt="" class="home__img">
+                </div>
+                
+
+                <div class="home__data">
+                    <h1 class="home__title"><%= produto.name %></h1>
+                    <p class="home__description">
+                        <%= produto.description %>
+                    </p>
+                    <span class="home__price"><%= produto.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></span>
+
+                    <div class="home__btns">
+                        <a href="#" class="button button--gray button--small">
+                            Detalhes
+                        </a>
+
+                        <button class="button home__button">COMPRAR</button>
+
+                        <% if (typeof user != "undefined") { %>
+                            <% if (user.kind == 'admin') { %> 
+                                    <a href="/produto/deletar/<%= produto.id %>"
+                                    class="button button--gray button--small">
+                                        DELETAR
+                                    </a>
+                            <% } %> 
+                        <% } %> 
+
+                        
+                    </div>
+
+
+                    <!-- Visualização da mensagem de sucesso -->
+                    <% if (typeof sucess != 'undefined') { %> 
+                        <a href="/login">
+                        <h4 class="h5 mt-3 register-sucess-alert"><%= sucess %> </h4>
+                        </a>
+                    <% } %> 
+
+
+                </div>
+            </div>
+        </section>
+  
+</main>
+
+
+<%- include('./partials/footer') %>

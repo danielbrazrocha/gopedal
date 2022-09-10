@@ -1,0 +1,110 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.banner{
+  display: grid;
+  grid-template-columns: 450px;
+  grid-template: max-content;
+  justify-content: center;
+  margin-left: 50px;
+}
+
+.avisos{
+  align-items: center;
+}
+
+.form{
+  margin-left: 70px;
+  margin-right: 30px;
+}
+
+.form .input{
+  display: flex;
+  width: 100vh;
+  backgroundcolor: red;
+}
+
+.formulario{
+  display: inline-flex;
+  flex: wrap;
+  flex-direction: column;
+  flex-grow: 30px;
+}
+
+.botao{
+  margin-top: 15px;
+  margin-bottom: 25px;
+  border-color: 10px rgb(241, 3, 3);
+}
+
+.input{
+  width: 800px;
+  box-shadow: 10 10 10 10px;
+}
+
+.register-error-alert{
+  color: var(--first-color);
+  text-align: center;
+}
+
+.register-sucess-alert{
+  color: green;
+  text-align: center;
+}
+
+
+/* PAGINA LOGIN */
+.form-signin {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+/* .form-signin input[id="nome"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[id="repeatpassword"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+} */
+
+.form-signin input{
+  margin-bottom: -1px;
+}
+
+.j-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* BOTOES */
+
+.home__button {
+  box-shadow: 0 12px 24px hsla(0, 0%, 10%, .2);
+}
+
+.login-buttons{
+  margin: 2rem 0 5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-error-alert{
+  color: var(--first-color);
+  text-align: center;
+}
