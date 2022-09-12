@@ -10,14 +10,17 @@ const CadastroController = {
   showRegister: (req, res) => {
     // verificando se existe uma sessão de usuário ativa, passando globalmente a variavel user para a view
     // deverá ser feito esta operação a cada route que utilize o middleware de autenticação isAuth
-    const { user } = req.session
+    // const { user } = req.session
+
+    // console.log(user)
 
     // verifica se o usuário já existe, redirecionando para a home caso já esteja logado
-    if (user) {
-      return res.redirect('/')
-    }
+    // if (user) {
+    // return res.redirect('/')
+    // }
 
     // indica o arquivo EJS dentro de view a ser chamado
+    // console.log(res)
     return res.render('cadastro', {
       arquivoCss: 'cadastro.css'
     })
@@ -41,7 +44,7 @@ const CadastroController = {
         // vericando se o email já existe no banco de dados
         const hasSameUserName = await User.findOne({ where: { email } })
         if (hasSameUserName) {
-          return res.render('cadastro', {
+          return res.status(422).render('cadastro', {
             arquivoCss: 'cadastro.css',
             error: 'Já existe um usuário cadastrado com este email.',
             old: req.body
@@ -51,7 +54,7 @@ const CadastroController = {
         // vericando se o CPF já existe no banco de dados
         const hasSameCpf = await User.findOne({ where: { cpf } })
         if (hasSameCpf) {
-          return res.render('cadastro', {
+          return res.status(422).render('cadastro', {
             arquivoCss: 'cadastro.css',
             error: 'Já existe um usuário cadastrado com este CPF.',
             old: req.body
@@ -71,19 +74,19 @@ const CadastroController = {
 
         // verificando se o usuário foi criado existe no BD
         if (!user) {
-          return res.render('cadastro', {
+          return res.status(422).render('cadastro', {
             arquivoCss: 'cadastro.css',
             error: 'Erro na criação do usuário. Verifique as informações e tente novamente.'
           })
         }
 
-        return res.render('cadastro', {
+        return res.status(201).render('cadastro', {
           arquivoCss: 'cadastro.css',
           sucess: 'Usuário criado com sucesso. Faça o login para continuar.'
         })
       } catch (err) {
         // console.log(err);
-        return res.render('cadastro', {
+        return res.status(500).render('cadastro', {
           arquivoCss: 'cadastro.css',
           error: 'Sistema indisponivel no momento. Tente novamente em alguns instantes.'
         })
@@ -91,7 +94,7 @@ const CadastroController = {
     // caso existam erros na validação, renderizar a view com os erros
     } else {
       // caso existam erros na validação, renderizar a view com os erros
-      return res.render('cadastro', {
+      return res.status(422).render('cadastro', {
         arquivoCss: 'cadastro.css',
         errors: errors.errors,
         old: req.body
