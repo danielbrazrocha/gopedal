@@ -24,7 +24,7 @@ const validateRegister = [
     })
     .isLength({ min: 8, max: 25 }).withMessage('A senha não contem o número de caracteres'),
   check('repeteSenha')
-    .notEmpty().withMessage('A senha deve ser informada').bail()
+    .notEmpty().withMessage('A confirmação da senha deve ser informada').bail()
     .isLength({ min: 8, max: 25 }).withMessage('A senha não contem o número de caracteres'),
   check('tel')
     .notEmpty().withMessage('O telefone deve ser informado').bail()
