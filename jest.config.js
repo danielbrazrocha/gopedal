@@ -14,7 +14,7 @@ module.exports = {
   // cacheDirectory: "/tmp/jest_rs",
 
   // Automatically clear mock calls, instances, contexts and results before every test
-  // clearMocks: true,
+  clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverageFrom: ['<rootDir>/src/**/*.js', '!<rootDir>/src/config/**', '!<rootDir>/src/database/**', '!<rootDir>/src/models/**', '!<rootDir>/src/routes/**', '!<rootDir>/src/views/**', '!<rootDir>/src/**/*-protocols.ts', '!**/protocols/**'],
@@ -62,7 +62,7 @@ module.exports = {
   // globalSetup: undefined,
 
   // A path to a module which exports an async function that is triggered once after all test suites
-  // globalTeardown: undefined,
+  // globalTeardown: '',
 
   // A set of global variables that need to be available in all test environments
   // globals: {},
@@ -121,12 +121,13 @@ module.exports = {
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  // rootDir: undefined,
+  // rootDir: '/test',
 
   // A list of paths to directories that Jest should use to search for files in
   roots: [
-    '<rootDir>/src'
-  ]
+    '<rootDir>/src',
+    '<rootDir>/test'
+  ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -144,7 +145,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-node",
+  testEnvironment: 'node'
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},

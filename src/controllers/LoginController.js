@@ -28,17 +28,17 @@ const LoginController = {
 
       // verificando se o usuário existe no BD
       if (!user) {
-        return res.render('login', {
+        return res.status(422).render('login', {
           arquivoCss: 'login.css',
-          error: 'Usuario ou senha não existe!'
+          error: 'Usuario ou senha incorretos!'
         })
       }
 
       // verificando se a senha é igual
       if (!bcrypt.compareSync(password, user.password)) {
-        return res.render('login', {
+        return res.status(422).render('login', {
           arquivoCss: 'login.css',
-          error: 'Usuario ou senha não existe!'
+          error: 'Usuario ou senha incorretos!'
         })
       }
 
@@ -55,7 +55,7 @@ const LoginController = {
       // return res.send("Usário autenticado. Definir página de interna/logado ou redirecionar para a página a home com alterações no navbar");
     } catch (err) {
       console.log(err)
-      return res.render('login', {
+      return res.status(500).render('login', {
         arquivoCss: 'login.css',
         error: 'Sistema indisponivel no momento. Tente novamente em alguns instantes.'
       })
