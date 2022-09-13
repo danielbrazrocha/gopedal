@@ -23,7 +23,6 @@ describe('Admin check middleware', () => {
     isAdmin(mockRequest, mockResponse, nextFunction)
     // Assert
     expect(mockResponse.redirect).toBeCalledTimes(1)
-    // expect(nextFunction).toBeCalledTimes(1)
   })
 
   test('should redirect if admin priv exists', async () => {
