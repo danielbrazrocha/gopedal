@@ -27,7 +27,7 @@ describe('Authorization middleware', () => {
     expect(nextFunction).toBeCalledTimes(1)
   })
 
-  test.only('should save user info if exists', async () => {
+  test('should save user info if exists', async () => {
     // Arrange
     const mockRequest = {
       session: {
