@@ -50,19 +50,19 @@ const CadastroController = {
 
         // verificando se o producto foi criado existe no BD
         if (!product) {
-          return res.render('adicionarProduto', {
+          return res.status(422).render('adicionarProduto', {
             arquivoCss: 'cadastro.css',
             error: 'Erro na criação do produto. Verifique as informações e tente novamente.'
           })
         }
 
-        return res.render('adicionarProduto', {
+        return res.status(201).render('adicionarProduto', {
           arquivoCss: 'cadastro.css',
           sucess: 'Produto cadastrado com sucesso.'
         })
       } catch (err) {
         console.log(err)
-        return res.render('adicionarProduto', {
+        return res.status(500).render('adicionarProduto', {
           arquivoCss: 'cadastro.css',
           error: 'Sistema indisponivel no momento. Tente novamente em alguns instantes.'
         })
@@ -70,7 +70,7 @@ const CadastroController = {
     // caso existam erros na validação, renderizar a view com os erros
     } else {
       // caso existam erros na validação, renderizar a view com os erros
-      return res.render('adicionarProduto', {
+      return res.status(422).render('adicionarProduto', {
         arquivoCss: 'cadastro.css',
         errors: errors.errors,
         old: req.body
