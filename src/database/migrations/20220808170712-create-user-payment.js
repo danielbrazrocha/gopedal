@@ -28,7 +28,7 @@ module.exports = {
       expiry: {
         type: Sequelize.STRING
       },
-      deleted_at: {
+      deletedAt: {
         type: Sequelize.DATE
       },
       createdAt: {
