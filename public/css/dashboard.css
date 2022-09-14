@@ -1,0 +1,121 @@
+body {
+    font-size: .875rem;
+  }
+  
+  /*
+   * Sidebar
+   */
+  
+  .sidebar {
+    /* position: fixed; */
+    top: 0;
+    /* rtl:raw:
+    right: 0;
+    */
+    bottom: 0;
+    /* rtl:remove */
+    left: 0;
+    z-index: 100; /* Behind the navbar */
+    padding: 48px 0 0; /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  }
+  
+  @media (max-width: 767.98px) {
+    .sidebar {
+      top: 5rem;
+    }
+  }
+  
+  .sidebar-sticky {
+    height: calc(100vh - 48px);
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  }
+  
+  .sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #727272;
+  }
+  
+  .sidebar .nav-link.active {
+    /* color: #2470dc; */
+  }
+  
+  .sidebar .nav-link:hover .feather,
+  .sidebar .nav-link.active .feather {
+    color: inherit;
+  }
+  
+  .sidebar-heading {
+    font-size: .75rem;
+  }
+
+    .sidebar-text {
+    font-size: .3rem;
+  }
+.nav-link-div {
+    /* flex-direction: column;
+    display: inline-flex;
+    align-items: center; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+}
+
+  /*
+   * List of items
+   */
+
+.adminpanel__banner {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+}
+
+.adminpanel__card {
+    position: relative;
+    background-color: var(--container-color);
+    padding: 0.4rem 0;
+    border: 1px solid var(--border-color);
+    margin-bottom: 0.3rem;
+    text-align: center;
+    transition: .3s;
+}
+
+.adminpanel__title, 
+.adminpanel__description {
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+}
+
+.adminpanel__title {
+  text-transform: uppercase;
+  color: var(--first-color);
+  margin-bottom: var(--mb-0-5);
+}
+
+.adminpanel__description {
+}
+.adminpanel__button{
+    align-self: center;
+    margin-left: 3rem;
+}
+
+
+.width100 {
+  width: 100%;
+}
+
+.texthighlight {
+  color: var(--first-color);
+}
