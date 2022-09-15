@@ -1,4 +1,4 @@
-  <main class="container">
+<main class="container">
     <section class="banner">
 
       <!-- Visualação condicional dos erros de validação do express-validator -->
@@ -17,14 +17,14 @@
       <% } %> 
 
 
-      <% categorias.forEach(category => { %>  
+      <% inventarios.forEach(inventory => { %>  
 
         <article class="adminpanel__card list-group-item list-group-item-action">
-            <a href="/painel/categoria/<%= category.id %>">
+            <a href="/painel/inventario/<%= inventory.id %>">
                 <div>
 
-                    <h3 class="adminpanel__title"><%= category.name %></h3>
-                    <h3 class="adminpanel__description"><%= category.description %></h3>
+                    <h3 class="adminpanel__title"><%= inventory.id %></h3>
+                    <h3 class="adminpanel__description"><%= inventory.quantity %></h3>
                     
                     <div class="products__button">
                         <button class="">                                

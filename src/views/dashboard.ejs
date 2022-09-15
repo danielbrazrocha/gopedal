@@ -65,31 +65,44 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 border-bottom">
       </div>
 
+      <!-- Views para os alertas do express-validator -->
       <% if (typeof errors != 'undefined') { %> 
         <%- include('./dashboard/validationErrors') %>
       <% } %>
 
+      <!-- Views para os alertas de erro -->
       <% if (typeof error != 'undefined') { %>
         <%- include('./dashboard/errors') %>
       <% } %>
 
+      <!-- Views para os alertas de sucesso -->
       <% if (typeof success != 'undefined') { %>
         <%- include('./dashboard/alerts') %>
       <% } %>
 
+      <!-- Views para os CRUDs do dashboard -->
       <% if (typeof productDetails != 'undefined') { %>
         <%- include('./dashboard/productDetails') %>
+      <% } else if (typeof categoryDetails != 'undefined') { %>
+        <%- include('./dashboard/categoryDetails') %>
+      <% } else if (typeof userDetails != 'undefined') { %>
+        <%- include('./dashboard/userDetails') %>
+      <% } else if (typeof discountDetails != 'undefined') { %>
+        <%- include('./dashboard/discountDetails') %>
+      <% } else if (typeof inventoryDetails != 'undefined') { %>
+        <%- include('./dashboard/inventoryDetails') %>
       <% } %>
 
+      <!-- Views para a lista dos itens do dashboard -->
       <% if (typeof categorias != 'undefined') { %>
         <%- include('./dashboard/categorias') %>
       <% } else if (typeof produtos != 'undefined') { %>
         <%- include('./dashboard/produtos') %>
       <% } else if (typeof usuarios != 'undefined') { %>
         <%- include('./dashboard/usuarios') %>
-      <% } else if (typeof desconto != 'undefined') { %>
+      <% } else if (typeof descontos != 'undefined') { %>
         <%- include('./dashboard/descontos') %>
-      <% } else if (typeof inventario != 'undefined') { %>
+      <% } else if (typeof inventarios != 'undefined') { %>
         <%- include('./dashboard/inventarios') %>
       <% } else if (typeof principal != 'undefined') { %>
 

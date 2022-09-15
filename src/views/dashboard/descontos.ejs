@@ -20,10 +20,10 @@
       <% descontos.forEach(discount => { %>  
 
         <article class="adminpanel__card list-group-item list-group-item-action">
-            <a href="/product/<%= discount.id %>">
+            <a href="/painel/desconto/<%= discount.id %>">
                 <div>
 
-                    <h3 class="adminpanel__title"><%= prodiscountduct.name %></h3>
+                    <h3 class="adminpanel__title"><%= discount.name %></h3>
                     <h3 class="adminpanel__description"><%= discount.description.substring(0, 80)+' ...' %></h3>
                     <h3 class="adminpanel__description"><%= discount.percent %></h3>
                     <h3 class="adminpanel__description"><%= discount.active %></h3>

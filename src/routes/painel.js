@@ -10,6 +10,10 @@ const PainelInventarioController = require('../controllers/PainelInventarioContr
 // const isAuth = require('../middlewares/isAuth')
 // const isAdmin = require('../middlewares/isAdmin')
 const productValidator = require('../middlewares/productValidator')
+const userValidator = require('../middlewares/validator')
+const categoryValidator = require('../middlewares/categoryValidator')
+const discountValidator = require('../middlewares/discountValidator')
+const inventoryValidator = require('../middlewares/inventoryValidator')
 
 // GET Página de Lista de categorias
 // router.get('/', isAuth, isAdmin, PainelController.showPainel)
@@ -17,9 +21,15 @@ router.get('/', PainelController.show)
 
 // GET Página de adição de categoria
 router.get('/categoria', PainelCategoryController.show)
+router.get('/categoria/:id', PainelCategoryController.edit)
+router.post('/categoria/:id', categoryValidator, PainelCategoryController.submitEdit)
+router.get('/categoria/deletar/:id', PainelCategoryController.delete)
 // router.get('/add', CategoryController.addCategory)
 
 router.get('/usuario', PainelUsuariosController.show)
+router.get('/usuario/:id', PainelUsuariosController.edit)
+router.post('/usuario/:id', userValidator, PainelUsuariosController.submitEdit)
+router.get('/usuario/deletar/:id', PainelUsuariosController.delete)
 
 router.get('/produto', PainelProdutosController.show)
 router.get('/produto/:id', PainelProdutosController.edit)
@@ -27,9 +37,13 @@ router.post('/produto/:id', productValidator, PainelProdutosController.submitEdi
 router.get('/produto/deletar/:id', PainelProdutosController.delete)
 
 router.get('/desconto', PainelDescontoController.show)
-router.get('/inventario', PainelInventarioController.show)
+router.get('/desconto/:id', PainelDescontoController.edit)
+router.post('/desconto/:id', discountValidator, PainelDescontoController.submitEdit)
+router.get('/desconto/deletar/:id', PainelDescontoController.delete)
 
-// POST Enviando os dados do formulário para cadastro do produto
-// router.post('/', productvalidator, AdicionarProdutoController.registerProduct)
+router.get('/inventario', PainelInventarioController.show)
+router.get('/inventario/:id', PainelInventarioController.edit)
+router.post('/inventario/:id', inventoryValidator, PainelInventarioController.submitEdit)
+router.get('/inventario/deletar/:id', PainelInventarioController.delete)
 
 module.exports = router

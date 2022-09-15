@@ -31,6 +31,15 @@ const PainelDescontoController = {
     } catch (error) {
       return res.status(500).json({ message: 'Error' + error })
     }
+  },
+  edit: async (req, res) => {
+    return res.status(200).send('Edit')
+  },
+  submitEdit: async (req, res) => {
+    return res.status(200).send('Submit Edit')
+  },
+  delete: async (req, res) => {
+    return res.status(200).send('Delete')
   }
 
 }
