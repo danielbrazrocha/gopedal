@@ -4,15 +4,15 @@
             <label for="id"></label>
             <input type="hidden" name="id" class="form-control" id="id" value='<%= discountDetails.id %>' placeholder="id do Produto">
         </div>
-      <div class="form-group">
+      <div class="form-group col-md-6">
         <label for="nome">Nome</label>
         <input type="text" name="nome" class="form-control" id="nome" value='<%= discountDetails.name %>' placeholder="Nome do Produto">
       </div>
-      <div class="form-group">
+      <div class="form-group col-md-6">
         <label for="description">Descrição</label>
         <textarea class="form-control" name="description" id="description" rows='4'><%= discountDetails.description %></textarea>
       </div>
-      <div class="form-group">
+      <div class="form-group col-md-6">
         <label for="discountpercent">Percentual de desconto</label>
         <input type="text" name="discountpercent" class="form-control" id="discountpercent" value='<%= discountDetails.discount_percent %>' placeholder="Desconto do Cupom">
       </div>

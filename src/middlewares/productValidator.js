@@ -10,7 +10,7 @@ const productValidator = [
   check('SKU')
     .notEmpty().withMessage('O SKU deve ser informado').bail(),
   check('price')
-    .notEmpty().isNumeric().withMessage('O preço deve ser informado no formato 123.00').bail()
+    .notEmpty().isFloat().withMessage('O preço deve ser informado no formato 123.00').bail()
 ]
 
 module.exports = productValidator

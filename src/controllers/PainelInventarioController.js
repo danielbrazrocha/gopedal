@@ -1,7 +1,6 @@
 const { Inventory } = require('../models')
-// const { validationResult } = require('express-validator')
+const { validationResult } = require('express-validator')
 
-// let validaCpf = require('')
 const PainelInventarioController = {
 
   // showCategory = método do controller para renderizar a view com a lista de categoryiesos forms de cadastro,
@@ -46,7 +45,52 @@ const PainelInventarioController = {
     })
   },
   submitEdit: async (req, res) => {
-    return res.status(200).send('Submit Edit')
+    const errors = validationResult(req)
+
+    // verificando se há erros de validação
+    if (errors.isEmpty()) {
+      // Desestruturando as informações para utilização no sequelize
+      const { id, quantity } = req.body
+      try {
+        // atualizando o produto
+        const newItemData = {
+          quantity,
+          updatedAt: new Date().toISOString()
+        }
+
+        const ans = await Inventory.update(newItemData, {
+          where: {
+            id
+          }
+        })
+
+        // verificando se o producto foi criado existe no BD
+        if (!ans) {
+          return res.status(422).render('dashboard', {
+            arquivoCss: 'dashboard.css',
+            error: `Erro na atualização do inventário Id ${id}. Verifique as informações e tente novamente.`
+          })
+        }
+
+        return res.status(201).render('dashboard', {
+          arquivoCss: 'dashboard.css',
+          success: `Inventário Id ${id} atualizado com sucesso.`
+        })
+      } catch (err) {
+        console.log(err)
+        return res.status(500).render('dashboard', {
+          arquivoCss: 'dashboard.css',
+          error: 'Erro interno no sistema. Entre em contato com o administrador.'
+        })
+      }
+      // caso existam erros na validação, renderizar a view com os erros
+    } else {
+      // caso existam erros na validação, renderizar a view com os erros
+      return res.status(422).render('dashboard', {
+        arquivoCss: 'dashboard.css',
+        errors: errors.errors
+      })
+    }
   },
   delete: async (req, res) => {
     const inventarioId = req.params.id
