@@ -7,7 +7,6 @@ const PainelCategoryController = {
   // showCategory = método do controller para renderizar a view com a lista de categoryiesos forms de cadastro,
   // chamado em index.js
   show: async (req, res) => {
-    console.log('aaa')
     // indica o arquivo EJS dentro de view a ser chamado
 
     try {
@@ -34,14 +33,40 @@ const PainelCategoryController = {
     }
   },
   edit: async (req, res, next) => {
-    console.log('aqui')
-    return res.status(200).send('Edit')
+    const categoryId = req.params.id
+    const category = await Category.findOne({
+      where: {
+        id: categoryId
+      }
+    })
+
+    return res.status(200).render('dashboard', {
+      arquivoCss: 'dashboard.css',
+      categoryDetails: category
+    })
   },
   submitEdit: async (req, res) => {
     return res.status(200).send('Submit Edit')
   },
   delete: async (req, res) => {
-    return res.status(200).send('Delete')
+    const categoriaId = req.params.id
+    await Category.destroy({
+      where: {
+        id: categoriaId
+      }
+    })
+      .then(function (deletedRecord) {
+        if (deletedRecord === 1) {
+          return res.redirect('/painel/categoria')
+        } else {
+          return res.status(404).render('404', {
+            textoErro: 'Categoria não encontrado, refaça sua busca ou tente novamente'
+          })
+        }
+      })
+      .catch(function (error) {
+        res.status(500).json(error)
+      })
   }
 }
 

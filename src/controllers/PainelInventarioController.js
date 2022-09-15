@@ -33,13 +33,40 @@ const PainelInventarioController = {
     }
   },
   edit: async (req, res) => {
-    return res.status(200).send('Edit')
+    const inventoryId = req.params.id
+    const inventory = await Inventory.findOne({
+      where: {
+        id: inventoryId
+      }
+    })
+
+    return res.status(200).render('dashboard', {
+      arquivoCss: 'dashboard.css',
+      inventoryDetails: inventory
+    })
   },
   submitEdit: async (req, res) => {
     return res.status(200).send('Submit Edit')
   },
   delete: async (req, res) => {
-    return res.status(200).send('Delete')
+    const inventarioId = req.params.id
+    await Inventory.destroy({
+      where: {
+        id: inventarioId
+      }
+    })
+      .then(function (deletedRecord) {
+        if (deletedRecord === 1) {
+          return res.redirect('/painel/inventario')
+        } else {
+          return res.status(404).render('404', {
+            textoErro: 'Inventario não encontrado, refaça sua busca ou tente novamente'
+          })
+        }
+      })
+      .catch(function (error) {
+        res.status(500).json(error)
+      })
   }
 }
 

@@ -33,15 +33,41 @@ const PainelDescontoController = {
     }
   },
   edit: async (req, res) => {
-    return res.status(200).send('Edit')
+    const discountId = req.params.id
+    const discount = await Discount.findOne({
+      where: {
+        id: discountId
+      }
+    })
+
+    return res.status(200).render('dashboard', {
+      arquivoCss: 'dashboard.css',
+      discountDetails: discount
+    })
   },
   submitEdit: async (req, res) => {
     return res.status(200).send('Submit Edit')
   },
   delete: async (req, res) => {
-    return res.status(200).send('Delete')
+    const descontoId = req.params.id
+    await Discount.destroy({
+      where: {
+        id: descontoId
+      }
+    })
+      .then(function (deletedRecord) {
+        if (deletedRecord === 1) {
+          return res.redirect('/painel/desconto')
+        } else {
+          return res.status(404).render('404', {
+            textoErro: 'Desconto não encontrado, refaça sua busca ou tente novamente'
+          })
+        }
+      })
+      .catch(function (error) {
+        res.status(500).json(error)
+      })
   }
-
 }
 
 module.exports = PainelDescontoController

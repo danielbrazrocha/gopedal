@@ -26,13 +26,40 @@ const PainelUsuariosController = {
     }
   },
   edit: async (req, res) => {
-    return res.status(200).send('Edit')
+    const userId = req.params.id
+    const user = await User.findOne({
+      where: {
+        id: userId
+      }
+    })
+
+    return res.status(200).render('dashboard', {
+      arquivoCss: 'dashboard.css',
+      userDetails: user
+    })
   },
   submitEdit: async (req, res) => {
     return res.status(200).send('Submit Edit')
   },
   delete: async (req, res) => {
-    return res.status(200).send('Delete')
+    const usuarioId = req.params.id
+    await User.destroy({
+      where: {
+        id: usuarioId
+      }
+    })
+      .then(function (deletedRecord) {
+        if (deletedRecord === 1) {
+          return res.redirect('/painel/usuario')
+        } else {
+          return res.status(404).render('404', {
+            textoErro: 'Usuario não encontrado, refaça sua busca ou tente novamente'
+          })
+        }
+      })
+      .catch(function (error) {
+        res.status(500).json(error)
+      })
   }
 }
 
