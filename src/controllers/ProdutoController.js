@@ -22,7 +22,7 @@ const ProdutoController = {
       console.log(produto)
       return res.render('produto', {
         arquivoCss: 'produto.css',
-        produto
+        productDetails: produto
       })
     } else {
       return res.status(404).render('404', {
@@ -57,7 +57,7 @@ const ProdutoController = {
           return res.render('produto', {
             arquivoCss: 'produto.css',
             produto,
-            sucess: 'Produto apagado com sucesso. Clique aqui para voltar.'
+            sucess: 'Produto excluído com sucesso. Clique aqui para voltar.'
           })
         } else {
           return res.status(404).render('404', {

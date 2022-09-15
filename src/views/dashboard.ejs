@@ -65,8 +65,20 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 border-bottom">
       </div>
 
+      <% if (typeof errors != 'undefined') { %> 
+        <%- include('./dashboard/validationErrors') %>
+      <% } %>
+
       <% if (typeof error != 'undefined') { %>
         <%- include('./dashboard/errors') %>
+      <% } %>
+
+      <% if (typeof success != 'undefined') { %>
+        <%- include('./dashboard/alerts') %>
+      <% } %>
+
+      <% if (typeof productDetails != 'undefined') { %>
+        <%- include('./dashboard/productDetails') %>
       <% } %>
 
       <% if (typeof categorias != 'undefined') { %>

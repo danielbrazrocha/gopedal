@@ -3,14 +3,13 @@ const router = express.Router()
 const PainelController = require('../controllers/PainelController')
 const PainelCategoryController = require('../controllers/PainelCategoryController')
 const PainelUsuariosController = require('../controllers/PainelUsuariosController')
-
 const PainelProdutosController = require('../controllers/PainelProdutosController')
 const PainelDescontoController = require('../controllers/PainelDescontoController')
 const PainelInventarioController = require('../controllers/PainelInventarioController')
 
 // const isAuth = require('../middlewares/isAuth')
 // const isAdmin = require('../middlewares/isAdmin')
-// const productvalidator = require('../middlewares/productvalidator')
+const productValidator = require('../middlewares/productValidator')
 
 // GET Página de Lista de categorias
 // router.get('/', isAuth, isAdmin, PainelController.showPainel)
@@ -23,6 +22,9 @@ router.get('/categoria', PainelCategoryController.show)
 router.get('/usuario', PainelUsuariosController.show)
 
 router.get('/produto', PainelProdutosController.show)
+router.get('/produto/:id', PainelProdutosController.edit)
+router.post('/produto/:id', productValidator, PainelProdutosController.submitEdit)
+router.get('/produto/deletar/:id', PainelProdutosController.delete)
 
 router.get('/desconto', PainelDescontoController.show)
 router.get('/inventario', PainelInventarioController.show)
