@@ -54,7 +54,6 @@ const LoginController = {
 
       // return res.send("Usário autenticado. Definir página de interna/logado ou redirecionar para a página a home com alterações no navbar");
     } catch (err) {
-      console.log(err)
       return res.status(500).render('login', {
         arquivoCss: 'login.css',
         error: 'Sistema indisponivel no momento. Tente novamente em alguns instantes.'

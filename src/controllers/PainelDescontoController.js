@@ -31,6 +31,13 @@ const PainelDescontoController = {
       return res.status(500).json({ message: 'Error' + error })
     }
   },
+  add: async (req, res, next) => {
+    return res.status(200).render('dashboard', {
+      arquivoCss: 'dashboard.css',
+      discountDetails: {},
+      newItem: true
+    })
+  },
   edit: async (req, res) => {
     const discountId = req.params.id
     const discount = await Discount.findOne({
@@ -41,7 +48,8 @@ const PainelDescontoController = {
 
     return res.status(200).render('dashboard', {
       arquivoCss: 'dashboard.css',
-      discountDetails: discount
+      discountDetails: discount,
+      newItem: false
     })
   },
   submitEdit: async (req, res) => {
@@ -50,22 +58,35 @@ const PainelDescontoController = {
     // verificando se há erros de validação
     if (errors.isEmpty()) {
       // Desestruturando as informações para utilização no sequelize
-      const { id, nome, description, discountpercent, active } = req.body
+      const { id, nome, description, discountpercent, active, newItem } = req.body
       try {
-        // atualizando o produto
-        const newItemData = {
-          name: nome,
-          description,
-          discount_percent: discountpercent,
-          active,
-          updatedAt: new Date().toISOString()
+        let ans
+        if (newItem) {
+          ans = await Discount.create({
+            name: nome,
+            description,
+            discount_percent: discountpercent,
+            active,
+            createAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+          })
+        } else {
+          const newItemData = {
+            name: nome,
+            description,
+            discount_percent: discountpercent,
+            active,
+            updatedAt: new Date().toISOString()
+          }
+
+          ans = await Discount.update(newItemData, {
+            where: {
+              id
+            }
+          })
         }
 
-        const ans = await Discount.update(newItemData, {
-          where: {
-            id
-          }
-        })
+        // atualizando o produto
 
         // verificando se o producto foi criado existe no BD
         if (!ans) {
@@ -80,7 +101,6 @@ const PainelDescontoController = {
           success: `Desconto Id ${id} atualizado com sucesso.`
         })
       } catch (err) {
-        console.log(err)
         return res.status(500).render('dashboard', {
           arquivoCss: 'dashboard.css',
           error: 'Erro interno no sistema. Entre em contato com o administrador.'

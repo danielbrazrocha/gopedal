@@ -1,5 +1,5 @@
-
-
+<!-- Form to editing an existing item -->
+<% if (newItem === false) { %>
 
 <form class="py-3 px-4" action="/painel/produto/<%= productDetails.id %>" method="POST">
     <div class="form-row">
@@ -75,3 +75,83 @@
         <button type="submit" class="btn btn-primary">Salvar</button>
     </div>
   </form>
+
+  <!-- Form to submit a NEW item -->
+  <% } else { %>
+
+  <form class="py-3 px-4" action="/painel/produto/0 %>" method="POST">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="id"></label>
+            <input type="hidden" name="id" class="form-control" id="id" placeholder="id do Produto">
+        </div>
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome do Produto">
+      </div>
+      <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea class="form-control" name="description" id="description" rows='4'></textarea>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="category">Categoria</label>
+        <select class="form-control" name="category" id="category">
+            <% categoryList.forEach(category => { %>
+                <option value="<%= category.id %>"><%= category.name %></option>
+            <% }) %>
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="imagelink">Image Link</label>
+      <input type="text" class="form-control" name="imagelink" id="imagelink" placeholder="/assets/produts/xxx-xxx.jpg">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="SKU">SKU</label>
+      <input type="text" class="form-control" name="SKU" id="SKU" placeholder="Número SKU do produto">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="price">Preço</label>
+        <input type="text" class="form-control" name="price" id="price" placeholder="Preço do produto">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="newItem"></label>
+          <input type="hidden" name="newItem" class="form-control" id="newItem" value='0' placeholder="id do Produto">
+      </div>
+    <div class="mt-5">
+
+<!-- Button trigger modal -->
+<a href="/painel/produto"        
+    class="btn btn-secondary">
+    Voltar
+</a>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirma a exclusão do item abaixo? <br> </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <a href="/painel/produto/deletar/<%= productDetails.id %>"        
+            class="btn btn-danger">
+            Apagar
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+
+
+  <% } %>

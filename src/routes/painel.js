@@ -24,7 +24,7 @@ router.get('/categoria', PainelCategoryController.show)
 router.get('/categoria/:id', PainelCategoryController.edit)
 router.post('/categoria/:id', categoryValidator, PainelCategoryController.submitEdit)
 router.get('/categoria/deletar/:id', PainelCategoryController.delete)
-// router.get('/add', CategoryController.addCategory)
+router.get('/categoria/add/form', PainelCategoryController.add)
 
 router.get('/usuario', PainelUsuariosController.show)
 router.get('/usuario/:id', PainelUsuariosController.edit)
@@ -35,15 +35,18 @@ router.get('/produto', PainelProdutosController.show)
 router.get('/produto/:id', PainelProdutosController.edit)
 router.post('/produto/:id', productValidator, PainelProdutosController.submitEdit)
 router.get('/produto/deletar/:id', PainelProdutosController.delete)
+router.get('/produto/add/form', PainelProdutosController.add)
 
 router.get('/desconto', PainelDescontoController.show)
 router.get('/desconto/:id', PainelDescontoController.edit)
 router.post('/desconto/:id', discountValidator, PainelDescontoController.submitEdit)
 router.get('/desconto/deletar/:id', PainelDescontoController.delete)
+router.get('/desconto/add/form', PainelDescontoController.add)
 
 router.get('/inventario', PainelInventarioController.show)
 router.get('/inventario/:id', PainelInventarioController.edit)
 router.post('/inventario/:id', inventoryValidator, PainelInventarioController.submitEdit)
 router.get('/inventario/deletar/:id', PainelInventarioController.delete)
+router.get('/inventario/add/form', PainelInventarioController.add)
 
 module.exports = router

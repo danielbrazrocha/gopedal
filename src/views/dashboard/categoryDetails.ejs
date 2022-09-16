@@ -1,3 +1,6 @@
+<!-- Form to editing an existing item -->
+<% if (newItem === false) { %>
+
 <form class="py-3 px-4" action="/painel/categoria/<%= categoryDetails.id %>" method="POST">
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -11,7 +14,7 @@
       <div class="form-group col-md-6">
         <label for="description">Descrição</label>
         <textarea class="form-control" name="description" id="description" rows='4'><%= categoryDetails.description %></textarea>
-      </div>
+      </div>      
     <div class="mt-5">
 
 <!-- Button trigger modal -->
@@ -49,3 +52,43 @@
         <button type="submit" class="btn btn-primary">Salvar</button>
     </div>
   </form>
+
+  <!-- Form to submit a NEW item -->
+  <% } else { %>
+
+    <form class="py-3 px-4" action="/painel/categoria/0" method="POST">
+      <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="id"></label>
+              <input type="hidden" name="id" class="form-control" id="id" value='' placeholder="id do Produto">
+          </div>
+        <div class="form-group col-md-6">
+          <label for="nome">Nome</label>
+          <input type="text" name="nome" class="form-control" id="nome" value='' placeholder="Nome do Produto">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="description">Descrição</label>
+          <textarea class="form-control" name="description" id="description" rows='4'></textarea>
+        </div>
+  
+  
+        <div class="form-group col-md-6">
+          <label for="newItem"></label>
+            <input type="hidden" name="newItem" class="form-control" id="newItem" value='0' placeholder="id do Produto">
+        </div>
+      <div class="mt-5">
+  
+  <!-- Button trigger modal -->
+  <a href="/painel/categoria"        
+      class="btn btn-secondary">
+      Voltar
+  </a>
+
+ 
+  
+          <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </form>
+
+
+  <% } %>

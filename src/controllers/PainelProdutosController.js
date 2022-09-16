@@ -31,7 +31,19 @@ const PainelProdutosController = {
       return res.status(500).json({ message: 'Error' + error })
     }
   },
-
+  add: async (req, res, next) => {
+    const categoryList = await Category.findAll({
+      where: {
+        deletedAt: null
+      }
+    })
+    return res.status(200).render('dashboard', {
+      arquivoCss: 'dashboard.css',
+      productDetails: {},
+      categoryList,
+      newItem: true
+    })
+  },
   edit: async (req, res, next) => {
     const produtoId = req.params.id
     const produto = await Product.findOne({
@@ -49,7 +61,8 @@ const PainelProdutosController = {
     return res.status(200).render('dashboard', {
       arquivoCss: 'dashboard.css',
       productDetails: produto,
-      categoryList
+      categoryList,
+      newItem: false
     })
   },
 
@@ -59,28 +72,41 @@ const PainelProdutosController = {
     // verificando se há erros de validação
     if (errors.isEmpty()) {
       // Desestruturando as informações para utilização no sequelize
-      const { id, nome, category, description, imagelink, SKU, price } = req.body
-      console.log(req.body)
+      const { id, nome, category, description, imagelink, SKU, price, newItem } = req.body
       try {
         // atualizando o produto
-        const newProductData = {
-          name: nome,
-          description,
-          SKU,
-          price,
-          image: imagelink,
-          updatedAt: new Date().toISOString(),
-          category_id: category
+        let ans
+        if (newItem) {
+          ans = await Product.create({
+            name: nome,
+            description,
+            SKU,
+            price,
+            image: imagelink,
+            category_id: category,
+            createAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+          })
+        } else {
+          const newProductData = {
+            name: nome,
+            description,
+            SKU,
+            price,
+            image: imagelink,
+            updatedAt: new Date().toISOString(),
+            category_id: category
+          }
+
+          ans = await Product.update(newProductData, {
+            where: {
+              id
+            }
+          })
         }
 
-        const product = await Product.update(newProductData, {
-          where: {
-            id
-          }
-        })
-
         // verificando se o producto foi criado existe no BD
-        if (!product) {
+        if (!ans) {
           return res.status(422).render('dashboard', {
             arquivoCss: 'dashboard.css',
             error: `Erro na atualização do produto Id ${id}. Verifique as informações e tente novamente.`
@@ -92,7 +118,6 @@ const PainelProdutosController = {
           success: `Produto Id ${id} atualizado com sucesso.`
         })
       } catch (err) {
-        console.log(err)
         return res.status(500).render('dashboard', {
           arquivoCss: 'dashboard.css',
           error: 'Erro interno no sistema. Entre em contato com o administrador.'

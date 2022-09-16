@@ -19,10 +19,9 @@ const ProdutoController = {
     // renderiza view se o produto existir
 
     if (produto) {
-      console.log(produto)
-      return res.render('produto', {
+      return res.status(200).render('produto', {
         arquivoCss: 'produto.css',
-        productDetails: produto
+        produto
       })
     } else {
       return res.status(404).render('404', {

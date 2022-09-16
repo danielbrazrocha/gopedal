@@ -44,7 +44,6 @@ const PainelUsuariosController = {
     if (errors.isEmpty()) {
       // Desestruturando as informações para utilização no sequelize
       const { id, nome, cpf, tel, email, birthdate } = req.body
-      console.log(req.body)
       try {
         // atualizando o produto
         const newProductData = {
@@ -75,7 +74,6 @@ const PainelUsuariosController = {
           success: `Usuário ${nome} atualizado com sucesso.`
         })
       } catch (err) {
-        console.log(err)
         return res.status(500).render('dashboard', {
           arquivoCss: 'dashboard.css',
           error: 'Erro interno no sistema. Entre em contato com o administrador.'

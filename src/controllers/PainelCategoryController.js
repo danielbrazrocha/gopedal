@@ -31,6 +31,13 @@ const PainelCategoryController = {
       return res.status(500).json({ message: 'Error' + error })
     }
   },
+  add: async (req, res, next) => {
+    return res.status(200).render('dashboard', {
+      arquivoCss: 'dashboard.css',
+      categoryDetails: {},
+      newItem: true
+    })
+  },
   edit: async (req, res, next) => {
     const categoryId = req.params.id
     const category = await Category.findOne({
@@ -41,7 +48,8 @@ const PainelCategoryController = {
 
     return res.status(200).render('dashboard', {
       arquivoCss: 'dashboard.css',
-      categoryDetails: category
+      categoryDetails: category,
+      newItem: false
     })
   },
   submitEdit: async (req, res) => {
@@ -50,20 +58,28 @@ const PainelCategoryController = {
     // verificando se há erros de validação
     if (errors.isEmpty()) {
       // Desestruturando as informações para utilização no sequelize
-      const { id, nome, description } = req.body
+      const { id, nome, description, newItem } = req.body
       try {
-        // atualizando o produto
-        const newItemData = {
-          name: nome,
-          description,
-          updatedAt: new Date().toISOString()
-        }
-
-        const ans = await Category.update(newItemData, {
-          where: {
-            id
+        let ans
+        if (newItem) {
+          ans = await Category.create({
+            name: nome,
+            description,
+            createAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+          })
+        } else {
+          const newItemData = {
+            name: nome,
+            description,
+            updatedAt: new Date().toISOString()
           }
-        })
+          ans = await Category.update(newItemData, {
+            where: {
+              id
+            }
+          })
+        }
 
         // verificando se o producto foi criado existe no BD
         if (!ans) {
@@ -78,7 +94,6 @@ const PainelCategoryController = {
           success: `Categoria Id ${id} atualizado com sucesso.`
         })
       } catch (err) {
-        console.log(err)
         return res.status(500).render('dashboard', {
           arquivoCss: 'dashboard.css',
           error: 'Erro interno no sistema. Entre em contato com o administrador.'
