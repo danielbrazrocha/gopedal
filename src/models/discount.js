@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     discount_percent: DataTypes.FLOAT,
     active: DataTypes.BOOLEAN,
-    deleted_at: DataTypes.DATE
+    deletedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Discount',

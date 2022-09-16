@@ -1,0 +1,64 @@
+<form class="py-3 px-4" action="/painel/usuario/<%= userDetails.id %>" method="POST">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="id"></label>
+            <input type="hidden" name="id" class="form-control" id="id" value='<%= userDetails.id %>' placeholder="id do Produto">
+        </div>
+      <div class="form-group col-md-6">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" class="form-control" id="nome" value='<%= userDetails.name %>' placeholder="Nome do Produto">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="cpf">CPF</label>
+        <input type="text" name="cpf" class="form-control" id="cpf" value='<%= userDetails.cpf %>' placeholder="CPF (12345678900)">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="tel">Telefone</label>
+        <input type="text" name="tel" class="form-control" id="tel" value='<%= userDetails.tel %>' placeholder="Telefone 11999999999">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email">Email</label>
+        <input type="text" name="email" class="form-control" id="email" value='<%= userDetails.email %>' placeholder="Telefone 11999999999">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="birthdate">Data de Aniversário</label>
+        <input type="text" name="birthdate" class="form-control" id="birthdate" value='<%= userDetails.birthdate %>' placeholder="Data de Nascimento (31121980)">
+      </div>
+    <div class="mt-5">
+
+<!-- Button trigger modal -->
+<a href="/painel/usuario"        
+    class="btn btn-secondary">
+    Voltar
+</a>
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Apagar
+</button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirma a exclusão do item abaixo? <br> </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <%= userDetails.name %>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <a href="/painel/usuario/deletar/<%= userDetails.id %>"        
+            class="btn btn-danger">
+            Apagar
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>

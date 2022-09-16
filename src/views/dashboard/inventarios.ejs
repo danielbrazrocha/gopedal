@@ -1,0 +1,42 @@
+<main class="container">
+    <section class="banner">
+
+      <!-- Visualação condicional dos erros de validação do express-validator -->
+      <% if (typeof errors != 'undefined') { %> 
+        <p class="text-danger">Foram encontrados erros na sua solicitação.<br>Corrija as informações e envie novamente.</p>
+        <ul>
+          <% errors.forEach(error => { %>  
+            <li class="register-error-alert" ><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+
+      <!-- Visualização dos erros no backend -->
+      <% if (typeof error != 'undefined') { %> 
+        <h4 class="h5 register-error-alert"><%= error %> </h4>
+      <% } %> 
+
+
+      <% inventarios.forEach(inventory => { %>  
+
+        <article class="adminpanel__card list-group-item list-group-item-action">
+            <a href="/painel/inventario/<%= inventory.id %>">
+                <div>
+
+                    <h3 class="adminpanel__title"><%= inventory.id %></h3>
+                    <h3 class="adminpanel__description"><%= inventory.quantity %></h3>
+                    
+                    <div class="products__button">
+                        <button class="">                                
+                            <i class='bx bxs-edit'></i>
+                        </button>
+                        
+                    </div>
+                </div>
+            </a>
+        </article>
+
+    <% }) %>
+
+    </section>
+  </main>

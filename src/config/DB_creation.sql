@@ -7,7 +7,7 @@ CREATE TABLE `Category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -22,7 +22,7 @@ CREATE TABLE `Discount` (
   `description` varchar(255) DEFAULT NULL,
   `discount_percent` float DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -34,7 +34,7 @@ CREATE TABLE `Discount` (
 CREATE TABLE `Inventory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `quantity` int(11) DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -61,7 +61,7 @@ CREATE TABLE `User` (
   `tel` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `birthdate` datetime DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -148,7 +148,7 @@ CREATE TABLE `User_Address` (
   `details` varchar(255) DEFAULT NULL,
   `CEP` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -166,7 +166,7 @@ CREATE TABLE `User_Payment` (
   `provider` varchar(255) DEFAULT NULL,
   `account_number` int(11) DEFAULT NULL,
   `expiry` varchar(255) DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),

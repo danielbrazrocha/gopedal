@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Inventory.init({
     quantity: DataTypes.INTEGER,
-    deleted_at: DataTypes.DATE
+    deletedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Inventory',

@@ -29,7 +29,7 @@ module.exports = {
       birthdate: {
         type: Sequelize.DATE
       },
-      deleted_at: {
+      deletedAt: {
         type: Sequelize.DATE
       },
       createdAt: {

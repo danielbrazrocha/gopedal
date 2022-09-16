@@ -20,7 +20,7 @@ module.exports = {
       active: {
         type: Sequelize.BOOLEAN
       },
-      deleted_at: {
+      deletedAt: {
         type: Sequelize.DATE
       },
       createdAt: {

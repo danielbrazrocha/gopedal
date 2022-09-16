@@ -11,7 +11,7 @@ module.exports = {
       quantity: {
         type: Sequelize.INTEGER
       },
-      deleted_at: {
+      deletedAt: {
         type: Sequelize.DATE
       },
       createdAt: {

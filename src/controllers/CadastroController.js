@@ -2,7 +2,6 @@ const { User } = require('../models')
 const bcrypt = require('bcryptjs')
 const { validationResult } = require('express-validator')
 
-// let validaCpf = require('')
 const CadastroController = {
 
   // showRegister = método do controller para renderizar a view com os forms de cadastro,

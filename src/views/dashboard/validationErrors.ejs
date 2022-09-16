@@ -1,0 +1,8 @@
+<div class="alert alert-danger" role="alert">
+Foram encontrados erros na sua solicitação.<br>Corrija as informações e envie novamente.
+</div>
+<% errors.forEach(error => { %>  
+  <div class="alert alert-warning" role="alert">
+    <%= error.msg %>
+  </div>
+<% }) %>

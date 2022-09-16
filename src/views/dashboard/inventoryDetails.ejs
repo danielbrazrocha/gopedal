@@ -1,0 +1,106 @@
+<!-- Form to editing an existing item -->
+<% if (newItem === false) { %>
+<form class="py-3 px-4" action="/painel/inventario/<%= inventoryDetails.id %>" method="POST">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="id"></label>
+            <input type="hidden" name="id" class="form-control" id="id" value='<%= inventoryDetails.id %>' placeholder="id do Inventario">
+        </div>
+      <div class="form-group col-md-6">
+        <label for="quantity">Quantidade</label>
+        <input type="text" name="quantity" class="form-control" id="quantity" value='<%= inventoryDetails.quantity %>' placeholder="Quantidade no Inventario">
+      </div>
+
+    <div class="mt-5">
+
+<!-- Button trigger modal -->
+<a href="/painel/inventario"        
+    class="btn btn-secondary">
+    Voltar
+</a>
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Apagar
+</button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirma a exclusão do item abaixo? <br> </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Inventário número <%= inventoryDetails.id %>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <a href="/painel/inventario/deletar/<%= inventoryDetails.id %>"        
+            class="btn btn-danger">
+            Apagar
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+
+  <!-- Form to submit a NEW item -->
+  <% } else { %>
+
+  <form class="py-3 px-4" action="/painel/inventario/0 %>" method="POST">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="id"></label>
+            <input type="hidden" name="id" class="form-control" id="id" placeholder="id do Inventario">
+        </div>
+      <div class="form-group col-md-6">
+        <label for="quantity">Quantidade</label>
+        <input type="text" name="quantity" class="form-control" id="quantity" placeholder="Quantidade no Inventario">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="newItem"></label>
+          <input type="hidden" name="newItem" class="form-control" id="newItem" value='0' placeholder="id do Produto">
+      </div>
+
+    <div class="mt-5">
+
+<!-- Button trigger modal -->
+<a href="/painel/inventario"        
+    class="btn btn-secondary">
+    Voltar
+</a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirma a exclusão do item abaixo? <br> </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Inventário número <%= inventoryDetails.id %>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <a href="/painel/inventario/deletar/<%= inventoryDetails.id %>"        
+            class="btn btn-danger">
+            Apagar
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+
+
+  <% } %>
