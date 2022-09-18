@@ -6,22 +6,18 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Cart_Item extends Model {
     static associate (models) {
-      // // One Cart_Item belongs to one Shopping_Session
-      // Cart_Item.belongsTo(models.Shopping_Session, {
-      //   foreignKey: 'session_id',
-      //   onDelete: 'CASCADE'
-      // })
+      Cart_Item.belongsTo(models.Shopping_Session, {
+        foreignKey: 'ShoppingSessionId',
+        as: 'shoppingsession'
+      })
 
-      // // One Cart_Item belongs to one Product
-      // Cart_Item.belongsTo(models.Product, {
-      //   foreignKey: 'ProductId',
-      //   onDelete: 'CASCADE'
-      // })
+      Cart_Item.belongsTo(models.Product, {
+        foreignKey: 'ProductId',
+        as: 'product'
+      })
     }
   }
   Cart_Item.init({
-    // idShoppingSession: DataTypes.INTEGER,
-    // idProduct: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER
   }, {
     sequelize,

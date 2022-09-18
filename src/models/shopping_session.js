@@ -11,10 +11,9 @@ module.exports = (sequelize, DataTypes) => {
         as: 'user'
       })
 
-      // Shopping_Session.hasMany(models.Cart_Item, {
-      //   foreignKey: 'session_id',
-      //   onDelete: 'CASCADE'
-      // })
+      Shopping_Session.hasMany(models.Cart_Item, {
+        as: 'cartitems'
+      })
     }
   }
   Shopping_Session.init({

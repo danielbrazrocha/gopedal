@@ -5,10 +5,9 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate (models) {
-      // Product.hasMany(models.Cart_Item, {
-      //   foreignKey: 'ProductId',
-      //   onDelete: 'CASCADE'
-      // })
+      Product.hasMany(models.Cart_Item, {
+        as: 'cartitems'
+      })
       // Product.hasMany(models.Order_Itens, {
       //   foreignKey: 'ProductId',
       //   onDelete: 'CASCADE'
