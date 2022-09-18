@@ -14,14 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.User_Address, {
         // o atributo sera criado automaticamente no modelo User_Address não precisando ser referenciado no model
         // apenas no migration
-        foreignKey: 'UserId',
-        onDelete: 'CASCADE'
+        as: 'addresses'
       })
       User.hasMany(models.User_Payment, {
         // o atributo sera criado automaticamente no modelo User_Payment não precisando ser referenciado no model
         // apenas no migration
-        foreignKey: 'UserId',
-        onDelete: 'CASCADE'
+        as: 'payments'
       })
       User.hasOne(models.Shopping_Session, {
         // o atributo sera criado automaticamente no modelo Shopping_session não precisando ser referenciado no model)

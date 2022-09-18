@@ -8,27 +8,27 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      category_id: {
+      InventoryId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Product',
+          model: 'Inventory',
           key: 'id'
         }
       },
-      discount_id: {
+      CategoryId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Product',
+          model: 'Category',
           key: 'id'
         }
       },
-      inventory_id: {
+      DiscountId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'Product',
+          model: 'Discount',
           key: 'id'
         }
       },

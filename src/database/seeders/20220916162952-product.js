@@ -5,9 +5,9 @@ module.exports = {
     await queryInterface.bulkInsert('Product', [
       {
         id: 1,
-        category_id: 1,
+        CategoryId: 1,
         // discount_id: "",
-        // inventory_id: 1,
+        InventoryId: 1,
         name: 'Pedal Clip MTB PD-M324 (Prata) - Shimano',
         description: 'Pedal clip para bicicleta MTB, marca Shimano, modelo PD-M324, cor Prata. Especificação:- Marca: Shimano - Modelo: PD-M324- Código Shimano: EPDM324 - Cor: Prata- Rosca: Grossa tipo Inglês 9/16"- Acompanha par de taquinho: SM-SH56- Sistema misto, sendo um lado com clip e o outro com apoio normal (sem clip)- Peso: 533 gramas (par)- Produto original.',
         image: '/assets/products/001-PedalClip.jpg',
@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         id: 2,
-        category_id: 2,
+        CategoryId: 2,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Aro 26" 32 Furos Vmaxx DH Disc Parede Dupla Com Ilhós - Vzan',
@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         id: 3,
-        category_id: 3,
+        CategoryId: 3,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Bomba Encher Pneu Oficina 160psi GP-43P - Giyo',
@@ -44,7 +44,7 @@ module.exports = {
       },
       {
         id: 4,
-        category_id: 4,
+        CategoryId: 4,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Cassete 9V 11-36D CS-HG201 - Shimano',
@@ -57,7 +57,7 @@ module.exports = {
       },
       {
         id: 5,
-        category_id: 5,
+        CategoryId: 5,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Par Freio Disco Hidráulico Dxu-1901 - Absolute',
@@ -70,7 +70,7 @@ module.exports = {
       },
       {
         id: 6,
-        category_id: 6,
+        CategoryId: 6,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Suspensão Mtb Aro 29" Curso 100mm Prime SL Air (Tapered) - Absolute',
@@ -83,7 +83,7 @@ module.exports = {
       },
       {
         id: 7,
-        category_id: 7,
+        CategoryId: 7,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Pneu Aro 29 X 2.25 Jet Arame - Michelin',
@@ -96,7 +96,7 @@ module.exports = {
       },
       {
         id: 8,
-        category_id: 8,
+        CategoryId: 8,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Cadeirinha Criança Traseira Fun KF401 - Kalf',
@@ -112,7 +112,7 @@ module.exports = {
       },
       {
         id: 9,
-        category_id: 9,
+        CategoryId: 9,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Cesta Frontal Arame Fixa (Rosa)',
@@ -126,7 +126,7 @@ module.exports = {
       },
       {
         id: 10,
-        category_id: 10,
+        CategoryId: 10,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Farol Usb 700 Lumens JY-7029 - Absolute',
@@ -141,7 +141,7 @@ module.exports = {
       },
       {
         id: 11,
-        category_id: 10,
+        CategoryId: 10,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Capacete Infantil Y-03 (Preto) - Elleven',
@@ -154,7 +154,7 @@ module.exports = {
       },
       {
         id: 12,
-        category_id: 3,
+        CategoryId: 3,
         // discount_id: "",
         // inventory_id: 1,
         name: 'Aplicador de CO2 Com Refil GC-02P - High One',

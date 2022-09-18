@@ -5,14 +5,28 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate (models) {
-      Product.hasMany(models.Cart_Item, {
-        foreignKey: 'ProductId',
-        onDelete: 'CASCADE'
+      // Product.hasMany(models.Cart_Item, {
+      //   foreignKey: 'ProductId',
+      //   onDelete: 'CASCADE'
+      // })
+      // Product.hasMany(models.Order_Itens, {
+      //   foreignKey: 'ProductId',
+      //   onDelete: 'CASCADE'
+      // })
+      Product.belongsTo(models.Inventory, {
+        foreignKey: 'InventoryId',
+        as: 'inventory'
       })
-      Product.hasMany(models.Order_Itens, {
-        foreignKey: 'ProductId',
-        onDelete: 'CASCADE'
+      
+      Product.belongsTo(models.Category, {
+        foreignKey: 'CategoryId',
+        as: 'category'
       })
+      Product.belongsTo(models.Discount, {
+        foreignKey: 'DiscountId',
+        as: 'discount'
+      })
+      
     }
   }
   Product.init({

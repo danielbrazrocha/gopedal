@@ -8,14 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      order_id: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Order_Details',
-          key: 'id'
-        }
-      },
+      // order_id: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: 'CASCADE',
+      //   references: {
+      //     model: 'Order_Details',
+      //     key: 'id'
+      //   }
+      // },
       amount: {
         type: Sequelize.FLOAT
       },

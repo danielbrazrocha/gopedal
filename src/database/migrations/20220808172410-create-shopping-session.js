@@ -8,14 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      UserId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'User',
-          key: 'id'
-        }
-      },
+      // UserId: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: 'CASCADE',
+      //   references: {
+      //     model: 'User',
+      //     key: 'id'
+      //   }
+      // },
       total: {
         type: Sequelize.FLOAT
       },

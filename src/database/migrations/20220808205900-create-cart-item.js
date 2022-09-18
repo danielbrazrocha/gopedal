@@ -8,22 +8,22 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      session_id: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'User',
-          key: 'id'
-        }
-      },
-      ProductId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Product',
-          key: 'id'
-        }
-      },
+      // session_id: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: 'CASCADE',
+      //   references: {
+      //     model: 'User',
+      //     key: 'id'
+      //   }
+      // },
+      // ProductId: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: 'CASCADE',
+      //   references: {
+      //     model: 'Product',
+      //     key: 'id'
+      //   }
+      // },
       quantity: {
         type: Sequelize.INTEGER
       },

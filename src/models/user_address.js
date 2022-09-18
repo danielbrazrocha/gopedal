@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       // One User_Address belongs to one User
       User_Address.belongsTo(models.User, {
         foreignKey: 'UserId',
-        onDelete: 'CASCADE'
+        as: 'user'
       })
     }
   }

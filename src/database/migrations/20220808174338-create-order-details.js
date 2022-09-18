@@ -8,17 +8,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      UserId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'User',
-          key: 'id'
-        }
-      },
-      idPayment: {
-        type: Sequelize.INTEGER
-      },
+      // UserId: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: 'CASCADE',
+      //   references: {
+      //     model: 'User',
+      //     key: 'id'
+      //   }
+      // },
+      // idPayment: {
+      //   type: Sequelize.INTEGER
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
