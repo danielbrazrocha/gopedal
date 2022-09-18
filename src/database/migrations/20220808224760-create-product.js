@@ -11,6 +11,7 @@ module.exports = {
       InventoryId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
+        unique: true,
         references: {
           model: 'Inventory',
           key: 'id'

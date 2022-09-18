@@ -32,13 +32,34 @@ const run = async () => {
 // how to find aggregating other table
 // Product.findByPk(1, {include: ['inventory']})
 
-Product.findByPk(1)
-.then((element) => {
-  // Get the Company with Users (employes) datas included
-  console.log(element)
-  // Get the Users (employes) records only
-  // console.log(company.get().employes)
+// Product.findByPk(1, {include: 'inventory'})
+// .then((element) => {
+//   // Get the Company with Users (employes) datas included
+//   console.log(element)
+//   // Get the Users (employes) records only
+//   // console.log(company.get().employes)
+// })
+// .catch((err) => {
+//   console.log("Error while find company : ", err)
+// })
+
+
+Product.create({
+  CategoryId: 2,
+  // DiscountId: 1,
+  InventoryId: 2,
+  name: 'Pedal Clip MTB PD-M324 (Prata) - Shimano',
+  description: 'Pedal clip para bicicleta MTB, marca Shimano, modelo PD-M324, cor Prata. Especificação:- Marca: Shimano - Modelo: PD-M324- Código Shimano: EPDM324 - Cor: Prata- Rosca: Grossa tipo Inglês 9/16"- Acompanha par de taquinho: SM-SH56- Sistema misto, sendo um lado com clip e o outro com apoio normal (sem clip)- Peso: 533 gramas (par)- Produto original.',
+  image: '/assets/products/001-PedalClip.jpg',
+  SKU: '1111',
+  price: 520.00,
+  createdAt: new Date(),
+  updatedAt: new Date()
+})
+.then((newCompany) => {
+  // The get() function allows you to recover only the DataValues of the object
+  console.log(newCompany.get())
 })
 .catch((err) => {
-  console.log("Error while find company : ", err)
+  console.log("Error while company creation : ", err)
 })
