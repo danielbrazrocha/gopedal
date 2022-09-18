@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       //   onDelete: 'CASCADE'
       // })
 
-      // Order_Details.hasOne(models.Payment_Details, {
-      //   foreignKey: 'order_id',
-      //   onDelete: 'CASCADE'
-      // })
+      Order_Details.hasOne(models.Payment_Details, {
+        foreignKey: 'OrderDetailsId',
+        as: 'payment_details'
+      })
 
       // Order_Details.hasMany(models.Order_Itens, {
       //   foreignKey: 'order_id',

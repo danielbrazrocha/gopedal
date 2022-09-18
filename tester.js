@@ -7,6 +7,7 @@ const Inventory = models.Inventory
 const Category = models.Category
 const Discount = models.Discount
 const Shopping_Session = models.Shopping_Session
+const Payment_Details = models.Payment_Details
 
 
 
@@ -33,7 +34,7 @@ const run = async () => {
 // how to find aggregating other table
 // Product.findByPk(1, {include: ['inventory']})
 
-Shopping_Session.findByPk(1, {include: ['user']})
+Payment_Details.findByPk(1)
 .then((element) => {
   // Get the Company with Users (employes) datas included
   console.log(element)
