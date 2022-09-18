@@ -25,6 +25,17 @@ module.exports = {
         birthdate: '1980-01-01',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        kind: 'user',
+        name: 'User with Shopping Session',
+        password: bcrypt.hashSync('123456', 10),
+        cpf: '33333333333',
+        tel: '33555552222',
+        email: 'userwithsession@strator.com',
+        birthdate: '1980-01-01',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {})
   },

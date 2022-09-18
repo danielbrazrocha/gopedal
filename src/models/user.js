@@ -22,10 +22,8 @@ module.exports = (sequelize, DataTypes) => {
         as: 'payments'
       })
       User.hasOne(models.Shopping_Session, {
-        // o atributo sera criado automaticamente no modelo Shopping_session não precisando ser referenciado no model)
-        // apenas no migration
-        foreignKey: 'UserId1',
-        onDelete: 'CASCADE'
+        foreignKey: 'UserId',
+        as: 'shoppingsession'
       })
       User.hasOne(models.Order_Details, {
         // o atributo sera criado automaticamente no modelo Order_Details não precisando ser referenciado no model)

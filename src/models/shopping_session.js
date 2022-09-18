@@ -6,11 +6,10 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Shopping_Session extends Model {
     static associate (models) {
-      // // One Shopping_Session belongs to one User
-      // Shopping_Session.belongsTo(models.User, {
-      //   foreignKey: 'UserId',
-      //   onDelete: 'CASCADE'
-      // })
+      Shopping_Session.belongsTo(models.User, {
+        foreignKey: 'UserId',
+        as: 'user'
+      })
 
       // Shopping_Session.hasMany(models.Cart_Item, {
       //   foreignKey: 'session_id',
