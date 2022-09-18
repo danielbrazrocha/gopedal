@@ -6,10 +6,10 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Order_Details extends Model {
     static associate (models) {
-      // Order_Details.belongsTo(models.User, {
-      //   foreignKey: 'UserId',
-      //   onDelete: 'CASCADE'
-      // })
+      Order_Details.belongsTo(models.User, {
+        foreignKey: 'UserId',
+        as: 'user'
+      })
 
       Order_Details.hasOne(models.Payment_Details, {
         foreignKey: 'OrderDetailsId',
@@ -23,8 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Order_Details.init({
-    // idUser: DataTypes.INTEGER,
-    // idPayment: DataTypes.INTEGER
+    total: DataTypes.FLOAT
   }, {
     sequelize,
     modelName: 'Order_Details',

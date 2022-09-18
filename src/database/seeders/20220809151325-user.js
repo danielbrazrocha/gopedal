@@ -32,7 +32,18 @@ module.exports = {
         password: bcrypt.hashSync('123456', 10),
         cpf: '33333333333',
         tel: '33555552222',
-        email: 'userwithsession@strator.com',
+        email: 'sessioner@strator.com',
+        birthdate: '1980-01-01',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        kind: 'user',
+        name: 'User with One Order',
+        password: bcrypt.hashSync('123456', 10),
+        cpf: '44444444444',
+        tel: '44555552222',
+        email: 'buyer@strator.com',
         birthdate: '1980-01-01',
         createdAt: new Date(),
         updatedAt: new Date()

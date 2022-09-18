@@ -25,11 +25,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'UserId',
         as: 'shoppingsession'
       })
-      User.hasOne(models.Order_Details, {
+      User.hasMany(models.Order_Details, {
         // o atributo sera criado automaticamente no modelo Order_Details não precisando ser referenciado no model)
         // apenas no migration
-        foreignKey: 'UserId2',
-        onDelete: 'CASCADE'
+        as: 'orderdetails',
       })
     }
   }
