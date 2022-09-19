@@ -16,9 +16,6 @@ module.exports = {
           key: 'id'
         }
       },
-      // idPayment: {
-      //   type: Sequelize.INTEGER
-      // },
       total: {
         type: Sequelize.FLOAT
       },

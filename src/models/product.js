@@ -8,10 +8,9 @@ module.exports = (sequelize, DataTypes) => {
       Product.hasMany(models.Cart_Item, {
         as: 'cartitems'
       })
-      // Product.hasMany(models.Order_Itens, {
-      //   foreignKey: 'ProductId',
-      //   onDelete: 'CASCADE'
-      // })
+      Product.hasMany(models.Order_Itens, {
+        as: 'orderitens'
+      })
       Product.belongsTo(models.Inventory, {
         foreignKey: 'InventoryId',
         as: 'inventory'

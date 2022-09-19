@@ -16,10 +16,9 @@ module.exports = (sequelize, DataTypes) => {
         as: 'payment_details'
       })
 
-      // Order_Details.hasMany(models.Order_Itens, {
-      //   foreignKey: 'order_id',
-      //   onDelete: 'CASCADE'
-      // })
+      Order_Details.hasMany(models.Order_Itens, {
+        as: 'orderitens'
+      })
     }
   }
   Order_Details.init({
