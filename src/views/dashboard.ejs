@@ -40,21 +40,32 @@
             
             <a class="nav-link active" aria-current="page" href="/painel/categoria">
               <i class='bx bxs-category' ></i>
-              Categoria
+              Categorias
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/painel/desconto">
               <i class='bx bxs-badge-dollar' ></i>
-              Desconto
+              Descontos
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/painel/inventario">
               <i class='bx bxs-store' ></i>
-              Inventário
+              Inventários
             </a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/painel/pedido">
+              <i class='bx bxs-package' ></i>
+              Pedidos
+            </a>
+          </li>
+
+
+
+          
         </ul>
 
 
@@ -87,6 +98,8 @@
         <%- include('./dashboard/categoryDetails') %>
       <% } else if (typeof userDetails != 'undefined') { %>
         <%- include('./dashboard/userDetails') %>
+      <% } else if (typeof orderDetails != 'undefined') { %>
+        <%- include('./dashboard/orderDetails') %>
       <% } else if (typeof discountDetails != 'undefined') { %>
         <%- include('./dashboard/discountDetails') %>
       <% } else if (typeof inventoryDetails != 'undefined') { %>
@@ -100,6 +113,8 @@
         <%- include('./dashboard/produtos') %>
       <% } else if (typeof usuarios != 'undefined') { %>
         <%- include('./dashboard/usuarios') %>
+      <% } else if (typeof pedidos != 'undefined') { %>
+        <%- include('./dashboard/pedidos') %>
       <% } else if (typeof descontos != 'undefined') { %>
         <%- include('./dashboard/descontos') %>
       <% } else if (typeof inventarios != 'undefined') { %>
