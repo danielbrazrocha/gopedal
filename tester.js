@@ -31,15 +31,15 @@ const run = async () => {
 
 };
 
-models.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-  // run();
-});
+// models.sequelize.sync({ force: true }).then(() => {
+//   console.log("Drop and re-sync db.");
+//   // run();
+// });
 
 // how to find aggregating other table
 // Product.findByPk(1, {include: ['inventory']})
 
-Order_Itens.findByPk(1)
+Order_Details.findByPk(1,  {include: ['user', 'payment_details', 'orderitens']})
 // models.sequelize.query("SELECT p.* FROM Product p, Order_Itens oi, Order_Details od, User u WHERE p.id = oi.ProductId AND oi.OrderDetailsId = od.id AND od.UserId = u.id")
 
 .then((element) => {
