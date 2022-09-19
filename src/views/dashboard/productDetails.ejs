@@ -19,9 +19,9 @@
     <div class="form-group col-md-6">
         <label for="category">Categoria</label>
         <select class="form-control" name="category" id="category">
-            <option selected value="<%= productDetails.category_id %>"><%= categoryList.find( cat => cat.id === productDetails.category_id ).name %> </option>
+            <option selected value="<%= productDetails.CategoryId %>"><%= categoryList.find( cat => cat.id === productDetails.CategoryId ).name %> </option>
 
-            <% categoryList.filter( cat => cat.id !== productDetails.category_id ).forEach(category => { %>
+            <% categoryList.filter( cat => cat.id !== productDetails.CategoryId ).forEach(category => { %>
                 <option value="<%= category.id %>"><%= category.name %></option>
             <% }) %>
         </select>

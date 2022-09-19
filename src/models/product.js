@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'InventoryId',
         as: 'inventory'
       })
-      
       Product.belongsTo(models.Category, {
         foreignKey: 'CategoryId',
         as: 'category'
@@ -24,13 +23,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'DiscountId',
         as: 'discount'
       })
-      
     }
   }
   Product.init({
-    // idCategory: DataTypes.INTEGER,
-    // idDiscount: DataTypes.INTEGER,
-    // idInventory: DataTypes.INTEGER,
     name: DataTypes.STRING,
     description: DataTypes.STRING(2000),
     image: DataTypes.STRING,

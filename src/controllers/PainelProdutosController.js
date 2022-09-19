@@ -51,12 +51,15 @@ const PainelProdutosController = {
         id: produtoId
       }
     })
+    console.log('prod', produto)
 
     const categoryList = await Category.findAll({
       where: {
         deletedAt: null
       }
     })
+    console.log('catlist', categoryList[0].name)
+    // categoryList.find( cat => cat.id === productDetails.categoryId ).name
 
     return res.status(200).render('dashboard', {
       arquivoCss: 'dashboard.css',
@@ -83,7 +86,7 @@ const PainelProdutosController = {
             SKU,
             price,
             image: imagelink,
-            category_id: category,
+            categoryId: category,
             createAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
           })
@@ -95,7 +98,7 @@ const PainelProdutosController = {
             price,
             image: imagelink,
             updatedAt: new Date().toISOString(),
-            category_id: category
+            categoryId: category
           }
 
           ans = await Product.update(newProductData, {
