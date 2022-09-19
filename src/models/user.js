@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Order_Details, {
         // o atributo sera criado automaticamente no modelo Order_Details não precisando ser referenciado no model)
         // apenas no migration
-        as: 'orderdetails',
+        as: 'orderdetails'
       })
     }
   }

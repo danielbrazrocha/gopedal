@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       User_Payment.belongsTo(models.User, {
         foreignKey: 'UserId',
-        as: 'user',
+        as: 'user'
       })
     }
   }
