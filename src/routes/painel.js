@@ -6,6 +6,7 @@ const PainelUsuariosController = require('../controllers/PainelUsuariosControlle
 const PainelProdutosController = require('../controllers/PainelProdutosController')
 const PainelDescontoController = require('../controllers/PainelDescontoController')
 const PainelInventarioController = require('../controllers/PainelInventarioController')
+const PainelPedidoController = require('../controllers/PainelPedidoController')
 
 // const isAuth = require('../middlewares/isAuth')
 // const isAdmin = require('../middlewares/isAdmin')
@@ -48,5 +49,8 @@ router.get('/inventario/:id', PainelInventarioController.edit)
 router.post('/inventario/:id', inventoryValidator, PainelInventarioController.submitEdit)
 router.get('/inventario/deletar/:id', PainelInventarioController.delete)
 router.get('/inventario/add/form', PainelInventarioController.add)
+
+router.get('/pedido', PainelPedidoController.show)
+router.get('/pedido/:id', PainelPedidoController.edit)
 
 module.exports = router
