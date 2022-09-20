@@ -24,6 +24,28 @@ module.exports = {
         country: 'Brasil',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        UserId: 1,
+        description: 'Casa de Praia do Administrador',
+        street: 'Rua dos Coqueiros',
+        number: 100,
+        details: 'Conjunto Miami Beach',
+        CEP: '12354-123',
+        country: 'Brasil',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        UserId: 1,
+        description: 'Casa da Mãe do Administrador',
+        street: 'Rua Mama Africa',
+        number: 200,
+        details: 'Edifício S2',
+        CEP: '33354-123',
+        country: 'Brasil',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {})
   },

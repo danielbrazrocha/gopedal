@@ -8,6 +8,9 @@
   /*========== Colors ==========*/
   --first-color: rgb(156,68,220);
   --first-color-rgb:156, 68, 220;
+  --secondary-color: rgb(188,138,225);
+  --terciary-color: rgb(68,44,97);
+  --quarternary-color: rgb(156,100,92);
   --button-color: hsl(0, 0%, 17%);
   --button-color-alt: hsl(0, 0%, 21%);
   --title-color: hsl(0, 0%, 15%);

@@ -1,0 +1,74 @@
+<form class="py-3 px-4" action="/usuario/enderecos" method="POST">
+    <h2>Endereços cadastrados</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Rua</th>
+            <th scope="col">Número</th>
+            <th scope="col">Detalhes</th>
+            <th scope="col">CEP</th>
+            <th scope="col">País</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+            <% for (let i = 0; i < enderecos.length; i++) { %>
+              <tr>
+                  
+                    <td>
+                      <a href="/usuario/enderecos/<%= enderecos[i].id %>">
+                        <%= i+1 %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuario/enderecos/<%= enderecos[i].id %>">
+                        <%= enderecos[i].description %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuario/enderecos/<%= enderecos[i].id %>">
+                        <%= enderecos[i].street %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuario/enderecos/<%= enderecos[i].id %>">
+                        <%= enderecos[i].number %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuario/enderecos/<%= enderecos[i].id %>">
+                        <%= enderecos[i].details %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuario/enderecos/<%= enderecos[i].id %>">
+                        <%= enderecos[i].CEP %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuario/enderecos/<%= enderecos[i].id %>">
+                        <%= enderecos[i].country %>
+                      </a>
+                    </td>
+                </tr>
+            <% } %>
+
+     
+        </tbody>
+      </table>
+
+<!-- Button trigger modal -->
+<a href="/usuario"        
+    class="btn btn-secondary">
+    Voltar
+</a>
+<a href="/usuario/enderecos/add/form"        
+    class="btn btn-success">
+    Adicionar
+</a>
+  
+    </div>
+  </form>

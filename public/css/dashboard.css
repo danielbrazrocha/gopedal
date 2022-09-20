@@ -136,3 +136,13 @@ fieldset.scheduler-border {
       padding:0 10px;
       border-bottom:none;
   }
+
+  tr:hover { 
+    background: var(--secondary-color);
+ }
+ td a { 
+    color: inherit;
+    display: block; 
+    /* border: 1px solid black;
+    padding: 16px;  */
+ }

@@ -4,22 +4,12 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-sm-block bg-light sidebar collapse">
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav row">
+
           <li class="nav-item">
-            <div class="nav-link-div d-flex gap-1 py-2">
-                <a class="nav-link active d-flex gap-2 w-100 justify-content-between" aria-current="page" href="/usuario">
-                    <i class='bx bxs-user-circle align-self-center'></i>
-
-                  </i>
-                  <span>Minha Conta</span>
-                </a>
-
-
-              <a class="justify-content-between" href="/painel/categoria/add/form">
-                <button class=""> 
-                    <i class='bx bx-plus-circle' ></i>
-                </button>
-            </a>   
-            </div>
+            <a class="nav-link active" aria-current="page" href="/usuario">
+              <i class='bx bxs-user-circle' ></i>
+              Minha Conta
+            </a>            
           </li>
 
           
@@ -77,18 +67,10 @@
       <% } %>
 
       <!-- Views para os CRUDs do dashboard -->
-      <% if (typeof productDetails != 'undefined') { %>
-        <%- include('./dashboard/productDetails') %>
-      <% } else if (typeof categoryDetails != 'undefined') { %>
-        <%- include('./dashboard/categoryDetails') %>
-      <% } else if (typeof userDetails != 'undefined') { %>
-        <%- include('./dashboard/userDetails') %>
-      <% } else if (typeof orderDetails != 'undefined') { %>
-        <%- include('./dashboard/orderDetails') %>
-      <% } else if (typeof discountDetails != 'undefined') { %>
-        <%- include('./dashboard/discountDetails') %>
-      <% } else if (typeof inventoryDetails != 'undefined') { %>
-        <%- include('./dashboard/inventoryDetails') %>
+      <% if (typeof enderecoDetails != 'undefined') { %>
+        <%- include('./usuario/enderecoDetails') %>
+      <% } else if (typeof pagamentoDetails != 'undefined') { %>
+        <%- include('./usuario/pagamentoDetails') %>      
       <% } %>
 
       <!-- Views para a lista dos itens do dashboard -->
