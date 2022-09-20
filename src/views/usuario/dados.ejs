@@ -1,0 +1,83 @@
+<form class="py-3 px-4" action="/usuario/dados/<%= dados.id %>" method="POST">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="id"></label>
+            <input type="hidden" name="id" class="form-control" id="id" value='<%= dados.id %>' placeholder="id do Produto">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" class="form-control" id="nome" value='<%= dados.name %>' placeholder="Nome do Produto">
+        </div>
+                
+        <div class="form-group col-md-6">
+            <label for="cpf">CPF</label>
+            <input type="hidden" name="cpf" class="form-control" id="cpf" value='<%= dados.cpf %>' placeholder="CPF (12345678900)">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="tel">Telefone</label>
+            <input type="text" name="tel" class="form-control" id="tel" value='<%= dados.tel %>' placeholder="Telefone 11999999999">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="text" name="email" class="form-control" id="email" value='<%= dados.email %>' placeholder="Telefone 11999999999">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="birthdate">Data de Aniversário</label>
+            <input type="text" name="birthdate" class="form-control" id="birthdate" value='<%= dados.birthdate.toLocaleDateString('pt-BR') %>' placeholder="Data de Nascimento (31121980)">
+        </div>
+
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Alterar Senha</legend>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="senha">Senha</label>
+                    <input type="text" name="senha" class="form-control" id="senha" value='' placeholder="Nova Senha">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="repeteSenha">Confirma Senha</label>
+                    <input type="text" name="repeteSenha" class="form-control" id="repeteSenha" value='' placeholder="Confirma Senha">
+                </div>
+            </div>
+        </fieldset>
+
+    <div class="mt-5">
+
+<!-- Button trigger modal -->
+<a href="/usuario/dados"        
+    class="btn btn-secondary">
+    Voltar
+</a>
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Apagar Conta
+</button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Esta operação é definitiva e irreversível! <br> Confirma a exclusão do item abaixo? </h5>
+          
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <%= dados.name %>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <a href="/usuario/dados/deletar/<%= dados.id %>"        
+            class="btn btn-danger">
+            Apagar
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
