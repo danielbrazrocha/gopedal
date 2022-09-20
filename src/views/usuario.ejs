@@ -70,7 +70,9 @@
       <% if (typeof enderecoDetails != 'undefined') { %>
         <%- include('./usuario/enderecoDetails') %>
       <% } else if (typeof pagamentoDetails != 'undefined') { %>
-        <%- include('./usuario/pagamentoDetails') %>      
+        <%- include('./usuario/pagamentoDetails') %>     
+        <% } else if (typeof pedidoDetails != 'undefined') { %>
+          <%- include('./usuario/pedidoDetails') %>   
       <% } %>
 
       <!-- Views para a lista dos itens do dashboard -->

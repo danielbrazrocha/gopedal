@@ -5,6 +5,7 @@ const UsuarioController = require('../controllers/UsuarioController')
 const UsuarioDadosController = require('../controllers/UsuarioDadosController')
 const UsuarioEnderecosController = require('../controllers/UsuarioEnderecosController')
 const UsuarioPagamentosController = require('../controllers/UsuarioPagamentosController')
+const UsuarioPedidoController = require('../controllers/UsuarioPedidoController')
 
 const userValidator = require('../middlewares/validator')
 const addressValidator = require('../middlewares/addressValidator')
@@ -29,5 +30,8 @@ router.get('/pagamentos/:id', isAuth, UsuarioPagamentosController.edit)
 router.post('/pagamentos/:id', isAuth, cardValidator, UsuarioPagamentosController.submitEdit)
 router.get('/pagamentos/deletar/:id', isAuth, UsuarioPagamentosController.delete)
 router.get('/pagamentos/add/form', isAuth, UsuarioPagamentosController.add)
+
+router.get('/pedidos', UsuarioPedidoController.show)
+router.get('/pedidos/:id', UsuarioPedidoController.edit)
 
 module.exports = router

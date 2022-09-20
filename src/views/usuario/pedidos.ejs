@@ -1,0 +1,61 @@
+        <h2>Lista de Compras Realizadas</h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Data do Pedido</th>
+                <th scope="col">Valor Total</th>
+                <th scope="col">Quantidade Itens</th>
+                <th scope="col">Forma de Pagamento</th>
+              </tr>
+            </thead>
+            <tbody>
+                
+                <% for (let i = 0; i < pedidos.length; i++) { %>
+                    <tr>
+                      <td>
+                        <a href="/usuario/pedidos/<%= pedidos[i].id %>">
+                          <%= i+1 %>
+                        </a>
+                      </td>
+
+                      <td>
+                        <a href="/usuario/pedidos/<%= pedidos[i].id %>">
+                          <%= pedidos[i].createdAt.toLocaleString('pt-BR') %>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="/usuario/pedidos/<%= pedidos[i].id %>">
+                          <%= pedidos[i].total.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="/usuario/pedidos/<%= pedidos[i].id %>">
+                          <%= pedidos[i].orderitens?.length %>
+                        </a>
+                      </td>
+
+                      <td>
+                        <a href="/usuario/pedidos/<%= pedidos[i].id %>">
+                          <%= pedidos[i].payment_details?.provider %>
+                        </a>
+                      </td>
+
+
+
+                    </tr>
+                <% } %>
+
+         
+            </tbody>
+          </table>
+    
+          <!-- Button trigger modal -->
+          <a href="/usuario"        
+              class="btn btn-secondary">
+              Voltar
+          </a>
+      
+        </div>
+    
