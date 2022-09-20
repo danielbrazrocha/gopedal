@@ -48,7 +48,6 @@ const UsuarioPagamentosController = {
   submitEdit: async (req, res) => {
     const errors = validationResult(req)
     const UserId = req.session.user.id
-    console.log(req.body)
 
     if (errors.isEmpty()) {
       const { id, payment_type, provider, account_number, expiry, newItem } = req.body

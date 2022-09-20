@@ -21,8 +21,6 @@ const UsuarioEnderecosController = {
         })
       }
 
-      console.log(userDetails.addresses)
-
       return res.status(200).render('usuario', {
         arquivoCss: 'dashboard.css',
         enderecos: userDetails.addresses
@@ -38,7 +36,6 @@ const UsuarioEnderecosController = {
         id
       }
     })
-    console.log('prod', item)
 
     return res.status(200).render('usuario', {
       arquivoCss: 'dashboard.css',

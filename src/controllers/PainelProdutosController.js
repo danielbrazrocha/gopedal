@@ -51,15 +51,12 @@ const PainelProdutosController = {
         id: produtoId
       }
     })
-    console.log('prod', produto)
 
     const categoryList = await Category.findAll({
       where: {
         deletedAt: null
       }
     })
-    console.log('catlist', categoryList[0].name)
-    // categoryList.find( cat => cat.id === productDetails.categoryId ).name
 
     return res.status(200).render('dashboard', {
       arquivoCss: 'dashboard.css',

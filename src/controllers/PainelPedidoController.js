@@ -34,8 +34,6 @@ const PainelInventarioController = {
       include: ['product']
     })
 
-    console.log(itemList)
-
     return res.status(200).render('dashboard', {
       arquivoCss: 'dashboard.css',
       orderDetails: itemList,

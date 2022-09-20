@@ -30,7 +30,6 @@ const UsuarioDadosController = {
     }
   },
   submitEdit: async (req, res) => {
-    console.log(req)
     const errors = validationResult(req)
 
     if (errors.isEmpty()) {

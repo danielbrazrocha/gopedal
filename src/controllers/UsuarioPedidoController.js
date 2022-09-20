@@ -13,8 +13,6 @@ const UsuarioPedidoController = {
         include: ['payment_details', 'orderitens']
       })
 
-      console.log(orderList)
-
       if (orderList.length === 0) {
         return res.status(200).render('usuario', {
           arquivoCss: 'dashboard.css',
@@ -39,8 +37,6 @@ const UsuarioPedidoController = {
       },
       include: ['product']
     })
-
-    console.log(itemList)
 
     return res.status(200).render('usuario', {
       arquivoCss: 'dashboard.css',
