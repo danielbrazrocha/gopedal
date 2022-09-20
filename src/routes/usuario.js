@@ -4,9 +4,12 @@ const router = express.Router()
 const UsuarioController = require('../controllers/UsuarioController')
 const UsuarioDadosController = require('../controllers/UsuarioDadosController')
 const UsuarioEnderecosController = require('../controllers/UsuarioEnderecosController')
+const UsuarioPagamentosController = require('../controllers/UsuarioPagamentosController')
 
 const userValidator = require('../middlewares/validator')
 const addressValidator = require('../middlewares/addressValidator')
+const cardValidator = require('../middlewares/cardValidator')
+
 const isAuth = require('../middlewares/isAuth')
 
 router.get('/', isAuth, UsuarioController.index)
@@ -19,12 +22,12 @@ router.get('/enderecos', isAuth, UsuarioEnderecosController.show)
 router.get('/enderecos/:id', isAuth, UsuarioEnderecosController.edit)
 router.post('/enderecos/:id', isAuth, addressValidator, UsuarioEnderecosController.submitEdit)
 router.get('/enderecos/deletar/:id', isAuth, UsuarioEnderecosController.delete)
-router.get('/enderecos/add/form', UsuarioEnderecosController.add)
+router.get('/enderecos/add/form', isAuth, UsuarioEnderecosController.add)
 
-// router.get('/inventario', PainelInventarioController.show)
-// router.get('/inventario/:id', PainelInventarioController.edit)
-// router.post('/inventario/:id', inventoryValidator, PainelInventarioController.submitEdit)
-// router.get('/inventario/deletar/:id', PainelInventarioController.delete)
-// router.get('/inventario/add/form', PainelInventarioController.add)
+router.get('/pagamentos', isAuth, UsuarioPagamentosController.show)
+router.get('/pagamentos/:id', isAuth, UsuarioPagamentosController.edit)
+router.post('/pagamentos/:id', isAuth, cardValidator, UsuarioPagamentosController.submitEdit)
+router.get('/pagamentos/deletar/:id', isAuth, UsuarioPagamentosController.delete)
+router.get('/pagamentos/add/form', isAuth, UsuarioPagamentosController.add)
 
 module.exports = router
