@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       account_number: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       expiry: {
         type: Sequelize.STRING

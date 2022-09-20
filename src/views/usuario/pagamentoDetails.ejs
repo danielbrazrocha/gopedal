@@ -1,0 +1,113 @@
+<!-- Form to editing an existing item -->
+<% if (newItem === false) { %>
+
+    <form class="py-3 px-4" action="/usuario/pagamentos/<%= pagamentoDetails.id %>" method="POST">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id"></label>
+                <input type="hidden" name="id" class="form-control" id="id" value='<%= pagamentoDetails.id %>' placeholder="id do Produto">
+            </div>
+            <div class="form-group">
+              <label for="payment_type">Tipo de Pagamento</label>
+              <input type="text" name="payment_type" class="form-control" id="payment_type" value='<%= pagamentoDetails.payment_type %>' placeholder="Tipo de Pagamento">
+            </div>
+            <div class="form-group col-md-6">
+                    <label for="provider">Bandeira</label>
+                    <input type="text" name="provider" class="form-control" id="provider" value='<%= pagamentoDetails.provider %>' placeholder="Bandeira do Cartão">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="account_number">Número do Cartão</label>
+                <input type="text" name="account_number" class="form-control" id="account_number" value='<%= pagamentoDetails.account_number %>' placeholder="Número do Cartão">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="expiry">Validade</label>
+                <input type="text" name="expiry" class="form-control" id="expiry" value='<%= pagamentoDetails.expiry %>' placeholder="Validade no formato mm/aaaa">
+            </div>
+
+
+        <div class="mt-5">
+    
+    <!-- Button trigger modal -->
+    <a href="/usuario/pagamentos"        
+        class="btn btn-secondary">
+        Voltar
+    </a>
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Apagar
+    </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Confirma a exclusão do item abaixo? <br> </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <%= pagamentoDetails.account_number %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="/usuario/pagamentos/deletar/<%= pagamentoDetails.id %>"        
+                class="btn btn-danger">
+                Apagar
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    
+      <!-- Form to submit a NEW item -->
+      <% } else { %>
+    
+
+
+        <form class="py-3 px-4" action="/usuario/pagamentos/0 %>" method="POST">
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="id"></label>
+                  <input type="hidden" name="id" class="form-control" id="id" placeholder="id do Produto">
+              </div>
+              <div class="form-group">
+                <label for="payment_type">Tipo de Pagamento</label>
+                <input type="text" name="payment_type" class="form-control" id="payment_type" placeholder="Tipo de Pagamento">
+              </div>
+              <div class="form-group col-md-6">
+                      <label for="provider">Bandeira</label>
+                      <input type="text" name="provider" class="form-control" id="provider" placeholder="Bandeira do Cartão">
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="details">Número do Cartão</label>
+                  <input type="text" name="details" class="form-control" id="details" placeholder="Número do Cartão">
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="expiry">Validade</label>
+                  <input type="text" name="expiry" class="form-control" id="expiry" placeholder="Validade no formato mm/aaaa">
+              </div>
+  
+              
+              <div class="form-group col-md-6">
+                <label for="newItem"></label>
+                  <input type="hidden" name="newItem" class="form-control" id="newItem" value='0' placeholder="id do Produto">
+              </div>
+  
+          <div class="mt-5">
+      
+      <!-- Button trigger modal -->
+      <a href="/usuario/pagamentos"        
+          class="btn btn-secondary">
+          Voltar
+      </a>
+     
+      
+              <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
+    
+      <% } %>

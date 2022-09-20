@@ -1,0 +1,62 @@
+<form class="py-3 px-4" action="/usuario/pagamentos" method="POST">
+    <h2>Formas de pagamento cadastradas</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tipo de Pagamento</th>
+            <th scope="col">Bandeira</th>
+            <th scope="col">Número do Cartão</th>
+            <th scope="col">Vencimento</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+            <% for (let i = 0; i < pagamentos.length; i++) { %>
+              <tr>
+                  
+                    <td>
+                      <a href="/usuario/pagamentos/<%= pagamentos[i].id %>">
+                        <%= i+1 %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuario/pagamentos/<%= pagamentos[i].id %>">
+                        <%= pagamentos[i].payment_type %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuario/pagamentos/<%= pagamentos[i].id %>">
+                        <%= pagamentos[i].provider %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuario/pagamentos/<%= pagamentos[i].id %>">
+                        <%= pagamentos[i].account_number %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuario/pagamentos/<%= pagamentos[i].id %>">
+                        <%= pagamentos[i].expiry %>
+                      </a>
+                    </td>                   
+                </tr>
+            <% } %>
+
+     
+        </tbody>
+      </table>
+
+<!-- Button trigger modal -->
+<a href="/usuario"        
+    class="btn btn-secondary">
+    Voltar
+</a>
+<a href="/usuario/pagamentos/add/form"        
+    class="btn btn-success">
+    Adicionar
+</a>
+  
+    </div>
+  </form>

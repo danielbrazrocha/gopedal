@@ -1,23 +1,27 @@
 /* eslint-disable camelcase */
 const { Order_Details, Order_Itens } = require('../models')
 
-const PainelInventarioController = {
+const UsuarioPedidoController = {
 
   show: async (req, res) => {
+    const UserId = req.session.user.id
     try {
       const orderList = await Order_Details.findAll({
-        include: ['user']
+        where: {
+          UserId
+        },
+        include: ['payment_details', 'orderitens']
       })
 
       if (orderList.length === 0) {
-        return res.status(200).render('dashboard', {
+        return res.status(200).render('usuario', {
           arquivoCss: 'dashboard.css',
-          error: 'Não há nenhuma compra efetuada.'
+          error: 'Não há nenhum pedido efetuado.'
         })
       }
 
       // indica o arquivo EJS dentro de view a ser chamado
-      return res.status(200).render('dashboard', {
+      return res.status(200).render('usuario', {
         arquivoCss: 'dashboard.css',
         pedidos: orderList
       })
@@ -34,12 +38,11 @@ const PainelInventarioController = {
       include: ['product']
     })
 
-    return res.status(200).render('dashboard', {
+    return res.status(200).render('usuario', {
       arquivoCss: 'dashboard.css',
-      orderDetails: itemList,
-      newItem: false
+      pedidoDetails: itemList
     })
   }
 }
 
-module.exports = PainelInventarioController
+module.exports = UsuarioPedidoController

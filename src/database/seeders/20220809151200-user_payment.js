@@ -7,8 +7,17 @@ module.exports = {
         UserId: 1,
         payment_type: 'Cartao de Credito',
         provider: 'VISA',
-        account_number: 12340000,
+        account_number: 1234000012341234,
         expiry: '09/2025',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        UserId: 1,
+        payment_type: 'Cartao de Debito',
+        provider: 'MASTERCARD',
+        account_number: 1234000012340000,
+        expiry: '09/2026',
         createdAt: new Date(),
         updatedAt: new Date()
       }

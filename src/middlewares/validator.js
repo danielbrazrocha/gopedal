@@ -22,10 +22,10 @@ const validateRegister = [
         return value
       }
     })
-    .isLength({ min: 8, max: 25 }).withMessage('A senha não contem o número de caracteres'),
+    .isLength({ min: 8, max: 25 }).withMessage('A senha deve conter o mínimo de 8 dígitos caracteres'),
   check('repeteSenha')
     .notEmpty().withMessage('A confirmação da senha deve ser informada').bail()
-    .isLength({ min: 8, max: 25 }).withMessage('A senha não contem o número de caracteres'),
+    .isLength({ min: 8, max: 25 }).withMessage('A senha deve conter o mínimo de 8 dígitos caracteres'),
   check('tel')
     .notEmpty().withMessage('O telefone deve ser informado').bail()
     .isLength({ min: 8, max: 15 }).withMessage('O telefone deve ter no mínimo 8 caracteres')
