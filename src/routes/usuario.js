@@ -31,7 +31,7 @@ router.post('/pagamentos/:id', isAuth, cardValidator, UsuarioPagamentosControlle
 router.get('/pagamentos/deletar/:id', isAuth, UsuarioPagamentosController.delete)
 router.get('/pagamentos/add/form', isAuth, UsuarioPagamentosController.add)
 
-router.get('/pedidos', UsuarioPedidoController.show)
-router.get('/pedidos/:id', UsuarioPedidoController.edit)
+router.get('/pedidos', isAuth, UsuarioPedidoController.show)
+router.get('/pedidos/:id', isAuth, UsuarioPedidoController.edit)
 
 module.exports = router
