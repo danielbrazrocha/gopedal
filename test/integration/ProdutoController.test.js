@@ -39,13 +39,4 @@ describe('Integration Test SobreController', function () {
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
     expect(res.statusCode).toBe(404)
   })
-
-  test('should give a 302 when trying to delete a product whithout auth', async () => {
-    // Arrange
-
-    // Act
-    const res = await request(app).get('/produto/deletar/2')
-    // Assert
-    expect(res.statusCode).toBe(302)
-  })
 })

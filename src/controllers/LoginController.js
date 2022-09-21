@@ -1,4 +1,5 @@
-const { User } = require('../models')
+/* eslint-disable camelcase */
+const { User, Shopping_Session } = require('../models')
 const bcrypt = require('bcryptjs')
 
 const LoginController = {
@@ -42,11 +43,20 @@ const LoginController = {
         })
       }
 
+      // registrando a Shopping_Session no BD
+      const [shopping_session] = await Shopping_Session.findOrCreate({
+        where: { UserId: user.id },
+        defaults: {
+          total: 0
+        }
+      })
+
       // registrando a sessão do usuário
       req.session.user = {
         id: user.id,
         name: user.name,
-        kind: user.kind
+        kind: user.kind,
+        shopping_session: shopping_session.id
       }
 
       // alterar posteriormente para pagina de logado
@@ -63,8 +73,12 @@ const LoginController = {
 
   // logoff = método do controller para realizar logout
   async logoff (req, res) {
-    // deletando os dados da sessão
-    req.session.user = null
+    // delete Shopping_Session on BD
+    await Shopping_Session.destroy({
+      where: { UserId: req.session.user.id }
+    })
+    // delete server session information
+    req.session.destroy()
     // redirecionando a home
     return res.redirect('/')
   }

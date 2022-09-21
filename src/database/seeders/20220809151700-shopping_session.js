@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert('Shopping_Session', [
       {
         UserId: 3,
-        total: 0,
+        total: 655,
         createdAt: new Date(),
         updatedAt: new Date()
       }

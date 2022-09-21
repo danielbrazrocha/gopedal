@@ -18,7 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Cart_Item.init({
-    quantity: DataTypes.INTEGER
+    quantity: {
+      type: DataTypes.INTEGER,
+      validate: {
+        min: 0
+      }
+    }
   }, {
     sequelize,
     modelName: 'Cart_Item',

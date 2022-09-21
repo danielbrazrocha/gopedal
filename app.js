@@ -14,6 +14,7 @@ const produtoRouter = require('./src/routes/produto')
 const sobreRouter = require('./src/routes/sobre')
 const usuarioRouter = require('./src/routes/usuario')
 const painelRouter = require('./src/routes/painel')
+const cartRouter = require('./src/routes/cart')
 const logMiddleware = require('./src/middlewares/logSite')
 
 const app = express()
@@ -22,9 +23,13 @@ const app = express()
 app.set('views', path.join(__dirname, 'src', 'views'))
 app.set('view engine', 'ejs')
 
+// creating 24 hours from milliseconds
+const oneDay = 1000 * 60 * 60 * 24
+
 // habilitando sessões
 app.use(session({
   secret: 'projectExpress',
+  cookie: { maxAge: oneDay },
   resave: true,
   saveUninitialized: true
 }))
@@ -45,6 +50,7 @@ app.use('/produto', produtoRouter)
 app.use('/sobre', sobreRouter)
 app.use('/usuario', usuarioRouter)
 app.use('/painel', painelRouter)
+app.use('/carrinho', cartRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
