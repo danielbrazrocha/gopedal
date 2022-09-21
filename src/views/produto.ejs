@@ -17,25 +17,27 @@
                     <span class="home__price"><%= produto.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></span>
 
                     <div class="home__btns">
-                        <a href="#" class="button button--gray button--small">
-                            Detalhes
-                        </a>
+                        <% if (produto.inventory && produto.inventory.quantity > 0) { %>
+                            <div class="button button--gray button--small">
+                                Em estoque                            
+                            </div>
+                        <% } else { %>
+                                <div class="button button--gray button--small">
+                                    Indisponível                                    
+                                </div>
+                        <% } %>
 
+                        <% if (produto.inventory && produto.inventory.quantity > 0) { %>
                         <a href="/carrinho/include/<%= produto.id %>" class="">
                             <button class="button home__button">ADICIONAR</button>
                         </a>
+                        <% } else { %>
+                            <a href="/carrinho/include/<%= produto.id %>" class="">
+                                <button disabled class="button home__button">ADICIONAR</button>
+                            </a>
+                        <% } %>
 
-
-                        <% if (typeof user != "undefined") { %>
-                            <% if (user.kind == 'admin') { %> 
-                                    <a href="/produto/deletar/<%= produto.id %>"
-                                    class="button button--gray button--small">
-                                        DELETAR
-                                    </a>
-                            <% } %> 
-                        <% } %> 
-
-                        
+                          
                     </div>
 
 
