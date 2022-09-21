@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
     // console.log(user);
     // caso o usuario esteja logado, salvar a informação para reutilização global
     res.locals.user = user
+    // console.log(user)
   }
 
   // caso o usuário não esteja logado, continuar a execução da rota

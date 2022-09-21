@@ -21,7 +21,10 @@
                             Detalhes
                         </a>
 
-                        <button class="button home__button">COMPRAR</button>
+                        <a href="/carrinho/include/<%= produto.id %>" class="">
+                            <button class="button home__button">ADICIONAR</button>
+                        </a>
+
 
                         <% if (typeof user != "undefined") { %>
                             <% if (user.kind == 'admin') { %> 
