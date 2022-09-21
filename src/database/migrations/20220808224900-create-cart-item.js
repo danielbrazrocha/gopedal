@@ -25,7 +25,8 @@ module.exports = {
         }
       },
       quantity: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        min: 0
       },
       createdAt: {
         allowNull: false,

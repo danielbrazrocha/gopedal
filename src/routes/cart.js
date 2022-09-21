@@ -4,16 +4,12 @@ const router = express.Router()
 const CartController = require('../controllers/CartController')
 
 const isAuth = require('../middlewares/isAuth')
+// const isLogged = require('../middlewares/isLogged')
 
 router.get('/', isAuth, CartController.show)
-router.get('/add/:id', CartController.addProduct)
-router.get('/del/:id', CartController.delProduct)
-router.get('/remove/:id', CartController.removeProduct)
-router.get('/include/:id', CartController.includeProduct)
-
-// router.get('/enderecos/:id', UsuarioEnderecosController.edit)
-// router.post('/enderecos/:id', UsuarioEnderecosController.submitEdit)
-// router.get('/enderecos/deletar/:id', UsuarioEnderecosController.delete)
-// router.get('/enderecos/add/form', UsuarioEnderecosController.add)
+router.get('/add/:id', isAuth, CartController.addProduct)
+router.get('/del/:id', isAuth, CartController.delProduct)
+router.get('/remove/:id', isAuth, CartController.removeProduct)
+router.get('/include/:id', isAuth, CartController.includeProduct)
 
 module.exports = router

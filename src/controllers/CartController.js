@@ -6,6 +6,12 @@ const models = require('../models')
 const UsuarioEnderecosController = {
 
   show: async (req, res) => {
+    const { user } = req.session
+
+    // caso o usuario nao esteja logado, redirecionar para a pagina de login
+    if (!user) {
+      res.redirect('/login')
+    }
     const { shopping_session } = req.session.user
     try {
       const cartDetails = await Cart_Item.findAll({
@@ -35,8 +41,6 @@ const UsuarioEnderecosController = {
     try {
       const cartItemId = req.params.id
       const ShoppingSessionId = req.session.user.shopping_session
-      console.log('cartItemId', cartItemId)
-      console.log('ShoppingSessionId', ShoppingSessionId)
       const cartItem = await Cart_Item.findOne({
         where: {
           ShoppingSessionId,
@@ -44,8 +48,6 @@ const UsuarioEnderecosController = {
         },
         include: ['product', 'shoppingsession']
       })
-
-      console.log(cartItem)
 
       // if (!cartItem) {
       //   return res.status(422).render('carrinho', {
@@ -117,6 +119,14 @@ const UsuarioEnderecosController = {
       // calculate total value of Cart Itens
       const cartTotalPrice = await models.sequelize.query(`SELECT SUM(p.price * ci.quantity) as newTotal FROM go_pedal.Product p , go_pedal.Cart_Item ci  ,go_pedal.Shopping_Session ss  WHERE ss.id = ${ShoppingSessionId} AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
 
+      if (cartTotalPrice[0].newTotal < 0) {
+        return res.status(422).render('carrinho', {
+          arquivoCss: 'carrinho.css',
+          cartItens: {},
+          error: 'O produto não pode ter valor negativo. Exclua-o primeiro.'
+        })
+      }
+
       // update Shopping_Session with new total value
       await Shopping_Session.update({
         total: cartTotalPrice[0].newTotal,
@@ -187,6 +197,13 @@ const UsuarioEnderecosController = {
   },
   includeProduct: async (req, res) => {
     try {
+      const { user } = req.session
+
+      // caso o usuario nao esteja logado, redirecionar para a pagina de login
+      if (!user) {
+        res.redirect('/login')
+      }
+
       const ProductId = req.params.id
       const ShoppingSessionId = req.session.user.shopping_session
 
