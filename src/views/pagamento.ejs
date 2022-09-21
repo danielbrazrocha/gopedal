@@ -1,0 +1,27 @@
+<%- include('./partials/header') %>
+  <main class="container">
+    <section class="section">
+      
+      <% if (typeof successMsg == 'undefined') { %> 
+      <div class="card">
+        <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+          <i class="checkmark">✗</i>
+        </div>
+          <h1>Compra Cancelada</h1> 
+          <p>Esqueceu de adicionar algo ao carrinho?<br/> Continue a comprar e volte para o pagamento</p>
+      </div>
+      <% } %>
+
+      <% if (typeof cancelMsg == 'undefined') { %> 
+        <div class="card">
+          <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+            <i class="checkmark">✓</i>
+          </div>
+            <h1>Compra Confirmada!</h1> 
+            <p>Recebemos seu pedido,<br/> enviaremos o(s) produto(s) em breve!</p>
+          </div>
+      <% } %>
+      
+    </section>
+  </main>
+  <%- include('./partials/footer') %>
