@@ -34,6 +34,7 @@
     "nodemon": "^2.0.15",
     "override": "^0.0.1",
     "sequelize": "^6.16.1",
+    "stripe": "^10.10.0",
     "update": "^0.7.4",
     "validator": "^13.7.0"
   },
