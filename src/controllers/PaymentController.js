@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+const { Cart_Item, Shopping_Session, Order_Itens, Order_Details } = require('../models')
 const { QueryTypes } = require('sequelize')
 const models = require('../models')
 const stripe = require('stripe')('sk_test_51LkY96Ct7XDWH8ggHRRkiQVCZJQ1VtrvC3l6tPXws2KKk18IaLh0pG1hUvRFFzkUm1hBbS6JLAjofFCsr2qbJX4b00pwtALlxH')
@@ -46,8 +47,55 @@ const PaymentController = {
       return res.status(500).json({ message: 'Error' + error })
     }
   },
-  success: async (req, res) => {
+  cancel: async (req, res) => {
     try {
+      // archive the actual order on Order_Details and Order_Item
+      const { shopping_session } = req.session.user
+      // find actual tables
+      const actualSession = await Shopping_Session.findOne({
+        where: { id: shopping_session },
+        include: ['cartitems']
+      })
+
+      // converting Shopping_Session to Order_Details
+      const newOrder = await Order_Details.create({
+        UserId: actualSession.UserId,
+        total: actualSession.total,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      })
+
+      // converting Cart_Item's to Order_Itens
+      actualSession.cartitems.forEach(async (item) => {
+        await Order_Itens.create({
+          OrderDetailId: newOrder.id,
+          UserId: actualSession.UserId,
+          ProductId: item.ProductId,
+          quantity: item.quantity,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        })
+      })
+
+      // removing converted Cart_Item's
+      await Cart_Item.destroy({
+        where: { ShoppingSessionId: shopping_session }
+      })
+
+      // removing converted Shopping_Session
+      await Shopping_Session.destroy({
+        where: { id: actualSession.id }
+      })
+
+      // refreshing a new Shopping_Session on BD
+      const [newShoppingSession] = await Shopping_Session.findOrCreate({
+        where: { UserId: actualSession.UserId },
+        defaults: {
+          total: 0
+        }
+      })
+      req.session.user.shopping_session = newShoppingSession.id
+
       return res.status(200).render('pagamento', {
         arquivoCss: 'pagamento.css',
         successMsg: true
@@ -56,7 +104,7 @@ const PaymentController = {
       return res.status(500).json({ message: 'Error' + error })
     }
   },
-  cancel: async (req, res) => {
+  success: async (req, res) => {
     try {
       return res.status(200).render('pagamento', {
         arquivoCss: 'pagamento.css',

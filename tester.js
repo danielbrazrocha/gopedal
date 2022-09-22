@@ -146,14 +146,22 @@ const ProductPrices = {
 }
 
 const runint = async () => {
-  const cartTotalPrice = await models.sequelize.query(`SELECT p.id, ci.quantity FROM go_pedal.Product p , go_pedal.Cart_Item ci  ,go_pedal.Shopping_Session ss  WHERE ss.id = 2 AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
+  // const cartTotalPrice = await models.sequelize.query(`SELECT p.id, ci.quantity FROM go_pedal.Product p , go_pedal.Cart_Item ci  ,go_pedal.Shopping_Session ss  WHERE ss.id = 2 AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
 
-  const newItemList = cartTotalPrice.map((item) => {
-    return {
-      price: ProductPrices[item.id],
-      quantity: item.quantity
+  // const newItemList = cartTotalPrice.map((item) => {
+  //   return {
+  //     price: ProductPrices[item.id],
+  //     quantity: item.quantity
+  //   }
+  // })
+
+  const ans = await Shopping_Session.findOne({
+    where: {
+      id: 2
     }
   })
+
+  console.log(ans)
 }
 
 runint()
