@@ -15,6 +15,7 @@ const sobreRouter = require('./src/routes/sobre')
 const usuarioRouter = require('./src/routes/usuario')
 const painelRouter = require('./src/routes/painel')
 const cartRouter = require('./src/routes/cart')
+const paymentRouter = require('./src/routes/payment')
 const logMiddleware = require('./src/middlewares/logSite')
 
 const app = express()
@@ -51,6 +52,7 @@ app.use('/sobre', sobreRouter)
 app.use('/usuario', usuarioRouter)
 app.use('/painel', painelRouter)
 app.use('/carrinho', cartRouter)
+app.use('/pagamento', paymentRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

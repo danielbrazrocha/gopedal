@@ -20,6 +20,18 @@ module.exports = {
         quantity: 300,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        id: 4,
+        quantity: 10,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 5,
+        quantity: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
 
     ], {})

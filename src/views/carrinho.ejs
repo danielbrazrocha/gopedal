@@ -149,12 +149,14 @@
                   <span><strong><%= cartItens.length === 0 ? '0' : cartItens[0].shoppingsession.total.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></strong></span>
                 </li>
               </ul>
-  
-              <button type="button" class="btn btn-primary btn-lg btn-block
-              <%= cartItens.length === 0 ? 'disabled' : '' %>              
-              ">
-                Ir para pagamentos
-              </button>
+              <a href="/pagamento">
+                <button type="button" class="btn btn-primary btn-lg btn-block
+                <%= cartItens.length === 0 ? 'disabled' : '' %>              
+                ">
+                  Ir para pagamentos
+                </button>                
+              </a>
+              
             </div>
           </div>
         </div>
