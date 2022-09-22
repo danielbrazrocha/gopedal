@@ -47,7 +47,7 @@ const PaymentController = {
       return res.status(500).json({ message: 'Error' + error })
     }
   },
-  cancel: async (req, res) => {
+  success: async (req, res) => {
     try {
       // archive the actual order on Order_Details and Order_Item
       const { shopping_session } = req.session.user
@@ -104,7 +104,7 @@ const PaymentController = {
       return res.status(500).json({ message: 'Error' + error })
     }
   },
-  success: async (req, res) => {
+  cancel: async (req, res) => {
     try {
       return res.status(200).render('pagamento', {
         arquivoCss: 'pagamento.css',
