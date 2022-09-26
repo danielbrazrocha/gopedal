@@ -49,20 +49,20 @@
             </li>
             <% } else { %> 
               <li class="nav-item">
-                <a class="nav-link <%- (req.originalUrl == '/login' && 'activelink') %>" href="/login">
+                <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl == '/login' && 'activelink') %>" href="/login">
                     <i class='bx bx-user'></i>
                     <span>Entrar</span>
                 </a>
               </li>
             <% } %>
             <li class="nav-item">
-              <a class="nav-link <%- (req.originalUrl == '/' && 'activelink') %>" aria-current="page" href="/">Home</a>
+              <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl == '/' && 'activelink') %>" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <%- (req.originalUrl == '/carrinho' && 'activelink') %>" href="/carrinho">Carrinho</a>
+              <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl == '/carrinho' && 'activelink') %>" href="/carrinho">Carrinho</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <%- (req.originalUrl == '/usuario/pedidos' && 'activelink') %>" href="/usuario/pedidos">Pedidos</a>
+              <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl == '/usuario/pedidos' && 'activelink') %>" href="/usuario/pedidos">Pedidos</a>
             </li>
             <% if (typeof user != "undefined") { %>
               <li class="nav-item">
