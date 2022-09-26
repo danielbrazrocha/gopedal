@@ -6,7 +6,7 @@
         <ul class="nav row">
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/usuario">
+            <a class="nav-link <%- (req.originalUrl == ('/usuario') && 'activelink') %>" aria-current="page" href="/usuario">
               <i class='bx bxs-user-circle' ></i>
               Minha Conta
             </a>            
@@ -14,7 +14,7 @@
 
           <% if ( user.kind == 'admin') { %>
             <li class="nav-item">
-              <a class="nav-link active dashdetail " aria-current="page" href="/painel">
+              <a class="nav-link dashdetail " aria-current="page" href="/painel">
                 <i class='bx bxs-dashboard'></i>
                 Dashboard Admin
               </a>            
@@ -22,28 +22,28 @@
           <% } %>
           
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/usuario/dados">
+            <a class="nav-link <%- (req.originalUrl.includes('usuario/dados') ? 'activelink' : '') %>" aria-current="page" href="/usuario/dados">
               <i class='bx bxs-user-detail' ></i>
               Cadastro
             </a>            
           </li>
 
           <li class="nav-item">            
-            <a class="nav-link active" aria-current="page" href="/usuario/enderecos">
+            <a class="nav-link <%- (req.originalUrl.includes('usuario/enderecos') ? 'activelink' : '') %>" aria-current="page" href="/usuario/enderecos">
               <i class='bx bxs-home' ></i>
               Endereços
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/usuario/pagamentos">
+            <a class="nav-link <%- (req.originalUrl.includes('usuario/pagamentos') ? 'activelink' : '') %>" aria-current="page" href="/usuario/pagamentos">
               <i class='bx bxs-wallet'></i>
               Pagamentos
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/usuario/pedidos">
+            <a class="nav-link <%- (req.originalUrl.includes('usuario/pedidos') ? 'activelink' : '') %>" aria-current="page" href="/usuario/pedidos">
               <i class='bx bxs-package'></i>
               Pedidos
             </a>
