@@ -422,3 +422,7 @@ body.dark-theme {
       justify-content: center;
     }
   }
+
+  .activelink{
+    color : var(--first-color) !important;
+  }

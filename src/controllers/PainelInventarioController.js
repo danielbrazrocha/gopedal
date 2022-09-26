@@ -12,7 +12,8 @@ const PainelInventarioController = {
       const inventoryList = await Inventory.findAll({
         where: {
           deletedAt: null
-        }
+        },
+        include: ['product']
       })
 
       if (inventoryList.length === 0) {

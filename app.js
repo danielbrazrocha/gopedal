@@ -42,6 +42,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(logMiddleware)
 
+app.get('*', (req, res, next) => { res.locals = ({ req }); next() })
 // Importing routes
 app.use('/', indexRouter)
 app.use('/contato', contatoRouter)

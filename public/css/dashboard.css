@@ -146,3 +146,19 @@ fieldset.scheduler-border {
     /* border: 1px solid black;
     padding: 16px;  */
  }
+
+.active a{
+  background-color : var(--first-color) !important;
+}
+
+.defaultcolor{
+  color: var(--first-color) !important;
+}
+
+.hellomsg {
+  padding: 48px 5px 48px 5px;
+}
+
+.dashdetail {
+  background-color: var(--quarternary-color);
+}

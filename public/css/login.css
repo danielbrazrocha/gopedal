@@ -52,3 +52,7 @@
   color: var(--first-color);
   text-align: center;
 }
+
+.textlink {
+  color : var(--first-color) !important;
+}

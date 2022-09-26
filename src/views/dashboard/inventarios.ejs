@@ -17,26 +17,70 @@
       <% } %> 
 
 
-      <% inventarios.forEach(inventory => { %>  
+      <div class="table-responsive">
+        <table class="table table-striped table-sm table-hover">
+          <thead>
+            <tr>
+              <th class="adminpanel__title" scope="col">#</th>
+              <th class="adminpanel__title" scope="col">Produto</th>
+              <th class="adminpanel__title" scope="col">SKU</th>
+              <th class="adminpanel__title" scope="col">Quantidade</th>
+            </tr>
+          </thead>
+          <tbody>
 
-        <article class="adminpanel__card list-group-item list-group-item-action">
-            <a href="/painel/inventario/<%= inventory.id %>">
-                <div>
-
-                    <h3 class="adminpanel__title"><%= inventory.id %></h3>
-                    <h3 class="adminpanel__description"><%= inventory.quantity %></h3>
-                    
-                    <div class="products__button">
-                        <button class="">                                
-                            <i class='bx bxs-edit'></i>
-                        </button>
-                        
-                    </div>
-                </div>
+            <% for (let i = 0; i < inventarios.length; i++) { %>
+              <tr>
+                  
+                    <td>
+                      <a href="/painel/inventario/<%= inventarios[i].id %>">
+                        <%= i+1 %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/painel/inventario/<%= inventarios[i].id %>">
+                        <%= inventarios[i].product.name %>
+                      </a>
+                    </td>  
+                    <td>
+                      <a href="/painel/inventario/<%= inventarios[i].id %>">
+                        <%= inventarios[i].product.SKU %>
+                      </a>
+                    </td>  
+                           
+                    <td>
+                      <a href="/painel/inventario/<%= inventarios[i].id %>">
+                        <%= inventarios[i].quantity %>
+                      </a>
+                    </td>    
+                </tr>
+            <% } %>
+          </tbody>
+        </table>
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">2 </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+      
+            <a href="/painel"        
+              class="btn btn-secondary">
+              Voltar
             </a>
-        </article>
-
-    <% }) %>
+            <a href="/painel/inventario/add/form"        
+              class="btn btn-success">
+              Adicionar
+          </a>
 
     </section>
   </main>

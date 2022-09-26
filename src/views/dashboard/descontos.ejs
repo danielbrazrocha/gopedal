@@ -16,29 +16,75 @@
         <h4 class="h5 register-error-alert"><%= error %> </h4>
       <% } %> 
 
+      <div class="table-responsive">
+        <table class="table table-striped table-sm table-hover">
+          <thead>
+            <tr>
+              <th class="adminpanel__title" scope="col">#</th>
+              <th class="adminpanel__title" scope="col">Nome</th>
+              <th class="adminpanel__title" scope="col">Descrição</th>
+              <th class="adminpanel__title" scope="col">Percentual (%)</th>
+              <th class="adminpanel__title" scope="col">Ativo</th>
+            </tr>
+          </thead>
+          <tbody>
 
-      <% descontos.forEach(discount => { %>  
-
-        <article class="adminpanel__card list-group-item list-group-item-action">
-            <a href="/painel/desconto/<%= discount.id %>">
-                <div>
-
-                    <h3 class="adminpanel__title"><%= discount.name %></h3>
-                    <h3 class="adminpanel__description"><%= discount.description.substring(0, 80)+' ...' %></h3>
-                    <h3 class="adminpanel__description"><%= discount.percent %></h3>
-                    <h3 class="adminpanel__description"><%= discount.active %></h3>
-                    
-                    <div class="products__button">
-                        <button class="">                                
-                            <i class='bx bxs-edit'></i>
-                        </button>
-                        
-                    </div>
-                </div>
+            <% for (let i = 0; i < descontos.length; i++) { %>
+              <tr>
+                  
+                    <td>
+                      <a href="/painel/desconto/<%= descontos[i].id %>">
+                        <%= i+1 %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/painel/desconto/<%= descontos[i].id %>">
+                        <%= descontos[i].name %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/painel/desconto/<%= descontos[i].id %>">
+                        <%= descontos[i].description.substring(0, 100)+' ...' %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/painel/desconto/<%= descontos[i].id %>">
+                        <%= descontos[i].discount_percent %>
+                      </a>
+                    </td>        
+                    <td>
+                      <a href="/painel/desconto/<%= descontos[i].id %>">
+                        <%= descontos[i].active ? "SIM" : "NÃO"  %>
+                      </a>
+                    </td>               
+                </tr>
+            <% } %>
+          </tbody>
+        </table>
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">2 </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+      
+            <a href="/painel"        
+              class="btn btn-secondary">
+              Voltar
             </a>
-        </article>
-
-    <% }) %>
+            <a href="/painel/desconto/add/form"        
+              class="btn btn-success">
+              Adicionar
+          </a>
 
     </section>
   </main>
