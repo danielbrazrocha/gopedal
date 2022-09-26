@@ -12,6 +12,17 @@
             </a>            
           </li>
 
+          <% if ( user.kind == 'admin') { %>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/painel">
+                <i class='bx bxs-dashboard'></i>
+                Dashboard Admin
+              </a>            
+            </li>
+          <% } %>
+
+
+
           
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/usuario/dados">
