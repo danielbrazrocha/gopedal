@@ -16,28 +16,68 @@
         <h4 class="h5 register-error-alert"><%= error %> </h4>
       <% } %> 
 
+      <div class="table-responsive">
+        <table class="table table-striped table-sm table-hover">
+          <thead>
+            <tr>
+              <th class="adminpanel__title" scope="col">#</th>
+              <th class="adminpanel__title" scope="col">Nome</th>
+              <th class="adminpanel__title" scope="col">Email</th>
+              <th class="adminpanel__title" scope="col">CPF</th>
+            </tr>
+          </thead>
+          <tbody>
 
-      <% usuarios.forEach(user => { %>  
+            <% for (let i = 0; i < usuarios.length; i++) { %>
+              <tr>
+                  
+                    <td>
+                      <a href="/painel/usuario/<%= usuarios[i].id %>">
+                        <%= i+1 %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/painel/usuario/<%= usuarios[i].id %>">
+                        <%= usuarios[i].name %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/painel/usuario/<%= usuarios[i].id %>">
+                        <%= usuarios[i].email %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/painel/usuario/<%= usuarios[i].id %>">
+                        <%= usuarios[i].cpf %>
+                      </a>
+                    </td>                    
+                </tr>
+            <% } %>
 
-        <article class="adminpanel__card list-group-item list-group-item-action">
-            <a href="/painel/usuario/<%= user.id %>">
-                <div>
+     
+        </tbody>
+      </table>
 
-                    <h3 class="adminpanel__title"><%= user.name %></h3>
-                    <h3 class="adminpanel__description"><%= user.email %></h3>
-                    <h3 class="adminpanel__description"><%= user.cpf %></h3>
-                    
-                    <div class="products__button">
-                        <button class="">                                
-                            <i class='bx bxs-edit'></i>
-                        </button>
-                        
-                    </div>
-                </div>
-            </a>
-        </article>
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">2 </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
 
-    <% }) %>
+      <a href="/painel"        
+        class="btn btn-secondary">
+        Voltar
+      </a>
 
     </section>
   </main>

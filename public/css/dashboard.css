@@ -146,3 +146,8 @@ fieldset.scheduler-border {
     /* border: 1px solid black;
     padding: 16px;  */
  }
+
+.active a{
+  background-color : var(--first-color) !important;
+  /* color: red !important; */
+}
