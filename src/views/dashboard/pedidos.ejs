@@ -17,27 +17,66 @@
       <% } %> 
 
 
-      <% pedidos.forEach(order => { %>  
 
-        <article class="adminpanel__card list-group-item list-group-item-action">
-            <a href="/painel/pedido/<%= order.id %>">
-                <div>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm table-hover">
+          <thead>
+            <tr>
+              <th class="adminpanel__title" scope="col">#</th>
+              <th class="adminpanel__title" scope="col">Comprador</th>
+              <th class="adminpanel__title" scope="col">Valor Total Compra</th>
+              <th class="adminpanel__title" scope="col">Data da Compra</th>
+            </tr>
+          </thead>
+          <tbody>
 
-                  <h3 class="adminpanel__description">Id: <%= order.id %></h3>
-                    <h3 class="adminpanel__title"><%= order.user.name %></h3>
-                    <h3 class="adminpanel__description"><%= order.total.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></h3>
-                    
-                    <div class="products__button">
-                        <button class="">                                
-                            <i class='bx bxs-edit'></i>
-                        </button>
-                        
-                    </div>
-                </div>
+            <% for (let i = 0; i < pedidos.length; i++) { %>
+              <tr>
+                  
+                    <td>
+                      <a href="/painel/pedido/<%= pedidos[i].id %>">
+                        <%= i+1 %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/painel/pedido/<%= pedidos[i].id %>">
+                        <%= pedidos[i].user.name %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/painel/pedido/<%= pedidos[i].id %>">
+                        <%= pedidos[i].total.toLocaleString('pt-BR', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/painel/pedido/<%= pedidos[i].id %>">
+                        <%= pedidos[i].createdAt.toLocaleString('pt-BR') %>
+                      </a>
+                    </td>                      
+                </tr>
+            <% } %>
+          </tbody>
+        </table>
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">2 </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+      
+            <a href="/painel"        
+              class="btn btn-secondary">
+              Voltar
             </a>
-        </article>
-
-    <% }) %>
 
     </section>
   </main>
