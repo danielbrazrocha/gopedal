@@ -39,23 +39,19 @@
         </button>
 
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0  ">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center ">
             <% if (typeof user != "undefined") { %>
             <li class="nav-item">
-              <div class="avatar-content">
               <a class="nav-link" href="/usuario">
                 <i class='bx bx-user <%- (req.originalUrl.includes('usuario') || req.originalUrl.includes('painel') ? 'activelink' : '') %>' ></i>
                   <span class="<%- (req.originalUrl.includes('usuario') || req.originalUrl.includes('painel') ? 'activelink' : '') %>"><%= user.name.split(' ')[0] %> </span>
-                </div>
               </a>
             </li>
             <% } else { %> 
               <li class="nav-item">
-                <div class="avatar-content">
                 <a class="nav-link <%- (req.originalUrl == '/login' && 'activelink') %>" href="/login">
                     <i class='bx bx-user'></i>
                     <span>Entrar</span>
-                  </div>
                 </a>
               </li>
             <% } %>
