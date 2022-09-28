@@ -1,6 +1,6 @@
 const { check } = require('express-validator')
 
-const categoryValidator = [
+const userValidator = [
   check('nome')
     .notEmpty().withMessage('O Nome deve ser informado').bail()
     .isLength({ min: 5, max: 200 }).withMessage('O nome deve ter pelo menos 5 caracteres'),
@@ -17,4 +17,5 @@ const categoryValidator = [
     .isMobilePhone('pt-BR').withMessage('Telefone inválido')
 ]
 
-module.exports = categoryValidator
+module.exports = userValidator
+
