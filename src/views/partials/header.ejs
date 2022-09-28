@@ -43,8 +43,8 @@
             <% if (typeof user != "undefined") { %>
             <li class="nav-item">
               <a class="nav-link" href="/usuario">
-                <i class='bx bx-user <%- (req.originalUrl.includes('usuario') || req.originalUrl.includes('painel') ? 'activelink' : '') %>' ></i>
-                  <span class="<%- (req.originalUrl.includes('usuario') || req.originalUrl.includes('painel') ? 'activelink' : '') %>"><%= user.name.split(' ')[0] %> </span>
+                <i class="bx bx-user <%- (typeof req != 'undefined' && ['usuario', 'painel'].some( i => req.originalUrl.includes(i)) ? 'activelink' : '') %>"  ></i>
+                  <span class="<%- (typeof req != 'undefined' && ['usuario', 'painel'].some( i => req.originalUrl.includes(i)) ? 'activelink' : '') %>"><%= user.name.split(' ')[0] %> </span>
               </a>
             </li>
             <% } else { %> 
