@@ -5,7 +5,7 @@
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav row">
           <li class="nav-item">
-                <a class="nav-link <%- (req.originalUrl == ('/painel') && 'activelink') %>" aria-current="page" href="/painel">
+                <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl == ('/painel') && 'activelink') %>" aria-current="page" href="/painel">
                   <i class='bx bx-home' > </i>
                   <span>Dashboard</span>
                 </a>
@@ -13,40 +13,40 @@
 
           
           <li class="nav-item">
-            <a class="nav-link <%- (req.originalUrl.includes('painel/usuario') ? 'activelink' : '') %>" aria-current="page" href="/painel/usuario">
+            <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl.includes('painel/usuario') ? 'activelink' : '') %>" aria-current="page" href="/painel/usuario">
               <i class='bx bxs-group' ></i>
               Usuários
             </a>
             
           </li>
           <li class="nav-item">
-            <a class="nav-link <%- (req.originalUrl.includes('painel/produto') ? 'activelink' : '') %>" aria-current="page" href="/painel/produto">
+            <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl.includes('painel/produto') ? 'activelink' : '') %>" aria-current="page" href="/painel/produto">
               <i class='bx bxs-cart' ></i>
               Produtos
             </a>
           </li>
           <li class="nav-item">
             
-            <a class="nav-link <%- (req.originalUrl.includes('painel/categoria') ? 'activelink' : '') %>" aria-current="page" href="/painel/categoria">
+            <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl.includes('painel/categoria') ? 'activelink' : '') %>" aria-current="page" href="/painel/categoria">
               <i class='bx bxs-category' ></i>
               Categorias
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link <%- (req.originalUrl.includes('painel/desconto') ? 'activelink' : '') %>" aria-current="page" href="/painel/desconto">
+            <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl.includes('painel/desconto') ? 'activelink' : '') %>" aria-current="page" href="/painel/desconto">
               <i class='bx bxs-badge-dollar' ></i>
               Descontos
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link <%- (req.originalUrl.includes('painel/inventario') ? 'activelink' : '') %>" aria-current="page" href="/painel/inventario">
+            <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl.includes('painel/inventario') ? 'activelink' : '') %>" aria-current="page" href="/painel/inventario">
               <i class='bx bxs-store' ></i>
               Inventários
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link <%- (req.originalUrl.includes('painel/pedido') ? 'activelink' : '') %>" aria-current="page" href="/painel/pedido">
+            <a class="nav-link <%- (typeof req != 'undefined' && req.originalUrl.includes('painel/pedido') ? 'activelink' : '') %>" aria-current="page" href="/painel/pedido">
               <i class='bx bxs-package' ></i>
               Pedidos
             </a>
