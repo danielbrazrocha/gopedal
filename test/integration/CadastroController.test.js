@@ -16,7 +16,7 @@ describe('Integration Test CadastroController', function () {
   test('should give a 200 when access /', async () => {
     // Arrange
     // Act
-    const res = await request(app).get('/login')
+    const res = await request(app).get('/cadastro')
     // Assert
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
     // expect(res.title).toEqual('gopedal.com')
@@ -86,19 +86,4 @@ describe('Integration Test CadastroController', function () {
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
     expect(res.statusCode).toBe(422)
   })
-
-  // test('should throw error', async () => {
-  //   // Arrange
-  //   // Act
-  //   // jest.spyOn(request, 'isValid').mockImplementationOnce(() => {
-  //   //   throw new Error()
-  //   // })
-  //   const res = await request(app)
-  //     .post('/cadastro')
-  //     .send({ error: 'error' })
-  //   // throw new Error()
-  //   // Assert
-  //   expect(res.header['content-type']).toBe('text/html; charset=utf-8')
-  //   expect(res.statusCode).toBe(500)
-  // })
 })

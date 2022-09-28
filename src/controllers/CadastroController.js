@@ -60,7 +60,7 @@ const CadastroController = {
           })
         }
 
-        const user = await User.create({
+        await User.create({
           kind: 'user',
           name: nome,
           cpf,
@@ -70,14 +70,6 @@ const CadastroController = {
           createAt: new Date().toISOString(),
           updatedAt: new Date().toISOString()
         })
-
-        // verificando se o usuário foi criado existe no BD
-        if (!user) {
-          return res.status(422).render('cadastro', {
-            arquivoCss: 'cadastro.css',
-            error: 'Erro na criação do usuário. Verifique as informações e tente novamente.'
-          })
-        }
 
         return res.status(201).render('cadastro', {
           arquivoCss: 'cadastro.css',
