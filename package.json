@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./app.js",
+    "dev": "nodemon ./bin/www",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
@@ -12,7 +12,8 @@
     "test:staged": "npm test -- --findRelatedTests /src",
     "test:ci": "npm test -- --coverage",
     "pretest": "cross-env NODE_ENV=test npx sequelize db:create && cross-env NODE_ENV=test npx sequelize db:migrate",
-    "posttest": "cross-env NODE_ENV=test npx sequelize db:migrate:undo:all"
+    "posttest": "cross-env NODE_ENV=test npx sequelize db:migrate:undo:all",
+    "swagger-autogen": "node ./swagger.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -49,6 +50,8 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "sequelize-cli": "^6.4.1",
-    "supertest": "^6.2.4"
+    "supertest": "^6.2.4",
+    "swagger-autogen": "^2.22.0",
+    "swagger-ui-express": "^4.5.0"
   }
 }

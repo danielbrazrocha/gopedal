@@ -5,6 +5,8 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const session = require('express-session')
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger-output.json')
 
 const indexRouter = require('./src/routes/index')
 const contatoRouter = require('./src/routes/contato')
@@ -54,6 +56,8 @@ app.use('/usuario', usuarioRouter)
 app.use('/painel', painelRouter)
 app.use('/carrinho', cartRouter)
 app.use('/pagamento', paymentRouter)
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
