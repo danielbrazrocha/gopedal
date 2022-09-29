@@ -28,7 +28,7 @@ const PainelCategoryController = {
         categorias: categoryList
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   add: async (req, res, next) => {
@@ -60,9 +60,8 @@ const PainelCategoryController = {
       // Desestruturando as informações para utilização no sequelize
       const { id, nome, description, newItem } = req.body
       try {
-        let ans
         if (newItem) {
-          ans = await Category.create({
+          await Category.create({
             name: nome,
             description,
             createAt: new Date().toISOString(),
@@ -74,18 +73,10 @@ const PainelCategoryController = {
             description,
             updatedAt: new Date().toISOString()
           }
-          ans = await Category.update(newItemData, {
+          await Category.update(newItemData, {
             where: {
               id
             }
-          })
-        }
-
-        // verificando se o producto foi criado existe no BD
-        if (!ans) {
-          return res.status(422).render('dashboard', {
-            arquivoCss: 'dashboard.css',
-            error: `Erro na atualização da categoria Id ${id}. Verifique as informações e tente novamente.`
           })
         }
 
@@ -125,7 +116,7 @@ const PainelCategoryController = {
         }
       })
       .catch(function (error) {
-        res.status(500).json(error)
+        return res.status(500).render({ message: 'Error' + error })
       })
   }
 }
