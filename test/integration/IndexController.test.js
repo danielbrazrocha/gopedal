@@ -5,16 +5,13 @@ const app = require('../../app.js')
 
 describe('Integration Test IndexController', function () {
   beforeEach(() => {
-    console.log('beforeeach')
     models.Product.destroy({ where: {} })
     models.Category.destroy({ where: {} })
   })
   afterAll(() => {
-    console.log('afterall')
     models.sequelize.close()
   })
   afterEach(() => {
-    console.log('aftereach')
     models.Product.destroy({ where: {} })
     models.Category.destroy({ where: {} })
   })

@@ -28,7 +28,7 @@ const CartController = {
         cartItens: cartDetails
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   addProduct: async (req, res) => {
@@ -43,12 +43,12 @@ const CartController = {
         include: ['product', 'shoppingsession']
       })
 
-      // if (!cartItem) {
-      //   return res.status(422).render('carrinho', {
-      //     arquivoCss: 'carrinho.css',
-      //     error: 'Pedido não localizado!'
-      //   })
-      // }
+      if (!cartItem) {
+        return res.status(422).render('carrinho', {
+          arquivoCss: 'carrinho.css',
+          error: 'Pedido não localizado!'
+        })
+      }
 
       const newItemData = {
         quantity: cartItem.quantity + 1,
@@ -77,7 +77,7 @@ const CartController = {
 
       return res.redirect('/carrinho')
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   delProduct: async (req, res) => {
@@ -92,12 +92,12 @@ const CartController = {
         include: ['product', 'shoppingsession']
       })
 
-      // if (!cartItem) {
-      //   return res.status(422).render('carrinho', {
-      //     arquivoCss: 'carrinho.css',
-      //     error: 'Pedido não localizado!'
-      //   })
-      // }
+      if (!cartItem) {
+        return res.status(422).render('carrinho', {
+          arquivoCss: 'carrinho.css',
+          error: 'Pedido não localizado!'
+        })
+      }
 
       const newItemData = {
         quantity: cartItem.quantity - 1,
@@ -111,7 +111,7 @@ const CartController = {
       })
 
       // calculate total value of Cart Itens
-      const cartTotalPrice = await models.sequelize.query(`SELECT SUM(p.price * ci.quantity) as newTotal FROM go_pedal.Product p , go_pedal.Cart_Item ci  ,go_pedal.Shopping_Session ss  WHERE ss.id = ${ShoppingSessionId} AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
+      const cartTotalPrice = await models.sequelize.query(`SELECT SUM(p.price * ci.quantity) as newTotal FROM Product p , Cart_Item ci, Shopping_Session ss  WHERE ss.id = ${ShoppingSessionId} AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
 
       if (cartTotalPrice[0].newTotal < 0) {
         return res.status(422).render('carrinho', {
@@ -133,7 +133,7 @@ const CartController = {
 
       return res.redirect('/carrinho')
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   removeProduct: async (req, res) => {
@@ -148,12 +148,12 @@ const CartController = {
         include: ['product', 'shoppingsession']
       })
 
-      // if (!cartItem) {
-      //   return res.status(422).render('carrinho', {
-      //     arquivoCss: 'carrinho.css',
-      //     error: 'Pedido não localizado!'
-      //   })
-      // }
+      if (!cartItem) {
+        return res.status(422).render('carrinho', {
+          arquivoCss: 'carrinho.css',
+          error: 'Pedido não localizado!'
+        })
+      }
 
       await Cart_Item.destroy({
         where: {
@@ -181,23 +181,16 @@ const CartController = {
             return res.redirect('/carrinho')
           } else {
             return res.status(404).render('404', {
-              textoErro: 'Categoria não encontrado, refaça sua busca ou tente novamente'
+              textoErro: 'Produto não encontrado, refaça sua busca ou tente novamente'
             })
           }
         })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   includeProduct: async (req, res) => {
     try {
-      const { user } = req.session
-
-      // caso o usuario nao esteja logado, redirecionar para a pagina de login
-      if (!user) {
-        res.redirect('/login')
-      }
-
       const ProductId = req.params.id
       const ShoppingSessionId = req.session.user.shopping_session
 
@@ -212,14 +205,15 @@ const CartController = {
       })
 
       // if (!cartItem) {
+      //   console.log('entrei carrinho erro')
       //   return res.status(422).render('carrinho', {
       //     arquivoCss: 'carrinho.css',
-      //     error: 'Pedido não localizado!'
+      //     error: 'Carrinho não localizado!'
       //   })
       // }
 
       // calculate total value of Cart Itens
-      const cartTotalPrice = await models.sequelize.query(`SELECT SUM(p.price * ci.quantity) as newTotal FROM go_pedal.Product p , go_pedal.Cart_Item ci  ,go_pedal.Shopping_Session ss  WHERE ss.id = ${ShoppingSessionId} AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
+      const cartTotalPrice = await models.sequelize.query(`SELECT SUM(p.price * ci.quantity) as newTotal FROM go_pedal.Product p , go_pedal.Cart_Item ci  ,go_pedal.Shopping_Session ss  WHERE ss.id = ${ShoppingSessionId} AND ss.id = ci.ShoppingSessionId AND ci.ProductId = p.id`, { type: QueryTypes.SELECT })
 
       // update Shopping_Session with new total value
       await Shopping_Session.update({
@@ -233,7 +227,7 @@ const CartController = {
 
       return res.redirect('/carrinho')
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   }
 }
