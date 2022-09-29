@@ -2,6 +2,23 @@
 const request = require('supertest')
 const models = require('../../src/models/index')
 const app = require('../../app.js')
+const bcrypt = require('bcryptjs')
+
+// Factory to make User without privileges
+const makeUser = (id) => {
+  return models.User.create({
+    id,
+    kind: 'user',
+    name: 'Daniel Gustavo',
+    password: bcrypt.hashSync('ABCd123456', 10),
+    cpf: '29432901653',
+    tel: '11555551111',
+    email: '1234@teste.com',
+    birthdate: '1980-01-01',
+    createdAt: new Date(),
+    updatedAt: new Date()
+  })
+}
 
 describe('Integration Test LoginController', function () {
   afterAll(() => {
@@ -74,20 +91,17 @@ describe('Integration Test LoginController', function () {
     expect(res.statusCode).toBe(422)
   })
 
-  // TODO: refactor wrong redirect/302 res
-  // test.only('should redirect 302 when logout', async () => {
-  //   // Arrange
-  //   await request(app)
-  //     .post('/cadastro')
-  //     .send({ nome: 'Daniel Gustavo', cpf: '29432901653', tel: '1111111111', email: '1234@teste.com', senha: 'ABCd123456', repeteSenha: 'ABCd123456' })
-  //   await request(app)
-  //     .post('/login')
-  //     .send({ email: '1234@teste.com', password: 'ABCd123456' })
-  //   // Act
-  //   const res = await request(app)
-  //     .get('/login/logout')
-  //   // Assert
-  //   expect(res.statusCode).toBe(302)
-  // })
-  // todo make a test with auth user accessing /usuario
+  test('should redirect 302 when logout', async () => {
+    // Arrange
+    makeUser(1)
+    const agent = request.agent(app)
+    await agent
+      .post('/login')
+      .send({ email: '1234@teste.com', password: 'ABCd123456' })
+    // Act
+    const res = await agent
+      .get('/login/logout')
+    // Assert
+    expect(res.statusCode).toBe(302)
+  })
 })
