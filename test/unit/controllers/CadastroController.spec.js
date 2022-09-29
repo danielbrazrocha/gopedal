@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const CadastroController = require('../../../src/controllers/CadastroController')
 
-describe('Cadastro Controller check', () => {
+describe('Cadastro Controller tests', () => {
   test('should throw error', async () => {
     // Arrange
     const req = {

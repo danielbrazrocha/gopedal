@@ -6,10 +6,6 @@ const IndexController = {
   // index = método do controller para renderizar uma view com um grid de todos os produtos
   // chamado em index.js
   async index (req, res, next) {
-    // verificando se existe uma sessão de usuário ativa, passando globalmente a variavel user para a view
-    // deverá ser feito esta operação a cada route que utilize o middleware de autenticação isAuth
-    // const { user } = req.session
-
     try {
       const productList = await Product.findAll({
         where: {
@@ -23,7 +19,7 @@ const IndexController = {
         produtos: productList
       })
     } catch (error) {
-      return res.status(400).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
 
@@ -60,7 +56,7 @@ const IndexController = {
         produtos: productList
       })
     } catch (error) {
-      return res.status(400).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   }
 
