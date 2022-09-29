@@ -3,7 +3,7 @@ const { Cart_Item, Shopping_Session } = require('../models')
 const { QueryTypes } = require('sequelize')
 const models = require('../models')
 
-const UsuarioEnderecosController = {
+const CartController = {
 
   show: async (req, res) => {
     const { shopping_session } = req.session.user
@@ -238,4 +238,4 @@ const UsuarioEnderecosController = {
   }
 }
 
-module.exports = UsuarioEnderecosController
+module.exports = CartController
