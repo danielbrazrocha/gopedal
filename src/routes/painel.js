@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+
 const PainelController = require('../controllers/PainelController')
 const PainelCategoryController = require('../controllers/PainelCategoryController')
 const PainelUsuariosController = require('../controllers/PainelUsuariosController')
@@ -17,8 +18,6 @@ const categoryValidator = require('../middlewares/categoryValidator')
 const discountValidator = require('../middlewares/discountValidator')
 const inventoryValidator = require('../middlewares/inventoryValidator')
 
-// GET Página de Lista de categorias
-// router.get('/', isAuth, isAdmin, PainelController.showPainel)
 router.get('/', isAuth, isAdmin, PainelController.show)
 
 // GET Página de adição de categoria
