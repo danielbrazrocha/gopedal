@@ -28,7 +28,7 @@ const PainelDescontoController = {
         descontos: discountList
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   add: async (req, res, next) => {
@@ -60,9 +60,8 @@ const PainelDescontoController = {
       // Desestruturando as informações para utilização no sequelize
       const { id, nome, description, discountpercent, active, newItem } = req.body
       try {
-        let ans
         if (newItem) {
-          ans = await Discount.create({
+          await Discount.create({
             name: nome,
             description,
             discount_percent: discountpercent,
@@ -79,23 +78,12 @@ const PainelDescontoController = {
             updatedAt: new Date().toISOString()
           }
 
-          ans = await Discount.update(newItemData, {
+          await Discount.update(newItemData, {
             where: {
               id
             }
           })
         }
-
-        // atualizando o produto
-
-        // verificando se o producto foi criado existe no BD
-        if (!ans) {
-          return res.status(422).render('dashboard', {
-            arquivoCss: 'dashboard.css',
-            error: `Erro na atualização do desconto Id ${id}. Verifique as informações e tente novamente.`
-          })
-        }
-
         return res.status(201).render('dashboard', {
           arquivoCss: 'dashboard.css',
           success: `Desconto Id ${id} atualizado com sucesso.`
@@ -132,7 +120,7 @@ const PainelDescontoController = {
         }
       })
       .catch(function (error) {
-        res.status(500).json(error)
+        return res.status(500).render({ message: 'Error' + error })
       })
   }
 }
