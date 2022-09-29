@@ -18,7 +18,6 @@ describe('Integration Test IndexController', function () {
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
     expect(res.statusCode).toBe(200)
   })
-  models.User.destroy({ where: {} })
 
   test('should give a product result when a searched product was find  /', async () => {
     // Arrange

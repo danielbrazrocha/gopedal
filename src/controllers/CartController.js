@@ -6,12 +6,6 @@ const models = require('../models')
 const UsuarioEnderecosController = {
 
   show: async (req, res) => {
-    const { user } = req.session
-
-    // caso o usuario nao esteja logado, redirecionar para a pagina de login
-    if (!user) {
-      res.redirect('/login')
-    }
     const { shopping_session } = req.session.user
     try {
       const cartDetails = await Cart_Item.findAll({
