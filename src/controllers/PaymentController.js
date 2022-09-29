@@ -26,7 +26,7 @@ const PaymentController = {
   show: async (req, res) => {
     try {
       const { shopping_session } = req.session.user
-      const cartTotalPrice = await models.sequelize.query(`SELECT p.id, ci.quantity FROM go_pedal.Product p , go_pedal.Cart_Item ci  ,go_pedal.Shopping_Session ss  WHERE ss.id = ${shopping_session} AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
+      const cartTotalPrice = await models.sequelize.query(`SELECT p.id, ci.quantity FROM Product p , Cart_Item ci  , Shopping_Session ss  WHERE ss.id = ${shopping_session} AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
 
       const newItemList = cartTotalPrice.map((item) => {
         return {
@@ -44,7 +44,7 @@ const PaymentController = {
 
       res.redirect(303, session.url)
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   success: async (req, res) => {
@@ -101,7 +101,7 @@ const PaymentController = {
         successMsg: true
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   cancel: async (req, res) => {
@@ -111,7 +111,7 @@ const PaymentController = {
         cancelMsg: true
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   }
 }
