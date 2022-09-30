@@ -1,14 +1,14 @@
 const UsuarioController = {
 
   index: (req, res) => {
-    const { user } = req.session
-    if (!user) {
-      return res.redirect('/')
+    try {
+      return res.render('usuario', {
+        arquivoCss: 'dashboard.css',
+        principal: true
+      })
+    } catch (error) {
+      return res.status(500).render({ message: 'Error' + error })
     }
-    return res.render('usuario', {
-      arquivoCss: 'dashboard.css',
-      principal: true
-    })
   }
 }
 
