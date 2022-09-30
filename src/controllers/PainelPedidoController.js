@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 const { Order_Details, Order_Itens } = require('../models')
 
-const PainelInventarioController = {
+const PainelPedidoController = {
 
   show: async (req, res) => {
     try {
@@ -22,24 +22,28 @@ const PainelInventarioController = {
         pedidos: orderList
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   edit: async (req, res) => {
-    const orderId = req.params.id
-    const itemList = await Order_Itens.findAll({
-      where: {
-        OrderDetailId: orderId
-      },
-      include: ['product']
-    })
+    try {
+      const orderId = req.params.id
+      const itemList = await Order_Itens.findAll({
+        where: {
+          OrderDetailId: orderId
+        },
+        include: ['product']
+      })
 
-    return res.status(200).render('dashboard', {
-      arquivoCss: 'dashboard.css',
-      orderDetails: itemList,
-      newItem: false
-    })
+      return res.status(200).render('dashboard', {
+        arquivoCss: 'dashboard.css',
+        orderDetails: itemList,
+        newItem: false
+      })
+    } catch (error) {
+      return res.status(500).render({ message: 'Error' + error })
+    }
   }
 }
 
-module.exports = PainelInventarioController
+module.exports = PainelPedidoController
