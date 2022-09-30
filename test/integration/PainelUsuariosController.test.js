@@ -64,8 +64,7 @@ describe('PainelUsuariosController Integration Tests', function () {
 
   test('should receive a 200 when access /painel/usuario with admin user and users dont exists', async () => {
     // Arrange
-    const user = await makeUser(25, true)
-    console.log(user)
+    await makeUser(25, true)
     const agent = request.agent(app)
     await agent
       .post('/login')
@@ -82,7 +81,6 @@ describe('PainelUsuariosController Integration Tests', function () {
 
     // Act
     const res = await request(app).get('/painel/usuario')
-    console.log('res', res)
     // Assert
     expect(res.statusCode).toBe(302)
     // expect(res.header['content-type']).toBe('text/plain; charset=utf-8')

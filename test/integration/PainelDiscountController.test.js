@@ -66,7 +66,6 @@ describe('PainelDescontoController Integration Tests', function () {
 
     // Act
     const res = await request(app).get('/painel/desconto')
-    console.log('res', res)
     // Assert
     expect(res.statusCode).toBe(302)
     // expect(res.header['content-type']).toBe('text/plain; charset=utf-8')
