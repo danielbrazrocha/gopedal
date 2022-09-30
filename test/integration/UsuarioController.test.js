@@ -2,18 +2,40 @@
 const request = require('supertest')
 const models = require('../../src/models/index')
 const app = require('../../app.js')
+const bcrypt = require('bcryptjs')
 
-describe('Integration Test UsuarioController', function () {
+describe('UsuarioController Integration Tests ', function () {
+  beforeEach(() => {
+    models.User.destroy({ where: {} })
+  })
   afterAll(() => {
     models.sequelize.close()
   })
-
-  test('should receive a 302 redirection when access / without Auth', async () => {
-    // Arrange
-    // Act
-    const res = await request(app).get('/usuario')
-    // Assert
-    expect(res.statusCode).toBe(302)
+  afterEach(() => {
+    models.User.destroy({ where: {} })
   })
-  // todo make a test with auth user accessing /usuario
+
+  test('should receive a 200 when access with admin privileges', async () => {
+    // Arrange
+    await models.User.create({
+      id: 29,
+      kind: 'admin',
+      name: 'Daniel Gustavo',
+      password: bcrypt.hashSync('ABCd123456', 10),
+      cpf: '29432901653',
+      tel: '11955551111',
+      email: '1234@teste.com',
+      birthdate: '1980-01-01',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })
+    const agent = request.agent(app)
+    await agent
+      .post('/login')
+      .send({ email: '1234@teste.com', password: 'ABCd123456' })
+    // Act
+    const res = await agent.get('/usuario')
+    // Assert
+    expect(res.status).toBe(200)
+  })
 })
