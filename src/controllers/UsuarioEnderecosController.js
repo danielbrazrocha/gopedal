@@ -26,7 +26,7 @@ const UsuarioEnderecosController = {
         enderecos: userDetails.addresses
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   edit: async (req, res, next) => {
@@ -51,9 +51,8 @@ const UsuarioEnderecosController = {
       const { id, description, street, number, details, CEP, country, newItem } = req.body
 
       try {
-        let ans
         if (newItem) {
-          ans = await User_Address.create({
+          await User_Address.create({
             UserId,
             description,
             street,
@@ -74,19 +73,13 @@ const UsuarioEnderecosController = {
             country,
             updatedAt: new Date().toISOString()
           }
-          ans = await User_Address.update(newItemData, {
+          await User_Address.update(newItemData, {
             where: {
               id
             }
           })
         }
 
-        if (!ans) {
-          return res.status(422).render('usuario', {
-            arquivoCss: 'dashboard.css',
-            error: `Erro na atualização do endereço ${id}. Verifique as informações e tente novamente.`
-          })
-        }
         return res.status(201).render('usuario', {
           arquivoCss: 'dashboard.css',
           success: `Endereço Id ${id} atualizado com sucesso.`
@@ -122,15 +115,19 @@ const UsuarioEnderecosController = {
         }
       })
       .catch(function (error) {
-        res.status(500).json(error)
+        return res.status(500).render({ message: 'Error' + error })
       })
   },
   add: async (req, res, next) => {
-    return res.status(200).render('usuario', {
-      arquivoCss: 'dashboard.css',
-      enderecoDetails: {},
-      newItem: true
-    })
+    try {
+      return res.status(200).render('usuario', {
+        arquivoCss: 'dashboard.css',
+        enderecoDetails: {},
+        newItem: true
+      })
+    } catch (error) {
+      return res.status(500).render({ message: 'Error' + error })
+    }
   }
 }
 
