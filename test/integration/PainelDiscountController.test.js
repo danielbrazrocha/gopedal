@@ -24,9 +24,9 @@ const makeAdminUser = (id) => {
 const makeDiscount = (id) => {
   return models.Discount.create({
     id,
-    name: 'BLACKFRIDAY23',
+    nome: 'BLACKFRIDAY23',
     description: 'Cupom da campanha Black Friday 2023',
-    discount_percent: 10,
+    discountpercent: 10,
     active: true,
     createdAt: new Date(),
     updatedAt: new Date()
@@ -145,21 +145,21 @@ describe('PainelDescontoController Integration Tests', function () {
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
   })
 
-  // test('should receive 201 when create a discount in /painel/desconto/:id with admin user', async () => {
-  //   // Arrange
-  //   await makeAdminUser(23)
-  //   const agent = request.agent(app)
-  //   await agent
-  //     .post('/login')
-  //     .send({ email: '1234@teste.com', password: 'ABCd123456' })
-  //   // Act
-  //   const res = await agent
-  //     .post('/painel/desconto/23')
-  //     .send({ name: 'BLACKFRIDAY23', description: 'Cupom da campanha Black Friday 2023', discount_percent: 10, active: true, newItem: true })
-  //   // Assert
-  //   expect(res.status).toBe(201)
-  //   expect(res.header['content-type']).toBe('text/html; charset=utf-8')
-  // })
+  test('should receive 201 when create a discount in /painel/desconto/:id with admin user', async () => {
+    // Arrange
+    await makeAdminUser(23)
+    const agent = request.agent(app)
+    await agent
+      .post('/login')
+      .send({ email: '1234@teste.com', password: 'ABCd123456' })
+    // Act
+    const res = await agent
+      .post('/painel/desconto/23')
+      .send({ nome: 'BLACKFRIDAY23', description: 'Cupom da campanha Black Friday 2023', discountpercent: 10, active: true, newItem: true })
+    // Assert
+    expect(res.status).toBe(201)
+    expect(res.header['content-type']).toBe('text/html; charset=utf-8')
+  })
 
   test('should receive 422 when create a discount with wrong info in /painel/desconto/:id with admin user', async () => {
     // Arrange
@@ -171,28 +171,28 @@ describe('PainelDescontoController Integration Tests', function () {
     // Act
     const res = await agent
       .post('/painel/desconto/23')
-      .send({ id: 23, nome: 1234, description: 'Pedais e pedivelas', discount_percent: 10, active: true, newItem: true })
+      .send({ nome: 'BLACKFRIDAY23', description: 'Cupom da campanha Black Friday 2023', discountpercent: 'wrong_info', active: true, newItem: true })
     // Assert
     expect(res.status).toBe(422)
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
   })
 
-  // test('should receive 201 when update a discount in /painel/desconto/:id with admin user', async () => {
-  //   // Arrange
-  //   await makeAdminUser(23)
-  //   await makeDiscount(23)
-  //   const agent = request.agent(app)
-  //   await agent
-  //     .post('/login')
-  //     .send({ email: '1234@teste.com', password: 'ABCd123456' })
-  //   // Act
-  //   const res = await agent
-  //     .post('/painel/desconto/23')
-  //     .send({ id: 23, nome: 'Novos Pedais', description: 'Pedais e pedivelas', discount_percent: 10, active: true, newItem: false })
-  //   // Assert
-  //   expect(res.status).toBe(201)
-  //   expect(res.header['content-type']).toBe('text/html; charset=utf-8')
-  // })
+  test('should receive 201 when update a discount in /painel/desconto/:id with admin user', async () => {
+    // Arrange
+    await makeAdminUser(23)
+    await makeDiscount(23)
+    const agent = request.agent(app)
+    await agent
+      .post('/login')
+      .send({ email: '1234@teste.com', password: 'ABCd123456' })
+    // Act
+    const res = await agent
+      .post('/painel/desconto/23')
+      .send({ nome: 'BLACKFRIDAY23', description: 'Novo cupom da campanha Black Friday 2023', discountpercent: 10, active: true, newItem: true })
+    // Assert
+    expect(res.status).toBe(201)
+    expect(res.header['content-type']).toBe('text/html; charset=utf-8')
+  })
 
   test('should receive 422 when try to update a discount with wrong info in /painel/desconto/:id with admin user', async () => {
     // Arrange
@@ -204,7 +204,7 @@ describe('PainelDescontoController Integration Tests', function () {
     // Act
     const res = await agent
       .post('/painel/desconto/23')
-      .send({ id: 23, nome: 1234, description: 'Pedais e pedivelas', discount_percent: 10, active: true, newItem: false })
+      .send({ nome: 'BLACKFRIDAY23', description: 'Cupom da campanha Black Friday 2023', discountpercent: 'wrong_info', active: true, newItem: true })
     // Assert
     expect(res.status).toBe(422)
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
