@@ -21,7 +21,7 @@ const PainelUsuariosController = {
         usuarios: userList
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   edit: async (req, res) => {
@@ -55,19 +55,11 @@ const PainelUsuariosController = {
           updatedAt: new Date().toISOString()
         }
 
-        const ans = await User.update(newProductData, {
+        await User.update(newProductData, {
           where: {
             id
           }
         })
-
-        // verificando se o producto foi criado existe no BD
-        if (!ans) {
-          return res.status(422).render('dashboard', {
-            arquivoCss: 'dashboard.css',
-            error: `Erro na atualização do usuário ${nome}. Verifique as informações e tente novamente.`
-          })
-        }
 
         return res.status(201).render('dashboard', {
           arquivoCss: 'dashboard.css',
@@ -105,7 +97,7 @@ const PainelUsuariosController = {
         }
       })
       .catch(function (error) {
-        res.status(500).json(error)
+        return res.status(500).render({ message: 'Error' + error })
       })
   }
 }
