@@ -50,7 +50,7 @@ describe('UsuarioEnderecosController Integration Tests', function () {
 
   test('should receive a 200 when access /usuario/enderecos with admin user and address dont exists', async () => {
     // Arrange
-    await makeAdminUser(24)
+    await makeAdminUser(31)
     const agent = request.agent(app)
     await agent
       .post('/login')
