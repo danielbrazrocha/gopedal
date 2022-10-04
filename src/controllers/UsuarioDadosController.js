@@ -14,13 +14,6 @@ const UsuarioDadosController = {
         include: ['addresses']
       })
 
-      if (userDetails.length === 0) {
-        return res.status(200).render('usuario', {
-          arquivoCss: 'dashboard.css',
-          error: 'Não há nenhuma informação cadastrada.'
-        })
-      }
-
       return res.status(200).render('usuario', {
         arquivoCss: 'dashboard.css',
         dados: userDetails
@@ -34,17 +27,14 @@ const UsuarioDadosController = {
 
     if (errors.isEmpty()) {
       const { id, nome, cpf, tel, email, senha, repeteSenha } = req.body
-      let passCrypt
-      if (senha && senha === repeteSenha) {
-        passCrypt = bcrypt.hashSync(senha, 10)
-      }
+
       try {
         const newItemData = {
           name: nome,
           cpf,
           tel,
           email,
-          senha: passCrypt,
+          senha: bcrypt.hashSync(senha, 10),
           updatedAt: new Date().toISOString()
         }
 

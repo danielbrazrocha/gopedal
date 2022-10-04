@@ -20,7 +20,10 @@ const makeUser = (id) => {
   })
 }
 
-describe('Integration Test LoginController', function () {
+describe.only('Integration Test LoginController', function () {
+  beforeEach(() => {
+    models.User.destroy({ where: {} })
+  })
   afterAll(() => {
     models.sequelize.close()
   })
@@ -36,29 +39,26 @@ describe('Integration Test LoginController', function () {
     expect(res.statusCode).toBe(200)
   })
 
-  test('should receive a redirect 302 when logged and try to access /login', async () => {
+  test('should receive 302 and redirect to home when logged and try to access /login', async () => {
     // Arrange
-    await request(app)
-      .post('/cadastro')
-      .send({ nome: 'Daniel Gustavo', cpf: '29432901653', tel: '1111111111', email: '1234@teste.com', senha: 'ABCd123456', repeteSenha: 'ABCd123456' })
-    await request(app)
+    await makeUser(1)
+    const agent = request.agent(app)
+    await agent
       .post('/login')
       .send({ email: '1234@teste.com', password: 'ABCd123456' })
     // Act
-    const res = await request(app)
-      .post('/login')
-      .send({ email: '1234@teste.com', password: 'ABCd123456' })
+    const res = await agent
+      .get('/login')
     // Assert
     expect(res.statusCode).toBe(302)
   })
 
   test('should receive a 302 when do login with correct data', async () => {
     // Arrange
-    await request(app)
-      .post('/cadastro')
-      .send({ nome: 'Daniel Gustavo', cpf: '29432901653', tel: '1111111111', email: '1234@teste.com', senha: 'ABCd123456', repeteSenha: 'ABCd123456' })
+    await makeUser(1)
+    const agent = request.agent(app)
     // Act
-    const res = await request(app)
+    const res = await agent
       .post('/login')
       .send({ email: '1234@teste.com', password: 'ABCd123456' })
     // Assert
@@ -67,11 +67,10 @@ describe('Integration Test LoginController', function () {
 
   test('should receive a 422 when do login with incorrect password', async () => {
     // Arrange
-    await request(app)
-      .post('/cadastro')
-      .send({ nome: 'Daniel Gustavo', cpf: '29432901653', tel: '1111111111', email: '1234@teste.com', senha: 'ABCd123456', repeteSenha: 'ABCd123456' })
+    await makeUser(1)
+    const agent = request.agent(app)
     // Act
-    const res = await request(app)
+    const res = await agent
       .post('/login')
       .send({ email: '1234@teste.com', password: 'wrong_password' })
     // Assert
@@ -80,20 +79,19 @@ describe('Integration Test LoginController', function () {
 
   test('should receive a 422 when do login with incorrect email', async () => {
     // Arrange
-    await request(app)
-      .post('/cadastro')
-      .send({ nome: 'Daniel Gustavo', cpf: '29432901653', tel: '1111111111', email: '1234@teste.com', senha: 'ABCd123456', repeteSenha: 'ABCd123456' })
-    // Act
-    const res = await request(app)
+    await makeUser(1)
+    const agent = request.agent(app)
+    //Act
+    const res = await agent
       .post('/login')
-      .send({ email: 'wrong_email', password: 'wrong_password' })
+      .send({ email: 'wrong_email', password: 'ABCd123456' })
     // Assert
     expect(res.statusCode).toBe(422)
   })
 
   test('should redirect 302 when logout', async () => {
     // Arrange
-    makeUser(1)
+    await makeUser(1)
     const agent = request.agent(app)
     await agent
       .post('/login')

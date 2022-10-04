@@ -62,14 +62,16 @@ const makeProduct = (id) => {
 
 describe('PainelInventarioController Integration Tests', function () {
   beforeEach(() => {
-    models.User.destroy({ where: {} })
+    models.Order_Itens.destroy({ where: {} })
     models.Order_Details.destroy({ where: {} })
+    models.User.destroy({ where: {} })
     models.Product.destroy({ where: {} })
   })
   afterAll(() => {
     models.sequelize.close()
   })
   afterEach(() => {
+    models.Order_Itens.destroy({ where: {} })
     models.Order_Details.destroy({ where: {} })
     models.User.destroy({ where: {} })
     models.Product.destroy({ where: {} })

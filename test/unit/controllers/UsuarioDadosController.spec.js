@@ -2,25 +2,25 @@
 const UsuarioDadosController = require('../../../src/controllers/UsuarioDadosController')
 
 describe('UsuarioDadosController tests', () => {
-  // // TODO: this
-  // test('should throw error on show method', async () => {
-  //   const req = {
-  //     session: {
-  //       user: {
-  //         id: 1
-  //       }
-  //     }
-  //   }
-  //   const res = {
-  //     render: jest.fn().mockImplementationOnce(() => { throw new Error() }),
-  //     status: jest.fn(() => res)
-  //   }
-  //   // Act
-  //   await UsuarioDadosController.show(req, res)
+  // TODO: this
+  test('should throw error on show method', async () => {
+    const req = {
+      session: {
+        user: {
+          id: 1
+        }
+      }
+    }
+    const res = {
+      render: jest.fn().mockImplementationOnce(() => { throw new Error() }),
+      status: jest.fn(() => res)
+    }
+    // Act
+    await UsuarioDadosController.show(req, res)
 
-  //   // Assert
-  //   expect(res.status).toHaveBeenCalledWith(500)
-  // })
+    // Assert
+    expect(res.status).toHaveBeenCalledWith(500)
+  })
 
   test('should throw error on submitEdit method', async () => {
     // Arrange
