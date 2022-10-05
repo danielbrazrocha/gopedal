@@ -103,29 +103,29 @@ describe('CartController tests', () => {
     expect(res.status).toHaveBeenCalledWith(500)
   })
 
-  // test('should throw error on includeProduct method', async () => {
-  //   // Arrange
-  //   const req = {
-  //     params: {
-  //       id: 1
-  //     },
-  //     session: {
-  //       user: {
-  //         id: 'fake_id',
-  //         name: 'fake_name',
-  //         kind: 'fake_kind',
-  //         shopping_session: 1
-  //       }
-  //     }
-  //   }
-  //   const res = {
-  //     render: jest.fn().mockImplementationOnce(() => { throw new Error() }),
-  //     status: jest.fn(() => res)
-  //   }
-  //   // Act
-  //   await CartController.includeProduct(req, res)
+  test('should throw error on includeProduct method', async () => {
+    // Arrange
+    const req = {
+      params: {
+        id: 1
+      },
+      session: {
+        user: {
+          id: 1,
+          name: 'fake_name',
+          kind: 'fake_kind',
+          shopping_session: 1
+        }
+      }
+    }
+    const res = {
+      render: jest.fn().mockImplementationOnce(() => { throw new Error() }),
+      status: jest.fn(() => res)
+    }
+    // Act
+    await CartController.includeProduct(req, res)
 
-  //   // Assert
-  //   expect(res.status).toHaveBeenCalledWith(500)
-  // })
+    // Assert
+    expect(res.status).toHaveBeenCalledWith(500)
+  })
 })

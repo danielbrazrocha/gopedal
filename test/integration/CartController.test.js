@@ -47,6 +47,18 @@ const makeInventory = (id) => {
   })
 }
 
+// Factory to make Cart_Item with an Id
+const makeCartItem = (id) => {
+  return models.Cart_Item.create({
+    id,
+    ShoppingSessionId: id,
+    ProductId: id,
+    quantity: 2,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  })
+}
+
 describe('Integration Test CadastroController', function () {
   beforeEach(() => {
     models.User.destroy({ where: {} })
@@ -92,63 +104,23 @@ describe('Integration Test CadastroController', function () {
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
   })
 
-  // test('should receive a 200 when access /carrinho with a autenticated user and shopping cart with items', async () => {
-  //   // Arrange
-  //   models.User.create({
-  //     id: 10,
-  //     kind: 'user',
-  //     name: 'Daniel Gustavo',
-  //     password: bcrypt.hashSync('ABCd123456', 10),
-  //     cpf: '29432901653',
-  //     tel: '11555551111',
-  //     email: '1234@teste.com',
-  //     birthdate: '1980-01-01',
-  //     createdAt: new Date(),
-  //     updatedAt: new Date()
-  //   })
-  //   models.Inventory.create({
-  //     id: 10,
-  //     quantity: 100,
-  //     createdAt: new Date(),
-  //     updatedAt: new Date()
-  //   })
-  //   models.Product.create({
-  //     // CategoryId: 1,
-  //     // DiscountId: 1,
-  //     id: 10,
-  //     InventoryId: 10,
-  //     name: 'Pedal Clip MTB PD-M324 (Prata) - Shimano',
-  //     description: 'Pedal clip para bicicleta MTB, marca Shimano, modelo PD-M324, cor Prata. Especificação:- Marca: Shimano - Modelo: PD-M324- Código Shimano: EPDM324 - Cor: Prata- Rosca: Grossa tipo Inglês 9/16"- Acompanha par de taquinho: SM-SH56- Sistema misto, sendo um lado com clip e o outro com apoio normal (sem clip)- Peso: 533 gramas (par)- Produto original.',
-  //     image: '/assets/products/001-PedalClip.jpg',
-  //     SKU: '1111',
-  //     price: 520.00,
-  //     createdAt: new Date(),
-  //     updatedAt: new Date()
-  //   })
-  //   // models.Cart_Item.create({
-  //   //   id: 10,
-  //   //   ProductId: 10,
-  //   //   ShoppingSessionId: 10,
-  //   //   quantity: 1,
-  //   //   createdAt: new Date(),
-  //   //   updatedAt: new Date()
-  //   // })
-
-  //   const agent = request.agent(app)
-  //   await agent
-  //     .post('/login')
-  //     .send({ email: '1234@teste.com', password: 'ABCd123456' })
-
-  //   await agent
-  //     .get('/carrinho/include/10')
-
-  //   // Act
-  //   const res = await agent.get('/carrinho')
-  //   console.log(res.res)
-  //   // Assert
-  //   expect(res.status).toBe(500)
-  //   expect(res.header['content-type']).toBe('text/html; charset=utf-8')
-  // })
+  test('should receive a 200 when access /carrinho with a autenticated user and shopping cart with items', async () => {
+    // Arrange
+    await makeInventory(9)
+    await makeProduct(9)
+    await makeUser(9)
+    const agent = request.agent(app)
+    await agent
+      .post('/login')
+      .send({ email: '1234@teste.com', password: 'ABCd123456' })
+    await agent
+      .get('/carrinho/include/9')
+    // Act
+    const res = await agent.get('/carrinho')
+    // Assert
+    expect(res.status).toBe(200)
+    expect(res.header['content-type']).toBe('text/html; charset=utf-8')
+  })
 
   test('should redirected when include a product to cart /carrinho/include/:id ', async () => {
     // Arrange
