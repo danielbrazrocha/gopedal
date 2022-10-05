@@ -14,6 +14,7 @@ const CartController = {
         },
         include: ['product', 'shoppingsession']
       })
+      // console.log('cartDetails', cartDetails)
 
       if (cartDetails?.length === 0) {
         return res.status(200).render('carrinho', {
@@ -67,6 +68,7 @@ const CartController = {
 
       // update Shopping_Session with new total value
       await Shopping_Session.update({
+        individualHooks: true,
         total: cartTotalPrice[0].newTotal,
         updatedAt: new Date().toISOString()
       }, {
@@ -99,30 +101,32 @@ const CartController = {
         })
       }
 
+      
       const newItemData = {
         quantity: cartItem.quantity - 1,
         updatedAt: new Date().toISOString()
       }
 
       await Cart_Item.update(newItemData, {
+        individualHooks: true,
         where: {
           id: cartItem.id
         }
       })
-
       // calculate total value of Cart Itens
-      const cartTotalPrice = await models.sequelize.query(`SELECT SUM(p.price * ci.quantity) as newTotal FROM Product p , Cart_Item ci, Shopping_Session ss  WHERE ss.id = ${ShoppingSessionId} AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
+      const cartTotalPrice = await models.sequelize.query(`SELECT SUM(p.price * ci.quantity) as newTotal FROM Product p , Cart_Item ci, Shopping_Session ss WHERE ss.id = ${ShoppingSessionId} AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
 
-      if (cartTotalPrice[0].newTotal < 0) {
-        return res.status(422).render('carrinho', {
-          arquivoCss: 'carrinho.css',
-          cartItens: {},
-          error: 'O produto não pode ter valor negativo. Exclua-o primeiro.'
-        })
-      }
+      // if (cartTotalPrice[0].newTotal < 0) {
+      //   return res.status(422).render('carrinho', {
+      //     arquivoCss: 'carrinho.css',
+      //     cartItens: {},
+      //     error: 'O produto não pode ter valor negativo. Exclua-o primeiro.'
+      //   })
+      // }
 
       // update Shopping_Session with new total value
       await Shopping_Session.update({
+        individualHooks: true,
         total: cartTotalPrice[0].newTotal,
         updatedAt: new Date().toISOString()
       }, {
@@ -165,9 +169,9 @@ const CartController = {
             // calculate total value of Cart Itens
             const cartTotalPrice = await models.sequelize.query(`SELECT SUM(p.price * ci.quantity) as newTotal FROM go_pedal.Product p , go_pedal.Cart_Item ci  ,go_pedal.Shopping_Session ss  WHERE ss.id = ${ShoppingSessionId} AND ss.id = ci.ShoppingSessionId AND ci.ProductId =p.id`, { type: QueryTypes.SELECT })
 
-            if (!cartTotalPrice[0].newTotal) {
-              cartTotalPrice[0].newTotal = 0
-            }
+            // if (!cartTotalPrice[0].newTotal) {
+            //   cartTotalPrice[0].newTotal = 0
+            // }
 
             // update Shopping_Session with new total value
             await Shopping_Session.update({
@@ -179,10 +183,6 @@ const CartController = {
               }
             })
             return res.redirect('/carrinho')
-          } else {
-            return res.status(404).render('404', {
-              textoErro: 'Produto não encontrado, refaça sua busca ou tente novamente'
-            })
           }
         })
     } catch (error) {
