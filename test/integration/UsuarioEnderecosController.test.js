@@ -72,7 +72,7 @@ describe('UsuarioEnderecosController Integration Tests', function () {
     // expect(res.header['content-type']).toBe('text/plain; charset=utf-8')
   })
 
-  test('should receive a 200 when access /usuario/enderecos with admin user', async () => {
+  test('should receive a 200 when access /usuario/enderecos with admin user and address exists', async () => {
     // Arrange
     await makeAdminUser(31)
     await makeUserAddress(31)

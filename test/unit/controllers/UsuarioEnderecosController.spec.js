@@ -1,26 +1,28 @@
 /* eslint-disable no-undef */
 const UsuarioEnderecosController = require('../../../src/controllers/UsuarioEnderecosController')
+const models = require('../../../src/models')
+const bcrypt = require('bcryptjs')
 
 describe('UsuarioEnderecosController tests', () => {
-  // TODO: this
-  // test.only('should throw error on show method', async () => {
-  //   const req = {
-  //     session: {
-  //       user: {
-  //         id: 1
-  //       }
-  //     }
-  //   }
-  //   const res = {
-  //     render: jest.fn().mockImplementationOnce(() => { throw new Error() }),
-  //     status: jest.fn(() => res)
-  //   }
-  //   // Act
-  //   await UsuarioEnderecosController.show(req, res)
 
-  //   // Assert
-  //   expect(res.status).toHaveBeenCalledWith(500)
-  // })
+  test('should throw error on show method', async () => {
+    const req = {
+      session: {
+        user: {
+          id: 1
+        }
+      }
+    }
+    const res = {
+      render: jest.fn().mockImplementationOnce(() => { throw new Error() }),
+      status: jest.fn(() => res)
+    }
+    // Act
+    await UsuarioEnderecosController.show(req, res)
+
+    // Assert
+    expect(res.status).toHaveBeenCalledWith(500)
+  })
 
   test('should throw error on submitEdit method', async () => {
     // Arrange
