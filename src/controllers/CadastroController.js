@@ -20,9 +20,14 @@ const CadastroController = {
 
     // indica o arquivo EJS dentro de view a ser chamado
     // console.log(res)
-    return res.render('cadastro', {
-      arquivoCss: 'cadastro.css'
-    })
+    try {
+      return res.render('cadastro', {
+        arquivoCss: 'cadastro.css'
+      })
+    } catch (error) {
+      return res.status(500).render({ message: 'Error' + error })
+    }
+
   },
 
   // register = método do controller para enviar os dados do formulário de cadastro
