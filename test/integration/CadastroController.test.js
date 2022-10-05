@@ -13,7 +13,7 @@ describe('Integration Test CadastroController', function () {
     models.User.destroy({ where: {} })
   })
 
-  test('should give a 200 when access /', async () => {
+  test('should give a 200 when access /cadastro', async () => {
     // Arrange
     // Act
     const res = await request(app).get('/cadastro')
