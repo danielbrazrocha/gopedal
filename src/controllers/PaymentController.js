@@ -35,14 +35,18 @@ const PaymentController = {
         }
       })
 
-      const session = await stripe.checkout.sessions.create({
-        line_items: newItemList,
-        mode: 'payment',
-        success_url: `${YOUR_DOMAIN}/pagamento/confirmado`,
-        cancel_url: `${YOUR_DOMAIN}/pagamento/cancelado`
-      })
+      try {
+        session = await stripe.checkout.sessions.create({
+          line_items: newItemList,
+          mode: 'payment',
+          success_url: `${YOUR_DOMAIN}/pagamento/confirmado`,
+          cancel_url: `${YOUR_DOMAIN}/pagamento/cancelado`
+        })        
+        res.redirect(303, session.url)
+      } catch (error) {
+        return res.status(500).render({ message: 'Error' + error })
+      }
 
-      res.redirect(303, session.url)
     } catch (error) {
       return res.status(500).render({ message: 'Error' + error })
     }
@@ -59,17 +63,17 @@ const PaymentController = {
 
       // converting Shopping_Session to Order_Details
       const newOrder = await Order_Details.create({
-        UserId: actualSession.UserId,
-        total: actualSession.total,
+        UserId: actualSession?.UserId,
+        total: actualSession?.total,
         createdAt: new Date(),
         updatedAt: new Date()
       })
 
       // converting Cart_Item's to Order_Itens
-      actualSession.cartitems.forEach(async (item) => {
+      actualSession?.cartitems.forEach(async (item) => {
         await Order_Itens.create({
-          OrderDetailId: newOrder.id,
-          UserId: actualSession.UserId,
+          OrderDetailId: newOrder?.id,
+          UserId: actualSession?.UserId,
           ProductId: item.ProductId,
           quantity: item.quantity,
           createdAt: new Date(),
@@ -82,19 +86,24 @@ const PaymentController = {
         where: { ShoppingSessionId: shopping_session }
       })
 
+
       // removing converted Shopping_Session
-      await Shopping_Session.destroy({
-        where: { id: actualSession.id }
-      })
+      try {
+        await Shopping_Session.destroy({
+          where: { id: actualSession?.id }
+        })
+      } catch (error) {
+        return res.status(500).render({ message: 'Error' + error })
+      }
 
       // refreshing a new Shopping_Session on BD
       const [newShoppingSession] = await Shopping_Session.findOrCreate({
-        where: { UserId: actualSession.UserId },
+        where: { UserId: actualSession?.UserId },
         defaults: {
           total: 0
         }
       })
-      req.session.user.shopping_session = newShoppingSession.id
+      req.session.user.shopping_session = newShoppingSession?.id
 
       return res.status(200).render('pagamento', {
         arquivoCss: 'pagamento.css',
