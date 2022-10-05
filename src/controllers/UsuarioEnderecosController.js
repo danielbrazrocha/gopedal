@@ -14,7 +14,7 @@ const UsuarioEnderecosController = {
         include: ['addresses']
       })
 
-      if (userDetails.length === 0) {
+      if (userDetails?.addresses?.length === 0) {
         return res.status(200).render('usuario', {
           arquivoCss: 'dashboard.css',
           error: 'Não há nenhuma informação cadastrada.'
@@ -23,7 +23,7 @@ const UsuarioEnderecosController = {
 
       return res.status(200).render('usuario', {
         arquivoCss: 'dashboard.css',
-        enderecos: userDetails.addresses
+        enderecos: userDetails?.addresses
       })
     } catch (error) {
       return res.status(500).render({ message: 'Error' + error })
