@@ -15,7 +15,7 @@ const CartController = {
         include: ['product', 'shoppingsession']
       })
 
-      if (cartDetails.length === 0) {
+      if (cartDetails?.length === 0) {
         return res.status(200).render('carrinho', {
           arquivoCss: 'carrinho.css',
           error: 'Não há nenhuma informação cadastrada.',
@@ -194,36 +194,32 @@ const CartController = {
       const ProductId = req.params.id
       const ShoppingSessionId = req.session.user.shopping_session
 
-      await Cart_Item.findOrCreate({
-        where: {
-          ProductId,
-          ShoppingSessionId
-        },
-        defaults: {
-          quantity: 1
-        }
-      })
-
-      // if (!cartItem) {
-      //   console.log('entrei carrinho erro')
-      //   return res.status(422).render('carrinho', {
-      //     arquivoCss: 'carrinho.css',
-      //     error: 'Carrinho não localizado!'
-      //   })
-      // }
+      try {
+        await Cart_Item.findOrCreate({
+          where: {
+            ProductId,
+            ShoppingSessionId
+          },
+          defaults: {
+            quantity: 1
+          }
+        })
+      } catch (error) {
+        return res.status(500).render({ message: 'Error' + error })
+      }
 
       // calculate total value of Cart Itens
       const cartTotalPrice = await models.sequelize.query(`SELECT SUM(p.price * ci.quantity) as newTotal FROM go_pedal.Product p , go_pedal.Cart_Item ci  ,go_pedal.Shopping_Session ss  WHERE ss.id = ${ShoppingSessionId} AND ss.id = ci.ShoppingSessionId AND ci.ProductId = p.id`, { type: QueryTypes.SELECT })
 
       // update Shopping_Session with new total value
-      await Shopping_Session.update({
-        total: cartTotalPrice[0].newTotal,
-        updatedAt: new Date().toISOString()
-      }, {
-        where: {
-          id: ShoppingSessionId
-        }
-      })
+        await Shopping_Session.update({
+          total: cartTotalPrice[0].newTotal,
+          updatedAt: new Date().toISOString()
+        }, {
+          where: {
+            id: ShoppingSessionId
+          }
+        })
 
       return res.redirect('/carrinho')
     } catch (error) {
