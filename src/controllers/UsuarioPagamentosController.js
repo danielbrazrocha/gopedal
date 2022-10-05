@@ -14,18 +14,16 @@ const UsuarioPagamentosController = {
         include: ['payments']
       })
 
-      if (userDetails.length === 0) {
+      if (userDetails?.payments?.length === 0) {
         return res.status(200).render('usuario', {
           arquivoCss: 'dashboard.css',
           error: 'Não há nenhum pagamento cadastrado.'
         })
       }
 
-      // console.log(userDetails.addresses)
-
       return res.status(200).render('usuario', {
         arquivoCss: 'dashboard.css',
-        pagamentos: userDetails.payments
+        pagamentos: userDetails?.payments
       })
     } catch (error) {
       return res.status(500).render({ message: 'Error' + error })
