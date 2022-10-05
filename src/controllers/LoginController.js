@@ -73,10 +73,6 @@ const LoginController = {
 
   // logoff = método do controller para realizar logout
   async logoff (req, res) {
-    // delete Shopping_Session on BD
-    await Shopping_Session.destroy({
-      where: { UserId: req.session.user.id }
-    })
     // delete server session information
     req.session.destroy()
     // redirecionando a home
