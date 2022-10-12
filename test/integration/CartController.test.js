@@ -108,7 +108,7 @@ describe('Integration Test CartController', function () {
     const res = await agent.get('/carrinho')
     // Assert
     // console.log('test res', res.res)
-    expect(res.status).toBe(500)
+    expect(res.status).toBe(200)
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
   })
 

@@ -10,11 +10,11 @@
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests /src",
-    "test:ci": "npm test -- --testTimeout=10000 --forceExit --coverage",
+    "test:ci": "npm test -- --detectOpenHandles --testTimeout=5000 --forceExit --coverage",
     "pretest": "cross-env NODE_ENV=test npx sequelize db:drop && cross-env NODE_ENV=test npx sequelize db:create && cross-env NODE_ENV=test npx sequelize db:migrate",
-    "posttest": "cross-env NODE_ENV=test npx sequelize db:migrate:undo:all",
+    "posttest1": "cross-env NODE_ENV=test npx sequelize db:migrate:undo:all",
     "swagger-autogen": "node ./swagger.js",
-    "temptest": "jest --verbose --runInBand --detectOpenHandles --forceExit --testTimeout=15000 -- UsuarioEnderecosController.test.js"
+    "temptest": "jest --verbose --runInBand --detectOpenHandles --forceExit --testTimeout=5000 -- PainelUsuariosController.spec.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

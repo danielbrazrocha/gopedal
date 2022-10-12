@@ -8,7 +8,7 @@ describe('Integration Test ContatoController', function () {
     models.sequelize.close()
   })
 
-  test('should give a 200 when access /', async () => {
+  test('should give a 200 when access /contato', async () => {
     // Arrange
     // Act
     const res = await request(app).get('/contato')
