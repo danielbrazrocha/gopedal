@@ -8,7 +8,7 @@ const cardValidator = [
     .notEmpty().withMessage('O nome da bandeira deve ser informada').bail(),
   check('account_number')
     .notEmpty().withMessage('O número do cartão deve ser informado').bail()
-    .isLength({ min: 16, max: 16 }).withMessage('O número deve ser informado com 16 caracteres'),
+    .isCreditCard().withMessage('O número do cartão não é válido'),
   check('expiry')
     .notEmpty().withMessage('O vencimento deve ser informado').bail()
     .isLength({ min: 7, max: 7 }).withMessage('O vencimento deve ser informado no formato mm/aaaa')

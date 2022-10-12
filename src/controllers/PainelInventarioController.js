@@ -29,7 +29,7 @@ const PainelInventarioController = {
         inventarios: inventoryList
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   add: async (req, res, next) => {
@@ -61,9 +61,8 @@ const PainelInventarioController = {
       // Desestruturando as informações para utilização no sequelize
       const { id, quantity, newItem } = req.body
       try {
-        let ans
         if (newItem) {
-          ans = await Inventory.create({
+          await Inventory.create({
             quantity,
             createAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
@@ -73,18 +72,10 @@ const PainelInventarioController = {
             quantity,
             updatedAt: new Date().toISOString()
           }
-          ans = await Inventory.update(newItemData, {
+          await Inventory.update(newItemData, {
             where: {
               id
             }
-          })
-        }
-
-        // verificando se o producto foi criado existe no BD
-        if (!ans) {
-          return res.status(422).render('dashboard', {
-            arquivoCss: 'dashboard.css',
-            error: `Erro na atualização do inventário Id ${id}. Verifique as informações e tente novamente.`
           })
         }
 
@@ -124,7 +115,7 @@ const PainelInventarioController = {
         }
       })
       .catch(function (error) {
-        res.status(500).json(error)
+        return res.status(500).render({ message: 'Error' + error })
       })
   }
 }

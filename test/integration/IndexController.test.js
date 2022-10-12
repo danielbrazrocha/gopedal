@@ -4,10 +4,16 @@ const models = require('../../src/models/index')
 const app = require('../../app.js')
 
 describe('Integration Test IndexController', function () {
+  beforeEach(() => {
+    models.Product.destroy({ where: {} })
+    models.Category.destroy({ where: {} })
+  })
   afterAll(() => {
-    // models.Product.destroy({ where: {} })
-    // models.Category.destroy({ where: {} })
     models.sequelize.close()
+  })
+  afterEach(() => {
+    models.Product.destroy({ where: {} })
+    models.Category.destroy({ where: {} })
   })
 
   test('should give a 200 when access /', async () => {
@@ -18,33 +24,31 @@ describe('Integration Test IndexController', function () {
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
     expect(res.statusCode).toBe(200)
   })
-  models.User.destroy({ where: {} })
 
   test('should give a product result when a searched product was find  /', async () => {
     // Arrange
-    // TODO: refactor model creation
-    // models.category.create({
-    //   id: 4,
-    //   name: 'Transmissão',
-    //   description: 'Pinhão, cassetes, coroas, cubos, correntes e câmbios',
-    //   createdAt: new Date(),
-    //   updatedAt: new Date()
-    // })
 
-    // models.Product.create({
-    //   name: 'Cassete 9V 11-36D CS-HG201 - Shimano',
-    //   description: 'Cassete para bicicleta, marca Shimano, modelo CS-HG201, 9 velocidades, 11 x 36 dentes na cor prata / cromado.',
-    //   SKU: '111111',
-    //   price: 230.00,
-    //   image: '/assets/products/003-cassete.jpg',
-    //   createAt: new Date().toISOString(),
-    //   updatedAt: new Date().toISOString(),
-    //   category_id: 4
-    // })
+    await models.Category.create({
+      name: 'Transmissão',
+      description: 'Pinhão, cassetes, coroas, cubos, correntes e câmbios',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })
+
+    await models.Product.create({
+      name: 'Pedal Clip MTB PD-M324 (Prata) - Shimano',
+      description: 'Pedal clip para bicicleta MTB, marca Shimano, modelo PD-M324, cor Prata. Especificação:- Marca: Shimano - Modelo: PD-M324- Código Shimano: EPDM324 - Cor: Prata- Rosca: Grossa tipo Inglês 9/16"- Acompanha par de taquinho: SM-SH56- Sistema misto, sendo um lado com clip e o outro com apoio normal (sem clip)- Peso: 533 gramas (par)- Produto original.',
+      image: '/assets/products/001-PedalClip.jpg',
+      SKU: '1111',
+      price: 520.00,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })
+
     // Act
     const res = await request(app)
       .post('/busca')
-      .send({ queryTxt: 'cassete' })
+      .send({ queryTxt: 'pedal' })
     // Assert
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
     expect(res.statusCode).toBe(200)
@@ -55,7 +59,7 @@ describe('Integration Test IndexController', function () {
     // Act
     const res = await request(app)
       .post('/busca')
-      .query({ queryTxt: 'xxxxx' })
+      .query({ queryTxt: 'fake_product' })
     // Assert
     expect(res.header['content-type']).toBe('text/html; charset=utf-8')
     expect(res.statusCode).toBe(200)

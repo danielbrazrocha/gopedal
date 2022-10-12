@@ -2,12 +2,12 @@ module.exports = (req, res, next) => {
   const { user } = req.session
 
   if (user) {
-    // console.log(user);
     // caso o usuario esteja logado, salvar a informação para reutilização global
     res.locals.user = user
-    // console.log(user)
+
+    return next()
   }
 
-  // caso o usuário não esteja logado, continuar a execução da rota
-  next()
+  // caso o usuário não esteja logado, redirecionar a pagina de login
+  res.redirect('/login')
 }

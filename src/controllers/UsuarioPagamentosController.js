@@ -14,21 +14,19 @@ const UsuarioPagamentosController = {
         include: ['payments']
       })
 
-      if (userDetails.length === 0) {
+      if (userDetails?.payments?.length === 0) {
         return res.status(200).render('usuario', {
           arquivoCss: 'dashboard.css',
           error: 'Não há nenhum pagamento cadastrado.'
         })
       }
 
-      // console.log(userDetails.addresses)
-
       return res.status(200).render('usuario', {
         arquivoCss: 'dashboard.css',
-        pagamentos: userDetails.payments
+        pagamentos: userDetails?.payments
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   edit: async (req, res, next) => {
@@ -53,10 +51,8 @@ const UsuarioPagamentosController = {
       const { id, payment_type, provider, account_number, expiry, newItem } = req.body
 
       try {
-        let ans
-
         if (newItem) {
-          ans = await User_Payment.create({
+          await User_Payment.create({
             UserId,
             payment_type,
             provider,
@@ -73,19 +69,13 @@ const UsuarioPagamentosController = {
             expiry,
             updatedAt: new Date().toISOString()
           }
-          ans = await User_Payment.update(newItemData, {
+          await User_Payment.update(newItemData, {
             where: {
               id
             }
           })
         }
 
-        if (!ans) {
-          return res.status(422).render('usuario', {
-            arquivoCss: 'dashboard.css',
-            error: `Erro na atualização do pagamento ${id}. Verifique as informações e tente novamente.`
-          })
-        }
         return res.status(201).render('usuario', {
           arquivoCss: 'dashboard.css',
           success: `Pagamento Id ${id} atualizado com sucesso.`
@@ -121,15 +111,19 @@ const UsuarioPagamentosController = {
         }
       })
       .catch(function (error) {
-        res.status(500).json(error)
+        return res.status(500).render({ message: 'Error' + error })
       })
   },
   add: async (req, res, next) => {
-    return res.status(200).render('usuario', {
-      arquivoCss: 'dashboard.css',
-      pagamentoDetails: {},
-      newItem: true
-    })
+    try {
+      return res.status(200).render('usuario', {
+        arquivoCss: 'dashboard.css',
+        pagamentoDetails: {},
+        newItem: true
+      })
+    } catch (error) {
+      return res.status(500).render({ message: 'Error' + error })
+    }
   }
 }
 

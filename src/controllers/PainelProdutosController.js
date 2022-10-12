@@ -28,7 +28,7 @@ const PainelProdutosController = {
         produtos: productList
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   add: async (req, res, next) => {
@@ -75,9 +75,8 @@ const PainelProdutosController = {
       const { id, nome, category, description, imagelink, SKU, price, newItem } = req.body
       try {
         // atualizando o produto
-        let ans
         if (newItem) {
-          ans = await Product.create({
+          await Product.create({
             name: nome,
             description,
             SKU,
@@ -98,18 +97,10 @@ const PainelProdutosController = {
             categoryId: category
           }
 
-          ans = await Product.update(newProductData, {
+          await Product.update(newProductData, {
             where: {
               id
             }
-          })
-        }
-
-        // verificando se o producto foi criado existe no BD
-        if (!ans) {
-          return res.status(422).render('dashboard', {
-            arquivoCss: 'dashboard.css',
-            error: `Erro na atualização do produto Id ${id}. Verifique as informações e tente novamente.`
           })
         }
 
@@ -150,7 +141,7 @@ const PainelProdutosController = {
         }
       })
       .catch(function (error) {
-        res.status(500).json(error)
+        return res.status(500).render({ message: 'Error' + error })
       })
   }
 }

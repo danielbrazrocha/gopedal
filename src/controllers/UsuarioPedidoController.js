@@ -26,22 +26,26 @@ const UsuarioPedidoController = {
         pedidos: orderList
       })
     } catch (error) {
-      return res.status(500).json({ message: 'Error' + error })
+      return res.status(500).render({ message: 'Error' + error })
     }
   },
   edit: async (req, res) => {
-    const orderId = req.params.id
-    const itemList = await Order_Itens.findAll({
-      where: {
-        OrderDetailId: orderId
-      },
-      include: ['product']
-    })
+    try {
+      const orderId = req.params.id
+      const itemList = await Order_Itens.findAll({
+        where: {
+          OrderDetailId: orderId
+        },
+        include: ['product']
+      })
 
-    return res.status(200).render('usuario', {
-      arquivoCss: 'dashboard.css',
-      pedidoDetails: itemList
-    })
+      return res.status(200).render('usuario', {
+        arquivoCss: 'dashboard.css',
+        pedidoDetails: itemList
+      })
+    } catch (error) {
+      return res.status(500).render({ message: 'Error' + error })
+    }
   }
 }
 
